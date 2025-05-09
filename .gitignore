@@ -1,0 +1,9 @@
+/node_modules
+/dist
+/vendor
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+test.php
