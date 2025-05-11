@@ -10,24 +10,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="flex flex-col lg:flex-row min-h-screen gap-4">
     <div class="flex-1 bg-gray-100 ">
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemtype="https://schema.org/Article" >
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemtype="https://schema.org/CreativeWork" >
             <?php if (has_post_thumbnail()): ?>
-                <figure class="mb-6">
+                <div class="featured-image page-header-image-single mb-4">
                     <?php the_post_thumbnail('large', [
-                    'class' => 'rounded-lg w-full h-auto object-cover',
+                    'class' => 'rounded w-full h-auto object-cover',
                     'loading' => 'lazy',
                     'itemprop' => 'image'
                     ]); ?>
-                </figure>
-            <?php endif; ?>
-            
-            <!-- Breadcrumbs -->
-            <?php if ( function_exists('rank_math_the_breadcrumbs') ) : ?>
-                <div class="breadcrumbs">
-                <div class="mb-4 text-sm text-gray-500" itemscope itemtype="https://schema.org/BreadcrumbList">
-                    <?php rank_math_the_breadcrumbs(); ?>
                 </div>
-            </div>
             <?php endif; ?>
             <header>
                 <!-- Title -->
@@ -39,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </div>
             </header>
             <!-- Content Body -->
-            <div class="entry-content" itemprop="articleBody">
+            <div class="entry-content" itemprop="text">
                 <?php the_content(); ?>
             </div>
             <!-- Tags -->
@@ -47,15 +38,15 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <div class="entry-tags">
                     <h2 class="text-xl font-semibold mb-4">คำที่เกี่ยวข้อง</h2>
                     <div class="flex flex-wrap gap-2">
-                        <?php the_tags('<span class="inline-block bg-brand text-white px-3 py-1 rounded text-sm">','</span><span class="inline-block bg-brand text-white px-3 py-1 rounded text-sm">','</span>'); ?>
+                        <?php the_tags('<span class="inline-block bg-brand text-white px-3 py-1 text-sm">','</span><span class="inline-block bg-brand text-white px-3 py-1 text-sm">','</span>'); ?>
                     </div>
                 </div>
             </footer>
         </article>
         <!-- Post Navigation -->
-        <div class="mt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-accent">
-          <div><?php previous_post_link('%link', '&larr; %title'); ?></div>
-          <div><?php next_post_link('%link', '%title &rarr;'); ?></div>
+        <div class="mt-10 flex flex-col md:flex-row justify-between items-center gap-2 text-sm text-dark">
+          <div class="p-2 w-full bg-accent border-1 border-dark text-center"><?php previous_post_link('%link', '&larr; %title'); ?></div>
+          <div class="p-2 w-full bg-accent  border-1 border-dark text-center"><?php next_post_link('%link', '%title &rarr;'); ?></div>
         </div>
         
         <!-- Related Posts by Tag or Category -->

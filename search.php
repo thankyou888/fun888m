@@ -11,17 +11,7 @@ get_header(); // Load header template
 <div class="container my-8 mx-auto bg-gray-100">
     <div class="flex flex-col lg:flex-row min-h-screen gap-4">
         <div class="flex-1">
-          <?php if ( is_category() ) : ?>
-            <h1 class="entry-title text-2xl font-bold mb-4" itemprop="headline"><?php echo _e('หมวดหมู่'); ?> : <span class="text-accent"><?php single_cat_title(); ?></span></h1>
-          <?php elseif ( is_tag() ) : ?>
-            <h1 class="entry-title text-2xl font-bold mb-4" itemprop="headline"><?php echo _e('แท็ก'); ?> : <span class="text-accent"><?php single_tag_title(); ?></span></h1>
-          <?php elseif ( is_author() ) : ?>
-            <h1 class="entry-title text-2xl font-bold mb-4" itemprop="headline"><?php echo _e('เขียนโดย'); ?> : <span class="text-accent"><?php the_author(); ?></span></h1>    
-          <?php elseif ( is_date() ) : ?>
-            <h1 class="entry-title text-2xl font-bold mb-4" itemprop="headline"><?php echo _e('คลังรายปี'); ?> : <span class="text-accent"><?php the_time('F Y'); ?></span></h1>
-          <?php else : ?>
-            <h1 class="entry-title text-2xl font-bold mb-4" itemprop="headline"><?php echo _e('Archive'); ?> : <span class="text-accent"><?php the_archive_title(); ?></span></h1>
-          <?php endif; ?>
+            <h1 class="entry-title text-2xl font-bold mb-4" itemprop="headline"><?php echo _e('ผลการค้นหา'); ?> : <span class="text-accent"><?php echo get_search_query(); ?></span></h1>
             <?php if ( have_posts() ) : ?>
               <?php $first = true; ?>
             <!-- Content Archive First Post-->

@@ -17,6 +17,8 @@ function tailpress(): TailPress\Framework\Theme
         )
         ->features(fn($manager) => $manager->add(TailPress\Framework\Features\MenuOptions::class))
         ->menus(fn($manager) => $manager->add('primary', __( 'Primary Menu', 'tailpress')))
+        ->menus(fn($manager) => $manager->add('sponsor', __( 'Sponsor Menu', 'tailpress')))
+        ->menus(fn($manager) => $manager->add('footer', __( 'Footer Bar Menu', 'tailpress')))
         ->themeSupport(fn($manager) => $manager->add([
             'title-tag',
             'custom-logo',
@@ -57,8 +59,18 @@ function rename_uploaded_image($file) {
     return $file;
 }
 
+function custom_archive_title($title) {
+  if (is_category()) {
+      $title = single_cat_title('', false); // Display category name without "Category: "
+  } elseif (is_tag()) {
+      $title = single_tag_title('', false); // Display tag name only
+  }
+  return $title;
+}
+add_filter('get_the_archive_title', 'custom_archive_title');
 
-function custom_register_sidebars() {
+
+function register_primary_sidebars() {
     register_sidebar(array(
       'name'          => 'Primary Sidebar',
       'id'            => 'primary-sidebar',
@@ -69,7 +81,7 @@ function custom_register_sidebars() {
       'after_title'   => '</h3>',
     ));
   }
-  add_action('widgets_init', 'custom_register_sidebars');
+  add_action('widgets_init', 'register_primary_sidebars');
   
   
 
@@ -94,6 +106,26 @@ function register_footer_widgets() {
     ));
   }
   add_action('widgets_init', 'register_footer_widgets');
+
+  function customize_footer_register($wp_customize) {
+    $wp_customize->add_section('footer_settings', array(
+        'title' => __('Footer Settings', 'tailpress'),
+        'priority' => 120,
+    ));
+
+    $wp_customize->add_setting('footer_text', array(
+        'default' => 'Default Footer Text',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+
+    $wp_customize->add_control('footer_text_control', array(
+        'label' => __('Footer Text', 'tailpress'),
+        'section' => 'footer_settings',
+        'settings' => 'footer_text',
+        'type' => 'text',
+    ));
+}
+add_action('customize_register', 'customize_footer_register');
 
 // เพิ่ม rel attribute และ alt จาก Media Library ให้ลิงก์ของรูปแบนเนอร์จาก Customize
 function theme_sidebar_banner_with_link() {
@@ -138,7 +170,7 @@ function theme_sidebar_banner_with_link() {
     ));
   
     $wp_customize->add_control('sidebar_banner_link', array(
-      'label'   => __('Sidebar Banner Link', 'mytheme'),
+      'label'   => __('Sidebar Banner Link', 'tailpress'),
       'section' => 'Banner',
       'type'    => 'url',
     ));
@@ -149,7 +181,7 @@ function theme_sidebar_banner_with_link() {
       ));
     
       $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'sidebar_banner_image', array(
-        'label'    => __('Sidebar Banner Image', 'mytheme'),
+        'label'    => __('Sidebar Banner Image', 'tailpress'),
         'section'  => 'Banner', // หรือ custom section
         'settings' => 'sidebar_banner_image',
       )));

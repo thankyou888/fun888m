@@ -4,13 +4,17 @@
         <?php get_search_form(); ?>
         <?php theme_sidebar_banner_with_link(); ?>
 
+        <?php
+            wp_nav_menu([
+                'container_id'    => 'sponsor-menu',
+                'container_class' => '',
+                'menu_class'      => 'flex flex-col gap-2 [&_a]:!no-underline text-light mb-4',
+                'theme_location'  => 'sponsor',
+                'li_class'        => 'py-[.7rem] text-center bg-brand rounded',
+                'fallback_cb'     => false,
+            ]);
+        ?>
 
-        <ul class="space-y-2 menu">
-            <li><a href="#" class=" hover:underline">Link 1</a></li>
-            <li><a href="#" class=" hover:underline">Link 2</a></li>
-            <li><a href="#" class=" hover:underline">Link 3</a></li>
-            <li><a href="#" class=" hover:underline">Link 4</a></li>
-        </ul>
         <?php if (is_active_sidebar('primary-sidebar')): ?>
         <div class="space-y-4">
             <?php dynamic_sidebar('primary-sidebar'); ?>
