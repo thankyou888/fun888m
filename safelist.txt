@@ -6,3 +6,4 @@ alignright
 wp-block-button
 wp-caption
 wp-caption-text
+breadcrumbs

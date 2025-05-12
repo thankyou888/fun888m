@@ -14,7 +14,11 @@
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class('bg-white text-zinc-900 antialiased'); ?>>
+<body <?php body_class('bg-white text-zinc-900 antialiased'); ?> >
+    <?php wp_body_open(); ?>
+    <div id="skip-link" class="skip-link screen-reader-text">
+        <a href="#content" class="bg-sky-600 text-white px-4 py-2 rounded">Skip to content</a>
+    </div>
 <?php do_action('tailpress_site_before'); ?>
 
 <div id="page" class="min-h-screen flex flex-col">
@@ -111,20 +115,19 @@
            <?php if (!is_front_page()): ?>
                 <?php if ( function_exists('rank_math_the_breadcrumbs') ) : ?>
                 <div class="breadcrumbs border-b-1 border-zinc-200">
-                    <div class="container mx-auto py-4 text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <div class="container mx-auto py-2 text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">
                         <?php rank_math_the_breadcrumbs(); ?>
                     </div>
                 </div>
                 <?php endif; ?>
-                <?php if ( function_exists('yoast_breadcrumb') ) : ?>
-                <div class="breadcrumbs border-b-1 border-zinc-200">
-                    <div class="container mx-auto py-4 text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">
-                        <?php yoast_breadcrumb( '<p id="breadcrumbs">','</p>' ); ?>
-                    </div>
-                </div>
-                <?php endif; ?>
-                 
-
+                
+                <?php if ( function_exists('bcn_display') ) : ?>
+                    <div class="breadcrumbs border-b-1 border-zinc-200">
+                        <div class="container mx-auto py-2 text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">
+                            <?php bcn_display(); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
             <?php endif; ?>
                
         <?php do_action('tailpress_content_start'); ?>

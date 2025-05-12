@@ -69,6 +69,39 @@ function custom_archive_title($title) {
 }
 add_filter('get_the_archive_title', 'custom_archive_title');
 
+function create_service_page_type() {
+  register_post_type('service_page', array(
+      'labels' => array(
+          'name'          => __('Service Pages', 'tailpress'),
+          'singular_name' => __('Service Page', 'tailpress'),
+      ),
+      'public'            => true,
+      'has_archive'       => false, // No archive page
+      'hierarchical'      => true, // Behaves like a Page
+      'rewrite'           => array('slug' => 'service'),
+      'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
+      'show_in_rest'      => true, // Enables Gutenberg block editor
+  ));
+}
+add_action('init', 'create_service_page_type');
+
+
+function create_bonuses_page_type() {
+  register_post_type('bonuses_page', array(
+      'labels' => array(
+          'name'          => __('Bonuses Pages', 'tailpress'),
+          'singular_name' => __('Bonuses Page', 'tailpress'),
+      ),
+      'public'            => true,
+      'has_archive'       => false, // No archive page
+      'hierarchical'      => true, // Behaves like a Page
+      'rewrite'           => array('slug' => 'bonuses'),
+      'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
+      'show_in_rest'      => true, // Enables Gutenberg block editor
+  ));
+}
+add_action('init', 'create_bonuses_page_type');
+
 
 function register_primary_sidebars() {
     register_sidebar(array(
@@ -107,25 +140,91 @@ function register_footer_widgets() {
   }
   add_action('widgets_init', 'register_footer_widgets');
 
-  function customize_footer_register($wp_customize) {
-    $wp_customize->add_section('footer_settings', array(
-        'title' => __('Footer Settings', 'tailpress'),
-        'priority' => 120,
+
+  /* The `function my_theme_customizer()` is a WordPress function that is used to add
+  custom options to the theme customizer. Inside this function, various settings and controls are
+  added to allow users to customize certain aspects of the theme such as sidebar visibility, footer
+  text, sidebar banner link, and sidebar banner image. */
+  function my_theme_customizer($wp_customize) {
+    // Create a new section in the Customizer
+    $wp_customize->add_section('theme_options', array(
+        'title'    => __('Theme Options', 'mytheme'),
+        'priority' => 30,
+    ));
+
+    // Add setting for sidebar visibility
+    $wp_customize->add_setting('show_sidebar', array(
+        'default'           => true, // Sidebar visible by default
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    // Add control (checkbox) for sidebar
+    $wp_customize->add_control('show_sidebar_control', array(
+        'label'    => __('Show Sidebar', 'mytheme'),
+        'section'  => 'theme_options',
+        'settings' => 'show_sidebar',
+        'type'     => 'checkbox',
     ));
 
     $wp_customize->add_setting('footer_text', array(
-        'default' => 'Default Footer Text',
-        'sanitize_callback' => 'sanitize_text_field',
+      'default' => 'Default Footer Text',
+      'sanitize_callback' => 'sanitize_text_field',
+  ));
+
+  $wp_customize->add_control('footer_text_control', array(
+      'label' => __('Footer Text', 'tailpress'),
+      'section' => 'theme_options',
+      'settings' => 'footer_text',
+      'type' => 'text',
+  ));
+
+  $wp_customize->add_setting('sidebar_banner_link', array(
+    'default' => '',
+    'sanitize_callback' => 'esc_url_raw',
+  ));
+
+  $wp_customize->add_control('sidebar_banner_link', array(
+    'label'   => __('Sidebar Banner Link', 'tailpress'),
+    'section' => 'theme_options',
+    'type'    => 'url',
+  ));
+
+  $wp_customize->add_setting('sidebar_banner_image', array(
+      'default' => '',
+      'sanitize_callback' => 'esc_url_raw',
+    ));
+  
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'sidebar_banner_image', array(
+      'label'    => __('Sidebar Banner Image', 'tailpress'),
+      'section'  => 'theme_options', // หรือ custom section
+      'settings' => 'sidebar_banner_image',
+    )));
+
+    $wp_customize->add_setting('Affiliate ID', array(
+      'default' => '',
+      'sanitize_callback' => 'sanitize_text_field',
     ));
 
-    $wp_customize->add_control('footer_text_control', array(
-        'label' => __('Footer Text', 'tailpress'),
-        'section' => 'footer_settings',
-        'settings' => 'footer_text',
-        'type' => 'text',
+    $wp_customize->add_control('affiliate_id', array(
+      'label'   => __('Affiliate ID', 'tailpress'),
+      'section' => 'theme_options',
+      'type'    => 'text',
     ));
+
+    $wp_customize->add_setting('Affiliate Parameter', array(
+      'default' => '',
+      'sanitize_callback' => 'esc_url_raw'
+    ));
+    $wp_customize->add_control('affiliate_parameter', array(
+      'label'   => __('Affiliate Parameter', 'tailpress'),
+      'section' => 'theme_options',
+      'type'    => 'text',
+    ));
+  
+
 }
-add_action('customize_register', 'customize_footer_register');
+add_action('customize_register', 'my_theme_customizer');
+
 
 // เพิ่ม rel attribute และ alt จาก Media Library ให้ลิงก์ของรูปแบนเนอร์จาก Customize
 function theme_sidebar_banner_with_link() {
@@ -150,43 +249,6 @@ function theme_sidebar_banner_with_link() {
       echo '</div>';
     }
   }
-  
-  // เพิ่ม field ลิงก์ใน Customizer
-  function theme_customize_sidebar_banner($wp_customize) {
-
-//Section
-    $wp_customize->add_section(
-        'Banner',
-        array(
-            'title' => __( 'Sponsor Banner Images', '_s' ),
-            'priority' => 30,
-            'description' => __( 'Enter the Sponsor Banner Images', '_s' )
-        )
-    );
-
-    $wp_customize->add_setting('sidebar_banner_link', array(
-      'default' => '',
-      'sanitize_callback' => 'esc_url_raw',
-    ));
-  
-    $wp_customize->add_control('sidebar_banner_link', array(
-      'label'   => __('Sidebar Banner Link', 'tailpress'),
-      'section' => 'Banner',
-      'type'    => 'url',
-    ));
-
-    $wp_customize->add_setting('sidebar_banner_image', array(
-        'default' => '',
-        'sanitize_callback' => 'esc_url_raw',
-      ));
-    
-      $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'sidebar_banner_image', array(
-        'label'    => __('Sidebar Banner Image', 'tailpress'),
-        'section'  => 'Banner', // หรือ custom section
-        'settings' => 'sidebar_banner_image',
-      )));
-  }
-  add_action('customize_register', 'theme_customize_sidebar_banner');
   
 
 function custom_excerpt_override($text) {
