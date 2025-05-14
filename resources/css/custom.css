@@ -6,7 +6,7 @@
 
   :where(
     .entry-content > *:not(li),
-    .block-editor-block-list__layout > *:not(li)
+    .block-editor-block-list__layout , .wp-block-group > *:not(li)
   ) {
     margin-top: --spacing(6);
     margin-bottom: --spacing(6);
@@ -81,7 +81,13 @@
     margin-bottom: 0 !important;
   }
 
-  table {
+  :where(table) {
     @apply w-full border-collapse text-center justify-between border border-sky-700 mb-4;
+  }
+}
+
+section {
+  :where(p){
+    @apply mb-4;
   }
 }

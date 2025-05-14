@@ -66,4 +66,17 @@ class Component
         $query = new WP_Query($args);
         echo 'Not Found';
     }
+
+    public static function get_postByCat(?WP_Query $query = null, array $args = []): void
+    {
+
+        $args = wp_parse_args($args, [
+            'posts_per_page' => 5,
+            'post_type' => 'bonuses',
+            'orderby' => 'post__in',
+        ]);
+
+        $query = new WP_Query($args);
+        echo 'Not Found';
+    }
 }

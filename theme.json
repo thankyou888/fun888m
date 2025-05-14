@@ -108,6 +108,15 @@
           "size": "9rem"
         }
       ]
+    },
+    "custom": {
+      "theme": {
+        "name": "My Custom Theme",
+        "version": "1.0.0",
+        "author": "Your Name",
+        "authorURI": "https://example.com"
+      },
+      "myCustomField": "defaultValue"
     }
   }
 }
