@@ -59,13 +59,16 @@
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
+
+
 @layer base {
+
   *,
   ::after,
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-zinc-200, currentColor);
+    border-color: var(--color-gray-200, currentColor);
   }
 
   a:where(:not(.wp-element-button)) {
@@ -86,14 +89,18 @@
     padding: 0.5em;
   }
 
-  body {
-    font-family: var(--font-sarabun);
-    font-size: var(--text-base);
-    color: #333;
-  }
   .breadcrumbs {
     a {
       color: var(--color-accent);
     }
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-family: var(--font-kanit);
+  }
+
+  h1 {
+    @apply text-3xl mb-8 tracking-normal;
+    
   }
 }

@@ -69,7 +69,7 @@ get_header(); // Load header template
                     <div class="lg:flex-1"><a href="#" class="btn btn-success">สมัครรับโบนัส ทันที!!</a></div>
                 </section>
                  <!--call to action -->
-                 <section class="call-action mb-4"">
+                 <section class="call-action mb-4">
                     <div class="bg-blue-500 text-white p-12 rounded-lg shadow-md text-center">
                         <h2 class="text-2xl font-bold mb-4">สมัครใหม่รับโบนัส 120%!</h2>
                         <p class="text-sm mb-4">สมัครสมาชิกใหม่ รับโบนัสเพิ่ม 100% สำหรับเดิมพันสล็อตทุกค่าย รับสุงสุด 8,000 บาท ทำเทิร์นโอเวอร์ 18 เท่า เพื่อถอน</p>
@@ -78,15 +78,15 @@ get_header(); // Load header template
                 </section>
                 <!-- Services Live Casino -->
                  <section class="services my-4 bg-white p-4 rounded-lg shadow-md">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-2xl font-bold"><?php echo $services_section_title ?></h2>
+                    <div class="flex justify-between items-center lg:text-center mb-4">
+                        <h2 class="flex-grow lg:flex-auto text-2xl font-bold"><?php echo $services_section_title ?></h2>
                         <a title="View All " href="#" class="text-sm text-gray-500 hover:text-gray-700 transition duration-300" itemprop="url">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6 inline-block text-brand">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"></path>
                             </svg>
                         </a>
                     </div>
-                    <div class="sub-description mb-4">
+                    <div class="sub-description mb-4 lg:max-w-2/3 text-center mx-auto ">
                                 <?php echo $services_section_description ?>
                     </div>
                     <?php  $query = ContentQuery::get_pages($services_section_page,['orderby' => 'post__in']); ?>
@@ -166,7 +166,12 @@ get_header(); // Load header template
                 </div>
             </section>
             <section class="entry-bonuses mb-4">
-                <h2 class="text-2xl font-bold mb-6">โบนัสและโปรโมชั่น</h2>
+                
+                <div class="flex items-center">
+                            <span class="h-px flex-1 bg-gradient-to-r from-transparent to-gray-300"></span>
+                            <h2 class="shrink-0 text-2xl font-bold mb-4 px-4 border-brand">โบนัสและโปรโมชั่น</h2>
+                            <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
+                        </div>
                 <?php TailPress\Component::create_feature(null, [
                     'slug__in' => ['fun88-casino','สมัครสมาชิก-fun88']
                 ]); ?>

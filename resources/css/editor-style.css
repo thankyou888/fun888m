@@ -4,7 +4,15 @@
 
 h1 {
     @apply text-3xl mb-8;
+    font-family: var(--font-kanit);
 }
+
+.entry-content,
+.block-editor-block-list__layout {
+
+    font-family: var(--font-sarabun);
+}
+
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,

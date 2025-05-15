@@ -86,6 +86,12 @@
   }
 }
 
+body {
+  font-family: var(--font-sarabun);
+  font-size: var(--text-base);
+  color: #333;
+}
+
 section {
   :where(p){
     @apply mb-4;

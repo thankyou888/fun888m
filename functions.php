@@ -37,7 +37,17 @@ function tailpress(): TailPress\Framework\Theme
 }
 
 tailpress();
+/**
+ * Register custom Gutenberg blocks.
+ */
+function fun888m_register_custom_blocks() {
+  // Register the bonus-grid block
+  register_block_type( get_template_directory() . '/blocks/bonus-grid' );
 
+  // You can register other blocks here by adding more register_block_type() calls.
+  // Example: register_block_type( get_template_directory() . '/blocks/another-block' );
+}
+add_action( 'init', 'fun888m_register_custom_blocks' );
 add_filter('wp_handle_upload_prefilter', 'rename_uploaded_image');
 
 /**
