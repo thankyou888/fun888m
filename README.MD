@@ -12,6 +12,7 @@ We're actively developing this theme, with recent enhancements including:
 - **Dependency Updates:** Keeping our tools fresh, including an upgrade to Vite.
 
 Our goal is to provide a powerful, yet easy-to-use theme that gets you up and running quickly, so you can focus on building something awesome. Dive in and see how this theme can streamline your WordPress development!
+ThankYou888 Team
 
 ####
 สวัสดีครับ ยินดีต้อนรับสู่ Muti Purpose WordPress Theme!
@@ -29,3 +30,4 @@ Our goal is to provide a powerful, yet easy-to-use theme that gets you up and ru
 - **อัปเดต Dependency:** ทำให้เครื่องมือของเราทันสมัยอยู่เสมอ รวมถึงการอัปเกรด Vite
 
 เป้าหมายของเราคือการมอบธีมที่ทรงพลังแต่ใช้งานง่าย ซึ่งช่วยให้คุณเริ่มต้นได้อย่างรวดเร็ว เพื่อให้คุณสามารถมุ่งเน้นไปที่การสร้างสรรค์สิ่งที่ยอดเยี่ยม ลองเข้ามาดูว่าธีมนี้จะช่วยให้การพัฒนา WordPress ของคุณคล่องตัวขึ้นได้อย่างไร!
+ThankYou888 Team
