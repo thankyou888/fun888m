@@ -113,6 +113,7 @@
         <main class="bg-gray-100">
            <!-- Breadcrumbs -->
            <?php if (!is_front_page()): ?>
+                <?php do_action('tailpress_breadcrumbs_start'); ?>
                 <?php if ( function_exists('rank_math_the_breadcrumbs') ) : ?>
                 <div class="breadcrumbs border-b-1 border-zinc-200">
                     <div class="container mx-auto py-2 text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -120,7 +121,11 @@
                     </div>
                 </div>
                 <?php endif; ?>
-                
+                <?php
+                if ( function_exists('yoast_breadcrumb') ) {
+                    yoast_breadcrumb( '<div class="container mx-auto py-2 text-sm"><p id="breadcrumbs">','</p></div>' );
+                }
+                ?>
                 <?php if ( function_exists('bcn_display') ) : ?>
                     <div class="breadcrumbs border-b-1 border-zinc-200">
                         <div class="container mx-auto py-2 text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">

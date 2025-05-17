@@ -44,9 +44,9 @@ if ( ! defined( 'ABSPATH' ) ) {
             </footer>
         </article>
         <!-- Post Navigation -->
-        <div class="mt-10 flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
-          <?php previous_post_link('%link', '&larr; %title'); ?>
-          <?php next_post_link('%link', '%title &rarr;'); ?>
+        <div class="mt-10 flex flex-col md:flex-row justify-between items-center gap-2 text-sm text-dark">
+          <div class="p-2 w-full bg-accent border-1 border-dark text-center"><?php previous_post_link('%link', '&larr; %title'); ?></div>
+          <div class="p-2 w-full bg-accent  border-1 border-dark text-center"><?php next_post_link('%link', '%title &rarr;'); ?></div>
         </div>
         
         <!-- Related Posts by Tag or Category -->

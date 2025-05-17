@@ -14,7 +14,7 @@ export default defineConfig(({ command }) => {
         server: {
             port: 3000,
             cors: true,
-            origin: 'http://fun888m-dev.local',
+            origin: 'http://dev-fun888m.local',
         },
         build: {
             manifest: true,

@@ -18,6 +18,10 @@ $section_options = get_option('section_setting', array());
 $services_section_title = isset($section_options['services_section_title']) ? $section_options['services_section_title'] : 'Our Services';
 $services_section_description = isset($section_options['services_section_description']) ? $section_options['services_section_description'] : '';
 $services_section_page = isset($section_options['services_section_page']) ? $section_options['services_section_page'] : '';
+$aboutus_title = isset($section_options['aboutus_title']) ? $section_options['aboutus_title'] : '';
+$aboutus_description = isset($section_options['aboutus_description']) ? $section_options['aboutus_description'] : '';
+$aboutus_source_page = isset($section_options['aboutus_source_page']) ? $section_options['aboutus_source_page'] : '';
+
 get_header(); // Load header template
 
 ?>
@@ -121,9 +125,9 @@ get_header(); // Load header template
                             <img src="https://placehold.co/600x400" alt="About Us" class="rounded-lg w-full h-auto object-cover" loading="lazy"> 
                         </div>
                         <div class="about-text items-center flex-1 content-center">
-                            <h2 class="text-3xl font-bold mb-4">About Us</h2>
-                            <p class="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="#" class="btn btn-primary text-white rounded px-4 py-2">Learn More</a>
+                            <h2 class="text-3xl font-bold mb-4"><?php echo $aboutus_title ?></h2>
+                            <p class="text-gray-700 mb-4"><?php echo $aboutus_description ?></p>
+                            <a href="<?php echo $aboutus_source_page ?>" title="<?php echo $aboutus_title ?>" class="btn btn-primary text-white rounded px-4 py-2">อ่านต่อ</a>
                         </div>
                     </div>
                 </section>
@@ -137,14 +141,20 @@ get_header(); // Load header template
                             </svg>
                         </a>
                     </div>
+                    <?php  $query = ContentQuery::get_by_post_type('bonuses'); ?>
+                    <?php if ($query->have_posts()): ?>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+                        <?php while ($query->have_posts()) : $query->the_post(); ?>
                         <div class="bg-white p-4 rounded-lg shadow-md items-center text-center">
-                            <img src="https://placehold.co/1200x630" alt="Bonus Post 1" class="rounded-lg w-96 h-auto object-cover mb-4">
-                            <h2 class="text-xl font-bold mb-2 ">Bonus Offer 1 <div class="badge badge-secondary">NEW</div></h2>
-                            <p class="text-gray-700 mb-4">Get a 100% bonus on your first deposit!</p>
-                            <a href="#" class="btn btn-primary">Claim Now</a>
+                            <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'rounded-lg w-96 h-auto object-cover mb-4', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
+                            <h2 class="text-xl font-bold mb-2 "><?php the_title(); ?><div class="badge badge-secondary">NEW</div></h2>
+                            <p class="text-gray-700 mb-4"><?php custom_the_excerpt();  ?></p>
+                            <a href="<?php the_permalink();?>" title="<?php the_title(); ?>" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
                         </div>
+                        <?php endwhile; ?>
+                        <?php wp_reset_postdata(); ?>
                     </div>
+                    <?php endif; ?>
                 </section>
             </article>
             <!-- FAQ Section -->

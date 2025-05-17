@@ -80,7 +80,7 @@ function custom_archive_title($title) {
 add_filter('get_the_archive_title', 'custom_archive_title');
 
 function create_service_page_type() {
-  register_post_type('service_page', array(
+  register_post_type('service', array(
       'labels' => array(
           'name'          => __('Service Pages', 'tailpress'),
           'singular_name' => __('Service Page', 'tailpress'),
@@ -97,7 +97,7 @@ add_action('init', 'create_service_page_type');
 
 
 function create_bonuses_page_type() {
-  register_post_type('bonuses_page', array(
+  register_post_type('bonuses', array(
       'labels' => array(
           'name'          => __('Bonuses Pages', 'tailpress'),
           'singular_name' => __('Bonuses Page', 'tailpress'),
@@ -111,6 +111,23 @@ function create_bonuses_page_type() {
   ));
 }
 add_action('init', 'create_bonuses_page_type');
+
+function register_faq_post_type() {
+    register_post_type('faq', [
+        'labels' => [
+            'name' => 'FAQs',
+            'singular_name' => 'FAQ',
+            'add_new_item' => 'Add New FAQ',
+            'edit_item' => 'Edit FAQ',
+        ],
+        'public' => true,
+        'has_archive' => false,
+        'rewrite' => ['slug' => 'faq'],
+        'supports' => ['title', 'editor'],
+        'show_in_rest' => true, // Enables Gutenberg
+    ]);
+}
+add_action('init', 'register_faq_post_type');
 
 
 function register_primary_sidebars() {
@@ -272,7 +289,28 @@ function custom_excerpt_override($text) {
 }
 add_filter('wp_trim_excerpt', 'custom_excerpt_override');
 
+
 function custom_the_excerpt() {
   $content = get_the_content();
-  return wp_trim_words(wp_strip_all_tags($content), 120, '...');
+  return wp_trim_words(wp_strip_all_tags($content), 50, '...');
 }
+
+
+add_filter('previous_post_link', function ($output) {
+    
+        $html = '<div class="p-2 w-full bg-accent border-1 border-gray-300 text-center">';
+        $html .= $output . '</div>';
+        $output = $html;
+        return $output;
+   
+});
+
+add_filter('next_post_link', function ($output) {
+    
+        $html = '<div class="p-2 w-full bg-accent  border-1 border-gray-300 text-center">';
+        $html .= $output . '</div>';
+        $output = $html;
+        return $output;
+   
+});
+
