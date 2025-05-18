@@ -11,12 +11,12 @@ get_header();
 <div class="container my-8 mx-auto ">
     <?php if (have_posts()): ?>
         <?php while (have_posts()): the_post(); ?>
-            <?php echo 'post type:'. get_post_type(); ?>
-            <?php get_template_part('template-parts/content', 'single'); ?>
-
-            <?php if (comments_open() || get_comments_number()): ?>
-                <?php comments_template(); ?>
+            <?php if (get_post_type() != "post") : ?>
+                <?php get_template_part('template-parts/content', 'single'); ?>
+            <?php else: ?>
+                <?php get_template_part('template-parts/content', 'single'); ?>
             <?php endif; ?>
+
         <?php endwhile; ?>
     <?php endif; ?>
 </div>

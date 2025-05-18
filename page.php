@@ -7,7 +7,7 @@
             <article itemscope itemtype="https://schema.org/WebPage" class="max-w-none">
             <?php if (has_post_thumbnail()): ?>
                       <div class="featured-image page-header-image-single mb-4">
-                          <?php the_post_thumbnail('large', [
+                          <?php the_post_thumbnail('full', [
                           'class' => 'rounded w-full h-auto object-cover',
                           'loading' => 'lazy',
                           'itemprop' => 'image'

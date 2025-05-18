@@ -129,6 +129,23 @@ function register_faq_post_type() {
 }
 add_action('init', 'register_faq_post_type');
 
+function register_reviews_post_type() {
+    register_post_type('reviews', [
+        'labels' => [
+            'name' => 'Reviews',
+            'singular_name' => 'Review',
+            'add_new_item' => 'Add New Review',
+            'edit_item' => 'Edit Review',
+        ],
+        'public' => true,
+        'has_archive' => false,
+        'rewrite' => ['slug' => 'reviews'],
+        'supports' => ['title', 'editor'],
+        'show_in_rest' => true, // Enables Gutenberg
+    ]);
+}
+add_action('init', 'register_reviews_post_type');
+
 
 function register_primary_sidebars() {
     register_sidebar(array(

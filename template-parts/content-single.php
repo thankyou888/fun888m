@@ -48,7 +48,6 @@ if ( ! defined( 'ABSPATH' ) ) {
           <?php previous_post_link('%link', '&larr; %title'); ?>
           <?php next_post_link('%link', '%title &rarr;'); ?>
         </div>
-        
         <!-- Related Posts by Tag or Category -->
         <?php
         global $post;
@@ -78,6 +77,10 @@ if ( ! defined( 'ABSPATH' ) ) {
         if ( $related_query->have_posts() ) : ?>
         <?php get_template_part('template-parts/related-post',null, array('data' => $related_query)); ?>
         <?php endif; wp_reset_postdata(); ?>
+        <!-- Comments Section -->
+        <?php if (comments_open() || get_comments_number()): ?>
+            <?php comments_template(); ?>
+        <?php endif; ?>
     </div>
 
     <?php get_template_part('template-parts/sidebar'); ?>

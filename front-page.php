@@ -27,107 +27,196 @@ get_header(); // Load header template
 ?>
 
 <div class="container mx-auto ">
-      <div class="flex flex-col lg:flex-row min-h-screen gap-4">
+    <div class="flex flex-col lg:flex-row min-h-screen gap-4">
         <div class="flex-1 ">
             <article itemscope itemtype="https://schema.org/WebPage" class="max-w-none">
-                    <!-- hero -->
-                <section class="hero mb-8">
-                        <div class="hero-content flex flex-col lg:flex-row gap-4">
-                            <div class="hero-text flex-1">
-                                <h1 class="text-3xl font-bold mb-4" ><?php the_title() ?></h1>
-                                <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <p class="font-bold"> <span class="text-info"><?php _e('อัพเดทล่าสุด วันที่') ?> </span>: <time datetime="<?php echo get_the_modified_date('c'); ?>" itemprop="dateModified"><?php echo get_the_modified_date('j M Y'); ?></time></p>
-                                <a href="#" class="btn btn-primary">Get Started</a>
-                                <a href="#" class="btn btn-primary ">Get Started</a>
-                                <a href="#" class="btn btn-error">สมัครสมาชิก</a>
+                <!-- hero -->
+                <header class="hero mb-8">
+
+                    <section class="bg-white lg:grid lg:h-screen lg:place-content-center">
+                        <div
+                            class="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 md:grid md:grid-cols-2 md:items-center md:gap-4 lg:px-8 lg:py-32">
+                            <div class="max-w-prose text-left">
+                                <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl">
+                                    Understand user flow and
+                                    <strong class="text-indigo-600"> increase </strong>
+                                    conversions
+                                </h1>
+
+                                <p class="mt-4 text-base text-pretty text-gray-700 sm:text-lg/relaxed">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, nisi. Natus,
+                                    provident
+                                    accusamus impedit minima harum corporis iusto.
+                                </p>
+                                 <div class="mb-4 block"> <span class="text-info">
+                                    <?php _e('อัพเดทล่าสุด วันที่') ?>
+                                </span>: <time datetime="<?php echo get_the_modified_date('c'); ?>"
+                                    itemprop="dateModified">
+                                    <?php echo get_the_modified_date('j M Y'); ?>
+                                </time></div>
+
+                                <div class="mt-4 flex gap-4 sm:mt-6">
+                                    <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700"
+                                        href="#">
+                                        Get Started
+                                    </a>
+
+                                    <a class="inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
+                                        href="#">
+                                        Learn More
+                                    </a>
+                                     <a class="inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
+                                        href="#">
+                                        Learn More
+                                    </a>
+                                </div>
                             </div>
-                            <div class="hero-image lg:w-1/2">
-                                <img src="https://placehold.co/600x400" alt="Hero Image" class="rounded-lg w-full h-auto object-cover" loading="lazy"> 
+
+                            <div class="mt-8 lg:mt-0">
+                                <img class="w-full rounded-lg shadow-lg"
+                                    src="https://placehold.co/600x400" alt="Hero Image" loading="lazy">
                             </div>
                         </div>
-                </section>
-    <div>
-        <?php
+                    </section>
+                    <div class="hero-content flex flex-col lg:flex-row gap-4">
+                        <div class="hero-text flex-1">
+                            <h1 class="text-3xl font-bold mb-4">
+                                <?php the_title() ?>
+                            </h1>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <div class="mb-4 block"> <span class="text-info">
+                                    <?php _e('อัพเดทล่าสุด วันที่') ?>
+                                </span>: <time datetime="<?php echo get_the_modified_date('c'); ?>"
+                                    itemprop="dateModified">
+                                    <?php echo get_the_modified_date('j M Y'); ?>
+                                </time></div>
+                            <div class="flex flex-wrap justify-center md:justify-normal gap-2 mt-4">
+                                <a href="#" class="btn btn-primary">ทางเข้า PC</a>
+                                <a href="#" class="btn btn-primary flex-1">ทางเข้า Mobile</a>
+                                <a href="#" class="btn btn-error">สมัครสมาชิก</a>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2">
+                            <?php if (has_post_thumbnail()): ?>
+                            <div class="hero-image mb-4">
+                                <?php the_post_thumbnail('full', [
+                                            'class' => 'rounded-lg h-auto object-cover',
+                                            'loading' => 'lazy',
+                                            'itemprop' => 'image'
+                                            ]); ?>
+                            </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </header>
+                <div>
+                    <?php
         
           
            echo '<pre>';
             print_r($value);
             echo '</pre>';
         ?>
-    </div>
+                </div>
 
                 <!-- recommend page -->
                 <section class="recommend mb-4">
-                        <div class="flex items-center">
-                            <h2 class="shrink-0 text-2xl font-bold mb-4 pl-4 border-l-4 border-brand">เริ่มต้นใช้งานง่ายไม่ซับซ้อน</h2>
-                            <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
-                        </div>
-                        <?php TailPress\Component::create_feature(null, [
+                    <div class="flex items-center">
+                        <h2 class="shrink-0 text-2xl font-bold mb-4 pl-4 border-l-4 border-brand">
+                            <? _e('Getting started') ?>
+                        </h2>
+                        <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
+                    </div>
+                    <?php TailPress\Component::create_feature(null, [
                             'slug__in' => ['fun88-casino','สมัครสมาชิก-fun88']
                         ]); ?>
                 </section>
                 <!--call to action -->
-                <section class="call-to-action flex flex-col lg:flex-row bg-secondary text-white text-center items-center py-12 md:py-24 mb-4">
-                    <div class="lg:flex-1"><h2 class="text-2xl font-bold">สมัครใหม่รับโบนัส 120%</h2></div>
-                    <div class="lg:flex-2"><p>สมัครสมาชิกใหม่ รับโบนัสเพิ่ม 100% สำหรับเดิมพันสล็อตทุกค่าย รับสุงสุด 8,000 บาท ทำเทิร์นโอเวอร์ 18 เท่า เพื่อถอน</p></div> 
+                <section
+                    class="call-to-action flex flex-col lg:flex-row bg-secondary text-white text-center items-center py-12 md:py-24 mb-4">
+                    <div class="lg:flex-1">
+                        <h2 class="text-2xl font-bold">สมัครใหม่รับโบนัส 120%</h2>
+                    </div>
+                    <div class="lg:flex-2">
+                        <p>สมัครสมาชิกใหม่ รับโบนัสเพิ่ม 100% สำหรับเดิมพันสล็อตทุกค่าย รับสุงสุด 8,000 บาท
+                            ทำเทิร์นโอเวอร์ 18 เท่า เพื่อถอน</p>
+                    </div>
                     <div class="lg:flex-1"><a href="#" class="btn btn-success">สมัครรับโบนัส ทันที!!</a></div>
                 </section>
-                 <!--call to action -->
-                 <section class="call-action mb-4">
+                <!--call to action -->
+                <section class="call-action mb-4">
                     <div class="bg-blue-500 text-white p-12 rounded-lg shadow-md text-center">
                         <h2 class="text-2xl font-bold mb-4">สมัครใหม่รับโบนัส 120%!</h2>
-                        <p class="text-sm mb-4">สมัครสมาชิกใหม่ รับโบนัสเพิ่ม 100% สำหรับเดิมพันสล็อตทุกค่าย รับสุงสุด 8,000 บาท ทำเทิร์นโอเวอร์ 18 เท่า เพื่อถอน</p>
+                        <p class="text-sm mb-4">สมัครสมาชิกใหม่ รับโบนัสเพิ่ม 100% สำหรับเดิมพันสล็อตทุกค่าย รับสุงสุด
+                            8,000 บาท ทำเทิร์นโอเวอร์ 18 เท่า เพื่อถอน</p>
                         <a href="#" class="btn btn-success transition">สมัครรับโบนัส ทันที!!</a>
                     </div>
                 </section>
                 <!-- Services Live Casino -->
-                 <section class="services my-4 bg-white p-4 rounded-lg shadow-md">
+                <section class="services my-4 bg-white p-4 rounded-lg shadow-md">
                     <div class="flex justify-between items-center lg:text-center mb-4">
-                        <h2 class="flex-grow lg:flex-auto text-2xl font-bold"><?php echo $services_section_title ?></h2>
-                        <a title="View All " href="#" class="text-sm text-gray-500 hover:text-gray-700 transition duration-300" itemprop="url">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6 inline-block text-brand">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"></path>
+                        <h2 class="flex-grow lg:flex-auto text-2xl font-bold">
+                            <?php echo $services_section_title ?>
+                        </h2>
+                        <a title="View All " href="#"
+                            class="text-sm text-gray-500 hover:text-gray-700 transition duration-300" itemprop="url">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" class="size-6 inline-block text-brand">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"></path>
                             </svg>
                         </a>
                     </div>
                     <div class="sub-description mb-4 lg:max-w-2/3 text-center mx-auto ">
-                                <?php echo $services_section_description ?>
+                        <?php echo $services_section_description ?>
                     </div>
                     <?php  $query = ContentQuery::get_pages($services_section_page,['orderby' => 'post__in']); ?>
                     <?php if ($query->have_posts()): ?>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
-                            <div class="bg-white items-center text-center border border-gray-200">
-                                <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'h-46 object-cover mb-4', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
-                                <h2 class="text-xl font-bold mb-2 "><?php the_title(); ?></h2>
-                                <p class="text-gray-700 mb-4">Experience the thrill of live casino games with our expert dealers Experience the thrill of live casino games with our expert dealers.</p>
-                                <a href="#" class="btn btn-primary">Play Now</a>
-                            </div>
+                        <div class="bg-white items-center text-center border border-gray-200">
+                            <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'h-46 object-cover mb-4', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
+                            <h2 class="text-xl font-bold mb-2 ">
+                                <?php the_title(); ?>
+                            </h2>
+                            <p class="text-gray-700 mb-4">Experience the thrill of live casino games with our expert
+                                dealers Experience the thrill of live casino games with our expert dealers.</p>
+                            <a href="#" class="btn btn-primary">Play Now</a>
+                        </div>
                         <?php endwhile; ?>
                         <?php wp_reset_postdata(); ?>
                     </div>
-                        <?php else: ?>
-                            <div class="error-message text-center p-4 bg-red-100 text-red-700 rounded-lg">
-                                <p class="text-gray-600">No services found</p>  
-                            </div>
-                                <div role="alert" class="alert alert-warning">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <span>Not found!</span>
-                                </div>
-                            <?php endif; ?>
+                    <?php else: ?>
+                    <div class="error-message text-center p-4 bg-red-100 text-red-700 rounded-lg">
+                        <p class="text-gray-600">No services found</p>
+                    </div>
+                    <div role="alert" class="alert alert-warning">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>Not found!</span>
+                    </div>
+                    <?php endif; ?>
                 </section> <!-- end services -->
                 <!-- about us -->
                 <section class="about-us mb-4">
                     <div class="flex flex-col lg:flex-row gap-4">
                         <div class="about-image w-full lg:w-1/2">
-                            <img src="https://placehold.co/600x400" alt="About Us" class="rounded-lg w-full h-auto object-cover" loading="lazy"> 
+                            <img src="https://placehold.co/600x400" alt="About Us"
+                                class="rounded-lg w-full h-auto object-cover" loading="lazy">
                         </div>
                         <div class="about-text items-center flex-1 content-center">
-                            <h2 class="text-3xl font-bold mb-4"><?php echo $aboutus_title ?></h2>
-                            <p class="text-gray-700 mb-4"><?php echo $aboutus_description ?></p>
-                            <a href="<?php echo $aboutus_source_page ?>" title="<?php echo $aboutus_title ?>" class="btn btn-primary text-white rounded px-4 py-2">อ่านต่อ</a>
+                            <h2 class="text-3xl font-bold mb-4">
+                                <?php echo $aboutus_title ?>
+                            </h2>
+                            <p class="text-gray-700 mb-4">
+                                <?php echo $aboutus_description ?>
+                            </p>
+                            <a href="<?php echo $aboutus_source_page ?>" title="<?php echo $aboutus_title ?>"
+                                class="btn btn-primary text-white rounded px-4 py-2">อ่านต่อ</a>
                         </div>
                     </div>
                 </section>
@@ -135,9 +224,12 @@ get_header(); // Load header template
                 <section class="latest-bonus mb-4">
                     <div class="flex justify-between items-center">
                         <h2 class="text-2xl font-bold">Latest Bonus Offers</h2>
-                        <a title="View All " href="#" class="text-sm text-gray-500 hover:text-gray-700 transition duration-300" itemprop="url">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6 inline-block text-brand">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"></path>
+                        <a title="View All " href="#"
+                            class="text-sm text-gray-500 hover:text-gray-700 transition duration-300" itemprop="url">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" class="size-6 inline-block text-brand">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"></path>
                             </svg>
                         </a>
                     </div>
@@ -147,9 +239,15 @@ get_header(); // Load header template
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
                         <div class="bg-white p-4 rounded-lg shadow-md items-center text-center">
                             <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'rounded-lg w-96 h-auto object-cover mb-4', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
-                            <h2 class="text-xl font-bold mb-2 "><?php the_title(); ?><div class="badge badge-secondary">NEW</div></h2>
-                            <p class="text-gray-700 mb-4"><?php custom_the_excerpt();  ?></p>
-                            <a href="<?php the_permalink();?>" title="<?php the_title(); ?>" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                            <h2 class="text-xl font-bold mb-2 ">
+                                <?php the_title(); ?>
+                                <div class="badge badge-secondary">NEW</div>
+                            </h2>
+                            <p class="text-gray-700 mb-4">
+                                <?php custom_the_excerpt();  ?>
+                            </p>
+                            <a href="<?php the_permalink();?>" title="<?php the_title(); ?>"
+                                class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
                         </div>
                         <?php endwhile; ?>
                         <?php wp_reset_postdata(); ?>
@@ -161,27 +259,37 @@ get_header(); // Load header template
             <section class="entry-faq mb-4" itemscope itemtype="https://schema.org/FAQPage">
                 <h2 class="text-2xl font-bold mb-6">คำถามที่พบบ่อย</h2>
                 <div class="space-y-4">
-                    <div tabindex="0" class="collapse collapse-plus bg-base-100 border-base-300 border" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <div class="collapse-title font-semibold"><h3 itemprop="name" class="font-semibold text-lg">เราสมัครสมาชิกยังไง?</h3></div>
-                            <div  class="collapse-content text-sm" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <p itemprop="text" class="text-gray-700 mt-2">เพียงคลิกที่ปุ่ม “สมัครเลย” ด้านบน แล้วกรอกข้อมูลของคุณ</p>
-                            </div>
+                    <div tabindex="0" class="collapse collapse-plus bg-base-100 border-base-300 border" itemscope
+                        itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <div class="collapse-title font-semibold">
+                            <h3 itemprop="name" class="font-semibold text-lg">เราสมัครสมาชิกยังไง?</h3>
+                        </div>
+                        <div class="collapse-content text-sm" itemscope itemprop="acceptedAnswer"
+                            itemtype="https://schema.org/Answer">
+                            <p itemprop="text" class="text-gray-700 mt-2">เพียงคลิกที่ปุ่ม “สมัครเลย” ด้านบน
+                                แล้วกรอกข้อมูลของคุณ</p>
+                        </div>
                     </div>
-                    <div tabindex="1" class="collapse collapse-plus bg-base-100 border-base-300 border" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <div class="collapse-title font-semibold"><h3 itemprop="name" class="font-semibold text-lg">เราสมัครสมาชิกยังไง?</h3></div>
-                            <div  class="collapse-content text-sm" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <p itemprop="text" class="text-gray-700 mt-2">เพียงคลิกที่ปุ่ม “สมัครเลย” ด้านบน แล้วกรอกข้อมูลของคุณ</p>
-                            </div>
+                    <div tabindex="1" class="collapse collapse-plus bg-base-100 border-base-300 border" itemscope
+                        itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <div class="collapse-title font-semibold">
+                            <h3 itemprop="name" class="font-semibold text-lg">เราสมัครสมาชิกยังไง?</h3>
+                        </div>
+                        <div class="collapse-content text-sm" itemscope itemprop="acceptedAnswer"
+                            itemtype="https://schema.org/Answer">
+                            <p itemprop="text" class="text-gray-700 mt-2">เพียงคลิกที่ปุ่ม “สมัครเลย” ด้านบน
+                                แล้วกรอกข้อมูลของคุณ</p>
+                        </div>
                     </div>
                 </div>
             </section>
             <section class="entry-bonuses mb-4">
-                
+
                 <div class="flex items-center">
-                            <span class="h-px flex-1 bg-gradient-to-r from-transparent to-gray-300"></span>
-                            <h2 class="shrink-0 text-2xl font-bold mb-4 px-4 border-brand">โบนัสและโปรโมชั่น</h2>
-                            <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
-                        </div>
+                    <span class="h-px flex-1 bg-gradient-to-r from-transparent to-gray-300"></span>
+                    <h2 class="shrink-0 text-2xl font-bold mb-4 px-4 border-brand">โบนัสและโปรโมชั่น</h2>
+                    <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
+                </div>
                 <?php TailPress\Component::create_feature(null, [
                     'slug__in' => ['fun88-casino','สมัครสมาชิก-fun88']
                 ]); ?>
@@ -189,11 +297,12 @@ get_header(); // Load header template
             <section class="entry-content">
                 <?php the_content(); ?>
             </section>
+            <?php get_template_part('template-parts/content','games'); ?>
         </div><!-- end flex-1 -->
-          <!-- Sidebar -->
-      
+        <!-- Sidebar -->
+
     </div><!-- end inside-container flex -->
-</div> <!-- end container -->    
+</div> <!-- end container -->
 
 
-<?php get_footer(); ?> 
+<?php get_footer(); ?>

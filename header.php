@@ -71,7 +71,7 @@
                         ?>
                     <?php endif; ?>
                 </nav>
-                <a class="btn btn-accent text-light md:my-0 my-4 rounded w-full md:w-auto">Register</a>
+                <a title="Register" href="<?php echo get_theme_mod('sidebar_banner_link');?>" class="btn btn-error text-light md:my-0 my-4 rounded w-full md:w-auto" rel="sponsored noopener nofollow">Register</a>
                 <label class="flex cursor-pointer gap-2">
   <svg
     xmlns="http://www.w3.org/2000/svg"
