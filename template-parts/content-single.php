@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <?php endif; ?>
             <header>
                 <!-- Title -->
-                <h1 class="entry-title text-2xl font-bold mb-4" itemprop="headline"><?php the_title(); ?></h1>
+                <h1 class="entry-title text-3xl font-bold mb-4" itemprop="headline"><?php the_title(); ?></h1>
                  <!-- Meta Info -->
                 <div class="entry-meta flex mb-4 gap-2">
                     <span class="text-white text-xs bg-sky-700 px-2 py-2.5"><?php _e('Published') ?> : <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('j M Y'); ?></time></span>

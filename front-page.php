@@ -11,8 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
   }
 use TailPress\ContentQuery;
-$all_options = get_option('home-page-setting', array());
-$value = isset($all_options['jet_post']) ? $all_options['jet_post'] : false;
+$home_setting = get_option('home_page_setting', array());
+$guide_page = isset($home_setting['jet_post']) ? $home_setting['jet_post'] : false;
+$hero_short = isset($home_setting['hero_short_descriptions']) ? $home_setting['hero_short_descriptions'] : '';
 
 $section_options = get_option('section_setting', array());
 $services_section_title = isset($section_options['services_section_title']) ? $section_options['services_section_title'] : 'Our Services';
@@ -29,75 +30,28 @@ get_header(); // Load header template
 <div class="container mx-auto ">
     <div class="flex flex-col lg:flex-row min-h-screen gap-4">
         <div class="flex-1 ">
-            <article itemscope itemtype="https://schema.org/WebPage" class="max-w-none">
+            <article itemscope itemtype="https://schema.org/WebPage">
                 <!-- hero -->
-                <header class="hero mb-8">
-
-                    <section class="bg-white lg:grid lg:h-screen lg:place-content-center">
-                        <div
-                            class="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 md:grid md:grid-cols-2 md:items-center md:gap-4 lg:px-8 lg:py-32">
-                            <div class="max-w-prose text-left">
-                                <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl">
-                                    Understand user flow and
-                                    <strong class="text-indigo-600"> increase </strong>
-                                    conversions
-                                </h1>
-
-                                <p class="mt-4 text-base text-pretty text-gray-700 sm:text-lg/relaxed">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, nisi. Natus,
-                                    provident
-                                    accusamus impedit minima harum corporis iusto.
-                                </p>
-                                 <div class="mb-4 block"> <span class="text-info">
-                                    <?php _e('อัพเดทล่าสุด วันที่') ?>
-                                </span>: <time datetime="<?php echo get_the_modified_date('c'); ?>"
-                                    itemprop="dateModified">
-                                    <?php echo get_the_modified_date('j M Y'); ?>
-                                </time></div>
-
-                                <div class="mt-4 flex gap-4 sm:mt-6">
-                                    <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700"
-                                        href="#">
-                                        Get Started
-                                    </a>
-
-                                    <a class="inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
-                                        href="#">
-                                        Learn More
-                                    </a>
-                                     <a class="inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
-                                        href="#">
-                                        Learn More
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="mt-8 lg:mt-0">
-                                <img class="w-full rounded-lg shadow-lg"
-                                    src="https://placehold.co/600x400" alt="Hero Image" loading="lazy">
-                            </div>
-                        </div>
-                    </section>
+                <header class="hero mb-8 white py-4 lg:py-12">
                     <div class="hero-content flex flex-col lg:flex-row gap-4">
                         <div class="hero-text flex-1">
                             <h1 class="text-3xl font-bold mb-4">
                                 <?php the_title() ?>
                             </h1>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p class="mb-4"><?php echo $hero_short; ?></p>
                             <div class="mb-4 block"> <span class="text-info">
-                                    <?php _e('อัพเดทล่าสุด วันที่') ?>
+                                    <?php _e('อัปเดทล่าสุด วันที่') ?>
                                 </span>: <time datetime="<?php echo get_the_modified_date('c'); ?>"
                                     itemprop="dateModified">
                                     <?php echo get_the_modified_date('j M Y'); ?>
                                 </time></div>
                             <div class="flex flex-wrap justify-center md:justify-normal gap-2 mt-4">
                                 <a href="#" class="btn btn-primary">ทางเข้า PC</a>
-                                <a href="#" class="btn btn-primary flex-1">ทางเข้า Mobile</a>
+                                <a href="#" class="btn btn-primary">ทางเข้า Mobile</a>
                                 <a href="#" class="btn btn-error">สมัครสมาชิก</a>
                             </div>
                         </div>
-                        <div class="lg:w-1/2">
+                        <div class="block lg:w-1/2">
                             <?php if (has_post_thumbnail()): ?>
                             <div class="hero-image mb-4">
                                 <?php the_post_thumbnail('full', [
@@ -111,15 +65,6 @@ get_header(); // Load header template
                     </div>
                 </header>
                 <div>
-                    <?php
-        
-          
-           echo '<pre>';
-            print_r($value);
-            echo '</pre>';
-        ?>
-                </div>
-
                 <!-- recommend page -->
                 <section class="recommend mb-4">
                     <div class="flex items-center">
@@ -128,13 +73,24 @@ get_header(); // Load header template
                         </h2>
                         <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
                     </div>
-                    <?php TailPress\Component::create_feature(null, [
-                            'slug__in' => ['fun88-casino','สมัครสมาชิก-fun88']
-                        ]); ?>
+                    <?php  $query = ContentQuery::get_pages($guide_page,['orderby' => 'post__in']); ?>
+                    <?php if ($query->have_posts()): ?>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+                        <?php while ($query->have_posts()) : $query->the_post(); ?>
+                        <div class="bg-brand rounded-lg shadow-md items-center text-center">
+                            <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'h-auto object-cover mb-4', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
+                            <h2 class="text-2xl text-white pb-4 font-bold mb-2 ">
+                               <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+                            </h2>
+                        </div>
+                        <?php endwhile; ?>
+                        <?php wp_reset_postdata(); ?>
+                    </div>
+                    <?php endif; ?>
                 </section>
                 <!--call to action -->
                 <section
-                    class="call-to-action flex flex-col lg:flex-row bg-secondary text-white text-center items-center py-12 md:py-24 mb-4">
+                    class="call-to-action flex flex-col lg:flex-row bg-secondary text-white text-center items-center gap-4  py-12 md:py-24 mb-4">
                     <div class="lg:flex-1">
                         <h2 class="text-2xl font-bold">สมัครใหม่รับโบนัส 120%</h2>
                     </div>
@@ -154,7 +110,7 @@ get_header(); // Load header template
                     </div>
                 </section>
                 <!-- Services Live Casino -->
-                <section class="services my-4 bg-white p-4 rounded-lg shadow-md">
+                <section class="services my-4 py-12">
                     <div class="flex justify-between items-center lg:text-center mb-4">
                         <h2 class="flex-grow lg:flex-auto text-2xl font-bold">
                             <?php echo $services_section_title ?>
@@ -221,7 +177,7 @@ get_header(); // Load header template
                     </div>
                 </section>
                 <!-- Latest bonus post list  -->
-                <section class="latest-bonus mb-4">
+                <section class="latest-bonus mb-4 py-12">
                     <div class="flex justify-between items-center">
                         <h2 class="text-2xl font-bold">Latest Bonus Offers</h2>
                         <a title="View All " href="#"

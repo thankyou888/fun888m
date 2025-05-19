@@ -4,7 +4,7 @@
 
 h1 {
     @apply text-3xl mb-8;
-    font-family: var(--font-kanit);
+    font-family: var(--font-itim);
 }
 
 .entry-content,
