@@ -90,6 +90,9 @@ body {
   font-family: var(--font-sarabun);
   font-size: var(--text-base);
   color: #333;
+  :where(p) {
+    margin-bottom: calc(var(--spacing) * 2.5);
+  }
 }
 
 section {

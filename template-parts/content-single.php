@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
   }
 ?>
+
 <div class="flex flex-col lg:flex-row min-h-screen gap-4">
     <div class="flex-1 bg-gray-100 ">
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemtype="https://schema.org/CreativeWork" >

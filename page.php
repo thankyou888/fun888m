@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-
 <div class="container my-8 mx-auto ">
       <div class="flex flex-col lg:flex-row min-h-screen gap-4">
           <div class="flex-1 ">

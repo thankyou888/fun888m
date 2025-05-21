@@ -63,7 +63,7 @@
                         wp_nav_menu([
                             'container_id'    => 'primary-menu',
                             'container_class' => '',
-                            'menu_class'      => 'md:flex md:-mx-4 [&_a]:!no-underline text-white font-kanit',
+                            'menu_class'      => 'md:flex md:-mx-4 [&_a]:!no-underline text-white font-itim',
                             'theme_location'  => 'primary',
                             'li_class'        => 'md:mx-2 p-2',
                             'fallback_cb'     => false,

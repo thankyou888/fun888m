@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
   }
 ?>
+
 <div class="flex flex-col lg:flex-row min-h-screen gap-4">
     <div class="flex-1 bg-gray-100 ">
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemtype="https://schema.org/CreativeWork" >
@@ -36,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <!-- Tags -->
             <footer>
                 <div class="entry-tags">
-                    <h2 class="text-xl font-semibold mb-4">คำที่เกี่ยวข้อง</h2>
+                    <h2 class="text-xl font-semibold mb-4">คำที่เกี่ยวข้อง (Service)</h2>
                     <div class="flex flex-wrap gap-2">
                         <?php the_tags('<span class="inline-block bg-brand text-white px-3 py-1 text-sm">','</span><span class="inline-block bg-brand text-white px-3 py-1 text-sm">','</span>'); ?>
                     </div>

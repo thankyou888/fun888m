@@ -38,7 +38,7 @@ get_header(); // Load header template
                             <h1 class="text-3xl font-bold mb-4">
                                 <?php the_title() ?>
                             </h1>
-                            <p class="mb-4"><?php echo $hero_short; ?></p>
+                            <div class="mb-4"><?php echo $hero_short; ?></div>
                             <div class="mb-4 block"> <span class="text-info">
                                     <?php _e('อัปเดทล่าสุด วันที่') ?>
                                 </span>: <time datetime="<?php echo get_the_modified_date('c'); ?>"
@@ -88,6 +88,60 @@ get_header(); // Load header template
                     </div>
                     <?php endif; ?>
                 </section>
+                 <!-- about us -->
+                <section class="about-us mb-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:py-12 md:py-24">
+                        <div class="w-auto lg:w-2/3">
+                           <h3 class="text-2xl font-bold mb-4">ทางเข้า <?php echo bloginfo('name'); ?> สำรอง</h3>
+                           <ul class="list">
+                                <li class="list-row">
+                                    <div class="text-4xl font-thin opacity-30 tabular-nums">01</div>
+                                    <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
+                                    <div class="list-col-grow ">
+                                        <div class="text-lg font-semibold font-itim">ทางเข้า FUN88TH</div>
+                                    </div>
+                                    <a href="#" class="btn btn-square btn-primary">
+                                    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+                                    </a>
+                                </li>
+                                  <li class="list-row">
+                                    <div class="text-4xl font-thin opacity-30 tabular-nums">02</div>
+                                    <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
+                                    <div class="list-col-grow ">
+                                        <div class="text-lg font-semibold font-itim">Dio Lupa</div>
+                                    </div>
+                                    <a href="#" class="btn btn-square btn-primary">
+                                    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+                                    </a>
+                                </li>
+                                  <li class="list-row">
+                                    <div class="text-4xl font-thin opacity-30 tabular-nums">03</div>
+                                    <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
+                                    <div class="list-col-grow ">
+                                        <div class="text-lg font-semibold font-itim">Dio Lupa</div>
+                                    </div>
+                                    <a href="#" class="btn btn-square btn-primary">
+                                    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="w-auto">
+                            <h2 class="text-2xl font-bold mb-4">
+                                <?php echo $aboutus_title ?>
+                            </h2>
+                            <div class="text-gray-700 mb-4">
+                                <?php echo $aboutus_description ?>
+                                 <a href="<?php echo $aboutus_source_page ?>" title="<?php echo $aboutus_title ?>"
+                                class="btn btn-primary">อ่านต่อ</a>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </section>
+                <!-- end about us -->
+                
                 <!--call to action -->
                 <section
                     class="call-to-action flex flex-col lg:flex-row bg-secondary text-white text-center items-center gap-4  py-12 md:py-24 mb-4">
@@ -157,29 +211,12 @@ get_header(); // Load header template
                     </div>
                     <?php endif; ?>
                 </section> <!-- end services -->
-                <!-- about us -->
-                <section class="about-us mb-4">
-                    <div class="flex flex-col lg:flex-row gap-4">
-                        <div class="about-image w-full lg:w-1/2">
-                            <img src="https://placehold.co/600x400" alt="About Us"
-                                class="rounded-lg w-full h-auto object-cover" loading="lazy">
-                        </div>
-                        <div class="about-text items-center flex-1 content-center">
-                            <h2 class="text-3xl font-bold mb-4">
-                                <?php echo $aboutus_title ?>
-                            </h2>
-                            <p class="text-gray-700 mb-4">
-                                <?php echo $aboutus_description ?>
-                            </p>
-                            <a href="<?php echo $aboutus_source_page ?>" title="<?php echo $aboutus_title ?>"
-                                class="btn btn-primary text-white rounded px-4 py-2">อ่านต่อ</a>
-                        </div>
-                    </div>
-                </section>
+             
                 <!-- Latest bonus post list  -->
                 <section class="latest-bonus mb-4 py-12">
                     <div class="flex justify-between items-center">
-                        <h2 class="text-2xl font-bold">Latest Bonus Offers</h2>
+                        <h2 class="shrink-0 text-2xl font-bold mb-4 pl-4 border-l-4 border-brand">Latest Bonus Offers</h2>
+                        <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
                         <a title="View All " href="#"
                             class="text-sm text-gray-500 hover:text-gray-700 transition duration-300" itemprop="url">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -193,14 +230,21 @@ get_header(); // Load header template
                     <?php if ($query->have_posts()): ?>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
-                        <div class="bg-white p-4 rounded-lg shadow-md items-center text-center">
+                        <div class="bg-white p-4 rounded-lg shadow-md items-center">
                             <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'rounded-lg w-96 h-auto object-cover mb-4', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
                             <h2 class="text-xl font-bold mb-2 ">
                                 <?php the_title(); ?>
                                 <div class="badge badge-secondary">NEW</div>
                             </h2>
                             <p class="text-gray-700 mb-4">
-                                <?php custom_the_excerpt();  ?>
+                                <span class="text-info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 inline-flex">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+                                    </svg>
+                                </span>: <time datetime="<?php echo get_the_modified_date('c'); ?>"
+                                    itemprop="dateModified">
+                                    <?php echo get_the_modified_date('j M Y'); ?>
+                                </time>
                             </p>
                             <a href="<?php the_permalink();?>" title="<?php the_title(); ?>"
                                 class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
