@@ -29,33 +29,33 @@ get_header(); // Load header template
 
 <div class="container mx-auto ">
     <div class="flex flex-col lg:flex-row min-h-screen gap-4">
-        <div class="flex-1 ">
+        <div class="flex-1">
             <article itemscope itemtype="https://schema.org/WebPage">
                 <!-- hero -->
-                <header class="hero mb-8 white py-4 lg:py-12">
+                <header class="hero mb-8 py-4 lg:py-12">
                     <div class="hero-content flex flex-col lg:flex-row gap-4">
                         <div class="hero-text flex-1">
                             <h1 class="text-3xl font-bold mb-4">
                                 <?php the_title() ?>
                             </h1>
                             <div class="mb-4"><?php echo $hero_short; ?></div>
-                            <div class="mb-4 block"> <span class="text-info">
+                            <div class="mb-4"> <span class="text-info">
                                     <?php _e('อัปเดทล่าสุด วันที่') ?>
                                 </span>: <time datetime="<?php echo get_the_modified_date('c'); ?>"
                                     itemprop="dateModified">
                                     <?php echo get_the_modified_date('j M Y'); ?>
                                 </time></div>
-                            <div class="flex flex-wrap justify-center md:justify-normal gap-2 mt-4">
+                            <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-4">
                                 <a href="#" class="btn btn-primary">ทางเข้า PC</a>
                                 <a href="#" class="btn btn-primary">ทางเข้า Mobile</a>
                                 <a href="#" class="btn btn-error">สมัครสมาชิก</a>
                             </div>
                         </div>
-                        <div class="block lg:w-1/2">
+                        <div class="lg:w-1/2">
                             <?php if (has_post_thumbnail()): ?>
                             <div class="hero-image mb-4">
                                 <?php the_post_thumbnail('full', [
-                                            'class' => 'rounded-lg h-auto object-cover',
+                                            'class' => 'rounded h-auto object-cover',
                                             'loading' => 'lazy',
                                             'itemprop' => 'image'
                                             ]); ?>
@@ -69,7 +69,7 @@ get_header(); // Load header template
                 <section class="recommend mb-4">
                     <div class="flex items-center">
                         <h2 class="shrink-0 text-2xl font-bold mb-4 pl-4 border-l-4 border-brand">
-                            <? _e('Getting started') ?>
+                            <?php _e('Getting started') ?>
                         </h2>
                         <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
                     </div>
@@ -77,9 +77,9 @@ get_header(); // Load header template
                     <?php if ($query->have_posts()): ?>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
-                        <div class="bg-brand rounded-lg shadow-md items-center text-center">
-                            <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'h-auto object-cover mb-4', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
-                            <h2 class="text-2xl text-white pb-4 font-bold mb-2 ">
+                        <div class="bg-brand rounded-lg shadow-md p-4 flex flex-col items-center text-center">
+                            <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'h-auto object-cover', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
+                            <h2 class="text-2xl text-white font-bold mt-4">
                                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
                             </h2>
                         </div>
@@ -91,13 +91,13 @@ get_header(); // Load header template
                  <!-- about us -->
                 <section class="about-us mb-4">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:py-12 md:py-24">
-                        <div class="w-auto lg:w-2/3">
+                        <div class="lg:w-2/3">
                            <h3 class="text-2xl font-bold mb-4">ทางเข้า <?php echo bloginfo('name'); ?> สำรอง</h3>
                            <ul class="list">
                                 <li class="list-row">
                                     <div class="text-4xl font-thin opacity-30 tabular-nums">01</div>
                                     <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
-                                    <div class="list-col-grow ">
+                                    <div class="list-col-grow">
                                         <div class="text-lg font-semibold font-itim">ทางเข้า FUN88TH</div>
                                     </div>
                                     <a href="#" class="btn btn-square btn-primary">
@@ -107,7 +107,7 @@ get_header(); // Load header template
                                   <li class="list-row">
                                     <div class="text-4xl font-thin opacity-30 tabular-nums">02</div>
                                     <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
-                                    <div class="list-col-grow ">
+                                    <div class="list-col-grow">
                                         <div class="text-lg font-semibold font-itim">Dio Lupa</div>
                                     </div>
                                     <a href="#" class="btn btn-square btn-primary">
@@ -117,7 +117,7 @@ get_header(); // Load header template
                                   <li class="list-row">
                                     <div class="text-4xl font-thin opacity-30 tabular-nums">03</div>
                                     <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
-                                    <div class="list-col-grow ">
+                                    <div class="list-col-grow">
                                         <div class="text-lg font-semibold font-itim">Dio Lupa</div>
                                     </div>
                                     <a href="#" class="btn btn-square btn-primary">
@@ -127,7 +127,7 @@ get_header(); // Load header template
                                 
                             </ul>
                         </div>
-                        <div class="w-auto">
+                        <div>
                             <h2 class="text-2xl font-bold mb-4">
                                 <?php echo $aboutus_title ?>
                             </h2>
@@ -169,8 +169,8 @@ get_header(); // Load header template
                         <h2 class="flex-grow lg:flex-auto text-2xl font-bold">
                             <?php echo $services_section_title ?>
                         </h2>
-                        <a title="View All " href="#"
-                            class="text-sm text-gray-500 hover:text-gray-700 transition duration-300" itemprop="url">
+                        <a title="View All" href="#"
+                            class="text-sm text-gray-500 hover:text-gray-700 transition duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                                 stroke="currentColor" class="size-6 inline-block text-brand">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -185,10 +185,12 @@ get_header(); // Load header template
                     <?php if ($query->have_posts()): ?>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
-                        <div class="bg-white items-center text-center border border-gray-200">
-                            <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'h-46 object-cover mb-4', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
-                            <h2 class="text-xl font-bold mb-2 ">
-                                <?php the_title(); ?>
+                       <div class="bg-white p-4 flex flex-col items-center text-center border border-gray-200">
+                            <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'h-48 w-full object-cover', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
+                            <h2 class="text-xl font-bold mt-4">
+                                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                                    <?php the_title(); ?>
+                                </a>
                             </h2>
                             <p class="text-gray-700 mb-4">Experience the thrill of live casino games with our expert
                                 dealers Experience the thrill of live casino games with our expert dealers.</p>
@@ -230,11 +232,15 @@ get_header(); // Load header template
                     <?php if ($query->have_posts()): ?>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
-                        <div class="bg-white p-4 rounded-lg shadow-md items-center">
-                            <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'rounded-lg w-96 h-auto object-cover mb-4', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
-                            <h2 class="text-xl font-bold mb-2 ">
+                       <div class="bg-white p-4 rounded-lg shadow-md flex flex-col">
+                            <div class="entry-image relative mb-4">
+                                <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'rounded w-full h-auto object-cover', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
+                                <div class="absolute top-0 left-0 p-2">
+                                     <div class="badge badge-secondary">NEW</div>
+                                </div>
+                            </div>
+                            <h2 class="text-xl font-bold mb-4">
                                 <?php the_title(); ?>
-                                <div class="badge badge-secondary">NEW</div>
                             </h2>
                             <p class="text-gray-700 mb-4">
                                 <span class="text-info">
@@ -287,7 +293,7 @@ get_header(); // Load header template
 
                 <div class="flex items-center">
                     <span class="h-px flex-1 bg-gradient-to-r from-transparent to-gray-300"></span>
-                    <h2 class="shrink-0 text-2xl font-bold mb-4 px-4 border-brand">โบนัสและโปรโมชั่น</h2>
+                    <h2 class="shrink-0 text-2xl font-bold mb-4 px-4">โบนัสและโปรโมชั่น</h2>
                     <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
                 </div>
                 <?php TailPress\Component::create_feature(null, [

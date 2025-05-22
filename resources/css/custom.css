@@ -84,6 +84,14 @@
   :where(table) {
     @apply w-full border-collapse text-center justify-between border border-sky-700 mb-4;
   }
+
+  :where(table thead) {
+      background-color: var(--color-brand);
+      border-bottom: none !important;
+      th {
+        color: var(--color-white);
+      }
+  }
 }
 
 body {
