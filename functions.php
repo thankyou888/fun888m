@@ -37,6 +37,7 @@ function tailpress(): TailPress\Framework\Theme
 }
 
 tailpress();
+
 /**
  * Register custom Gutenberg blocks.
  */

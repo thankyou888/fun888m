@@ -24,7 +24,7 @@
 <div id="page" class="min-h-screen flex flex-col">
     <?php do_action('tailpress_the_header'); ?>
 
-    <header class="bg-sky-600">
+    <header class="bg-sky-600 border-b border-sky-500">
         <div class="container mx-auto py-2 md:flex md:justify-between md:items-center">
             <div class="flex justify-between items-center">
                 <div>
@@ -63,7 +63,7 @@
                         wp_nav_menu([
                             'container_id'    => 'primary-menu',
                             'container_class' => '',
-                            'menu_class'      => 'md:flex md:-mx-4 [&_a]:!no-underline text-white font-itim',
+                            'menu_class'      => 'md:flex md:mx-4 [&_a]:!no-underline text-white font-itim',
                             'theme_location'  => 'primary',
                             'li_class'        => 'md:mx-2 p-2',
                             'fallback_cb'     => false,
@@ -108,3 +108,5 @@
                
         <?php do_action('tailpress_content_start'); ?>
        
+
+     

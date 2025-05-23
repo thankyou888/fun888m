@@ -11,12 +11,30 @@
     margin-top: --spacing(6);
     margin-bottom: --spacing(6);
   }
+  
+
+  :where(.wp-element-button, .wp-block-button__link) {
+    @apply bg-brand text-white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-field);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    font-weight: var(--font-weight-semibold);
+  }
+  :where(.wp-block-heading) {
+    margin-top: --spacing(6);
+    margin-bottom: --spacing(6);
+  }
+  :where(.wp-block-list) {
+    margin-top: --spacing(6);
+    margin-bottom: --spacing(6);
+  }
 
   :where(h2) {
     font-weight: var(--font-weight-semibold);
     font-size: var(--text-2xl);
     line-height: var(--text-2xl--line-height);
-    margin-top: --spacing(12);
+    margin-top: --spacing(6);
   }
 
   :where(h3) {
@@ -34,8 +52,12 @@
     padding-left: 1.5rem;
   }
 
-  :where(ul) {
+  :where(ul){
     list-style-type: disc;
+  }
+  :where(ul.list-none){
+    list-style-type:  none !important;
+    padding: 0 !important;
   }
 
   :where(ol) {
@@ -81,7 +103,7 @@
     margin-bottom: 0 !important;
   }
 
-  :where(table) {
+  :where(table > :first-child) {
     @apply w-full border-collapse text-center justify-between border border-sky-700 mb-4;
   }
 

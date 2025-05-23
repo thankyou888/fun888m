@@ -9,3 +9,19 @@ window.addEventListener('load', function () {
         })
     }
 })
+/*
+document.addEventListener("DOMContentLoaded", function () {
+  const lazyImages = document.querySelectorAll("img[loading='lazy']");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("opacity-100");
+      }
+    });
+  });
+
+  lazyImages.forEach((img) => {
+    observer.observe(img);
+  });
+});
+*/

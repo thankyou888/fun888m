@@ -192,9 +192,7 @@ get_header(); // Load header template
                                     <?php the_title(); ?>
                                 </a>
                             </h2>
-                            <p class="text-gray-700 mb-4">Experience the thrill of live casino games with our expert
-                                dealers Experience the thrill of live casino games with our expert dealers.</p>
-                            <a href="#" class="btn btn-primary">Play Now</a>
+                            <div class="text-gray-700 mb-4"><?php the_excerpt(); ?></div>
                         </div>
                         <?php endwhile; ?>
                         <?php wp_reset_postdata(); ?>
