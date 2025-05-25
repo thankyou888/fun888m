@@ -50,6 +50,21 @@ function fun888m_register_custom_blocks() {
 }
 add_action( 'init', 'fun888m_register_custom_blocks' );
 add_filter('wp_handle_upload_prefilter', 'rename_uploaded_image');
+add_filter('page_template', function ($template) {
+        //global $post;
+        //echo $post->post_name;
+        //is slug
+        // Check if the post slug is 'gambling'
+        // Load the custom template for the gambling page
+    if (is_page('gambling')) { 
+        $template = get_template_directory() . '/template-parts/customs-page/page-gambling.php';
+    }
+    elseif (is_page('service')) {
+        $template = get_template_directory() . '/template-parts/customs-page/page-service.php';
+    }
+  
+    return $template;
+});
 
 /**
  * The function `rename_uploaded_image` renames an uploaded image file by generating a new unique name

@@ -8,7 +8,7 @@
             wp_nav_menu([
                 'container_id'    => 'sponsor-menu',
                 'container_class' => '',
-                'menu_class'      => 'flex flex-col gap-2 [&_a]:!no-underline text-light mb-4',
+                'menu_class'      => 'flex flex-col gap-2 [&_a]:!no-underline text-light mb-4 font-itim',
                 'theme_location'  => 'sponsor',
                 'li_class'        => 'py-[.7rem] text-center bg-brand rounded',
                 'fallback_cb'     => false,

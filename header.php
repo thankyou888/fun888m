@@ -21,7 +21,13 @@
     </div>
 <?php do_action('tailpress_site_before'); ?>
 
-<div id="page" class="min-h-screen flex flex-col">
+<?php $layout = get_theme_mod('layout', 'default'); ?>
+<?php if ($layout === 'boxed'): ?>
+    <div id="page" class="max-w-screen-2xl content-center mx-auto min-h-screen flex flex-col ">
+<?php else: ?>
+    <div id="page" class="min-h-screen flex flex-col">
+<?php endif; ?>
+
     <?php do_action('tailpress_the_header'); ?>
 
     <header class="bg-sky-600 border-b border-sky-500">
