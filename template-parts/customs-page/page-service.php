@@ -1,4 +1,6 @@
-<?php get_header(); ?>
+<?php get_header(); 
+use TailPress\ContentQuery
+?>
 <div class="container mx-auto ">
     <div class="flex flex-col lg:flex-row min-h-screen gap-4">
         <div class="flex-1">
@@ -36,25 +38,41 @@
                     <li>📲 เดิมพันด่วนผ่านมือถือ รองรับ 100%</li>
                   </ul>
                 </div>
+                <?php 
+                   $query = ContentQuery::get_by_post_type('service', [
+                      'posts_per_page' => 10,
+                      'tax_query' => [
+                        [
+                          'taxonomy' => 'gambling',
+                          'field' => 'slug',  
+                          'terms' => 'sportsbook',
+                        ],
+                      ],
+                      'orderby' => 'name',
+                      'order' => 'ASC',
+                    ]);
+                  
+                    //print_r($query);
+
+                ?>
+                <?php if ($query->have_posts()) : ?>
                   <div class="grid grid-cols-2 md:grid-cols-5 justify-center gap-4">
-                    <div class="p-4">
-                      <img src="https://placehold.co/600x400" alt="ตลาดเดิมพันที่หลากหลาย" />
-                      <h3 class="text-lg font-semibold p-4 bg-brand text-white">BTI</h3>
-                    </div>
-                    <div class="p-4">
-                      <img src="https://placehold.co/600x400" alt="สถิติและข้อมูลเชิงลึก"  />   
-                      <h3 class="text-lg font-semibold p-4 bg-brand text-white">CMD</h3>
-                    </div>
-                    <div class="p-4">
-                      <img src="https://placehold.co/600x400" alt="แทงบอลสดเรียลไทม์"  />
-                      <h3 class="text-lg font-semibold p-4 bg-brand text-white">SABA</h3>
-                    </div>
-                    <div class="p-4">
-                      <img src="https://placehold.co/600x400" alt="แทงบอลสดเรียลไทม์"  />
-                      <h3 class="text-lg font-semibold p-4 bg-brand text-white">SBOBET</h3>
-                    </div>
-                    
+                    <?php while ($query->have_posts()) : $query->the_post(); ?>
+                      <div class="p-4">
+                        <?php $meta_value = get_post_meta(get_the_ID(), 'image_banner', true);  ?>
+                        <?php if ($meta_value) : ?>
+                          <a href="<?php the_permalink(); ?>">
+                            <?php 
+                            $attr = [ 'class' => 'rounded w-50 h-50 object-cover', 'alt' => get_the_title(), 'title' =>  get_post_type().' '.get_the_title() ];
+                            echo wp_get_attachment_image($meta_value, 'full', false, $attr); ?>
+                          </a>
+                        <?php endif; ?>
+                        <h3 class="text-lg font-semibold p-4 bg-brand text-white"><?php the_title(); ?></h3>
+                      </div>
+                    <?php endwhile; ?>
                   </div>
+                <?php endif; ?>
+                <?php wp_reset_postdata(); ?>
               </section>
               <section id="service-promotion-sport" class="py-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

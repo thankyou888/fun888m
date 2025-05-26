@@ -11,6 +11,7 @@ class ContentQuery
         return new WP_Query(wp_parse_args($args, [
             'post_type' => 'post',
             'posts_per_page' => 6,
+            'post_status' => 'publish',
             'category_name' => is_numeric($category) ? '' : $category,
             'cat' => is_numeric($category) ? $category : '',
         ]));
@@ -42,7 +43,8 @@ class ContentQuery
     {
         return new WP_Query(wp_parse_args($args, [
             'post_type' => $post_type,
-            'posts_per_page' => 6,
+            'post_status' => 'publish',
+            'posts_per_page' => 10,
             'orderby' => 'date',
             'order' => 'DESC',
         ]));
