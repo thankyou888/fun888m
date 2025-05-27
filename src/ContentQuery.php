@@ -90,4 +90,46 @@ class ContentQuery
     {
         return function_exists('get_field') ? get_field($field_name, $post_id) : null;
     }
+
+
+    public static function jet($field_name, $post_id = null)
+    {
+        return function_exists('jet_engine') ? jet_engine()->listings->data->get_meta_value($field_name, $post_id) : null;
+    }
+
+    /***
+     * Get related taxonomies based on the current post's taxonomy terms.
+     *
+     * @param string $post_type The post type to query.
+     * @return array The query arguments for related posts.
+    ***/
+    public static function get_related_taxonomie($post_type): array
+    {
+        global $post;
+        if (!is_singular($post_type)) {
+            return [];
+        }
+        $taxonomy_names = get_object_taxonomies($post_type);
+         //print_r($taxonomy_names);
+        $taxonomy = get_the_terms($post->ID, $taxonomy_names[0]);
+        $taxonomy_ids = wp_get_post_terms($post->ID, $taxonomy_names[0], array('fields' => 'ids'));
+        //print_r($taxonomy_ids);
+        print_r($taxonomy_names);       
+        $args = array( 
+          'post_type' => $post_type,
+          'post__not_in' => array($post->ID),
+          'posts_per_page' => 6,
+          'ignore_sticky_posts' => 1,
+          'orderby' => 'DESC',
+          'tax_query' => array(
+             'relation' => 'AND',
+            array(
+              'taxonomy' => $taxonomy_names[0],
+              'field' => 'id',
+              'terms' => $taxonomy_ids
+            )
+          )
+        );
+        return $args;
+    }
 }

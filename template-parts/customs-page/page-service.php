@@ -63,7 +63,7 @@ use TailPress\ContentQuery
                         <?php if ($meta_value) : ?>
                           <a href="<?php the_permalink(); ?>">
                             <?php 
-                            $attr = [ 'class' => 'rounded w-50 h-50 object-cover', 'alt' => get_the_title(), 'title' =>  get_post_type().' '.get_the_title() ];
+                            $attr = [ 'class' => 'rounded h-46 object-cover', 'alt' => get_the_title(), 'title' =>  get_post_type().' '.get_the_title() ];
                             echo wp_get_attachment_image($meta_value, 'full', false, $attr); ?>
                           </a>
                         <?php endif; ?>

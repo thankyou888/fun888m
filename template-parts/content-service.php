@@ -51,29 +51,9 @@ if ( ! defined( 'ABSPATH' ) ) {
         //global $post;
         //$tags_ids = wp_get_post_tags($post->ID, array('fields' => 'ids'));
         //$cat_ids = wp_get_post_categories($post->ID);
-
-        $taxonomy_names = get_object_taxonomies(get_post_type());
-         //print_r($taxonomy_names);
-        $taxonomy = get_the_terms(get_the_ID(), $taxonomy_names[0]);
-        $taxonomy_ids = wp_get_post_terms(get_the_ID(),$taxonomy_names[0], array('fields' => 'ids'));
-        //print_r($taxonomy_ids);
-        print_r($taxonomy);       
-        $args = array(
-          'post_type' => get_post_type(),
-          'post__not_in' => array(get_the_ID()),
-          'posts_per_page' => 6,
-          'ignore_sticky_posts' => 1,
-          'orderby' => 'DESC',
-          'tax_query' => array(
-             'relation' => 'AND',
-            array(
-              'taxonomy' => $taxonomy_names[0],
-              'field' => 'id',
-              'terms' => $taxonomy_ids
-            )
-          )
-        );
-
+        use TailPress\ContentQuery;
+        $args = ContentQuery::get_related_taxonomie(get_post_type());
+        
         $related_query = new WP_Query($args);
         if ( $related_query->have_posts() ) : ?>
         <?php get_template_part('template-parts/related-post',null, array('data' => $related_query)); ?>

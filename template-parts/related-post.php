@@ -7,14 +7,14 @@ if ( isset( $args['data'] ) ) :
      $related_query = $args['data']; 
 ?>
 
-<div class="entry-related-posts p-4 mt-8">
+<div class="entry-related-posts">
     <div class="flex items-center">
         <h2 class="shrink-0 text-xl font-bold mb-4 pl-4 border-l-4 border-brand">เนื้อหาที่เกี่ยวข้อง</h2>
         <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     <?php while ( $related_query->have_posts() ) : $related_query->the_post(); ?>
-        <article class="bg-white p-4">
+        <article class="bg-white p-4 rounded-lg shadow-md mb-4">
             <div class="entry-image">
                 <?php if ( has_post_thumbnail() ) : ?>
                 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" itemprop="url">
