@@ -85,6 +85,26 @@ function rename_uploaded_image($file) {
     return $file;
 }
 
+
+add_filter('previous_post_link', function ($output) {
+    
+        $html = '<div class="p-2 w-full">';
+        $html .= $output . '</div>';
+        $output = $html;
+        return $output;
+   
+});
+
+add_filter('next_post_link', function ($output) {
+    
+        $html = '<div class="p-2 w-full">';
+        $html .= $output . '</div>';
+        $output = $html;
+        return $output;
+   
+});
+
+
 function custom_archive_title($title) {
   if (is_category()) {
       $title = single_cat_title('', false); // Display category name without "Category: "
@@ -328,22 +348,4 @@ function custom_the_excerpt() {
   return wp_trim_words(wp_strip_all_tags($content), 50, '...');
 }
 
-
-add_filter('previous_post_link', function ($output) {
-    
-        $html = '<div class="p-2 w-full bg-accent border-1 border-gray-300 text-center">';
-        $html .= $output . '</div>';
-        $output = $html;
-        return $output;
-   
-});
-
-add_filter('next_post_link', function ($output) {
-    
-        $html = '<div class="p-2 w-full bg-accent  border-1 border-gray-300 text-center">';
-        $html .= $output . '</div>';
-        $output = $html;
-        return $output;
-   
-});
 

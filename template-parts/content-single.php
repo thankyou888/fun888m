@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemtype="https://schema.org/CreativeWork" >
             <?php if (has_post_thumbnail()): ?>
                 <div class="featured-image page-header-image-single mb-4">
-                    <?php the_post_thumbnail('large', [
+                    <?php the_post_thumbnail('full', [
                     'class' => 'rounded w-full h-auto object-cover',
                     'loading' => 'lazy',
                     'itemprop' => 'image'
@@ -35,6 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <?php the_content(); ?>
             </div>
             <!-- Tags -->
+            <?php if (has_tag()): ?>
             <footer>
                 <div class="entry-tags">
                     <h2 class="text-xl font-semibold mb-4">คำที่เกี่ยวข้อง</h2>
@@ -43,9 +44,10 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </div>
                 </div>
             </footer>
+            <?php endif; ?>
         </article>
         <!-- Post Navigation -->
-        <div class="mt-10 flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
+        <div class="my-8 flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
           <?php previous_post_link('%link', '&larr; %title'); ?>
           <?php next_post_link('%link', '%title &rarr;'); ?>
         </div>

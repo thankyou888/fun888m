@@ -114,7 +114,7 @@ class ContentQuery
         $taxonomy = get_the_terms($post->ID, $taxonomy_names[0]);
         $taxonomy_ids = wp_get_post_terms($post->ID, $taxonomy_names[0], array('fields' => 'ids'));
         //print_r($taxonomy_ids);
-        print_r($taxonomy_names);       
+        //print_r($taxonomy_names);       
         $args = array( 
           'post_type' => $post_type,
           'post__not_in' => array($post->ID),

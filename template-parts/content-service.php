@@ -4,9 +4,11 @@
  *
  * @package TailPress
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
   }
+use TailPress\ContentQuery;
 ?>
 
 <div class="flex flex-col lg:flex-row min-h-screen gap-4">
@@ -35,6 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <?php the_content(); ?>
             </div>
             <!-- Tags -->
+            <?php if (has_tag()): ?>
             <footer>
                 <div class="entry-tags">
                     <h2 class="text-xl font-semibold mb-4">คำที่เกี่ยวข้อง (Service)</h2>
@@ -43,17 +46,13 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </div>
                 </div>
             </footer>
+            <?php endif; ?>
         </article>
       
         
         <!-- Related Posts by Tag or Category -->
         <?php
-        //global $post;
-        //$tags_ids = wp_get_post_tags($post->ID, array('fields' => 'ids'));
-        //$cat_ids = wp_get_post_categories($post->ID);
-        use TailPress\ContentQuery;
         $args = ContentQuery::get_related_taxonomie(get_post_type());
-        
         $related_query = new WP_Query($args);
         if ( $related_query->have_posts() ) : ?>
         <?php get_template_part('template-parts/related-post',null, array('data' => $related_query)); ?>

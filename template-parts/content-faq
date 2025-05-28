@@ -34,6 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <?php the_content(); ?>
             </div>
             <!-- Tags -->
+            <?php if (has_tag()): ?>
             <footer>
                 <div class="entry-tags">
                     <h2 class="text-xl font-semibold mb-4">คำที่เกี่ยวข้อง (FAQs)</h2>
@@ -42,6 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </div>
                 </div>
             </footer>
+            <?php endif; ?>
         </article>
        
         
