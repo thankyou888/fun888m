@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+?>
 <div id="sidebar" class="w-full lg:w-1/4 shrink-0 space-y-6 sticky top-14 h-fit">
     <aside>
 
@@ -10,7 +15,7 @@
                 'container_class' => '',
                 'menu_class'      => 'flex flex-col gap-2 [&_a]:!no-underline text-light mb-4 font-itim',
                 'theme_location'  => 'sponsor',
-                'li_class'        => 'py-[.7rem] text-center bg-brand rounded',
+                'li_class'        => 'py-[.7rem] text-center bg-info text-white',
                 'fallback_cb'     => false,
             ]);
         ?>

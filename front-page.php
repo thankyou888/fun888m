@@ -64,7 +64,6 @@ get_header(); // Load header template
                         </div>
                     </div>
                 </header>
-                <div>
                 <!-- recommend page -->
                 <section class="recommend mb-4">
                     <div class="flex items-center">
@@ -77,7 +76,7 @@ get_header(); // Load header template
                     <?php if ($query->have_posts()): ?>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
-                        <div class="bg-brand rounded-lg shadow-md p-4 flex flex-col items-center text-center">
+                        <div class="bg-info text-info-content rounded-lg shadow-md p-4 flex flex-col items-center text-center">
                             <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'h-auto object-cover', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
                             <h2 class="text-2xl text-white font-bold mt-4">
                                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
@@ -89,8 +88,8 @@ get_header(); // Load header template
                     <?php endif; ?>
                 </section>
                  <!-- about us -->
-                <section class="about-us mb-4">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:py-12 md:py-24">
+                <section class="about-us mb-4 sm:py-8 md:py-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div class="lg:w-2/3">
                            <h3 class="text-2xl font-bold mb-4">ทางเข้า <?php echo bloginfo('name'); ?> สำรอง</h3>
                            <ul class="list">
@@ -99,6 +98,7 @@ get_header(); // Load header template
                                     <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
                                     <div class="list-col-grow">
                                         <div class="text-lg font-semibold font-itim">ทางเข้า FUN88TH</div>
+                                        <span class="text-sm opacity-60">อัปเดทล่าสุด</span>
                                     </div>
                                     <a href="#" class="btn btn-square btn-primary">
                                     <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
@@ -108,7 +108,8 @@ get_header(); // Load header template
                                     <div class="text-4xl font-thin opacity-30 tabular-nums">02</div>
                                     <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
                                     <div class="list-col-grow">
-                                        <div class="text-lg font-semibold font-itim">Dio Lupa</div>
+                                        <div class="text-lg font-semibold font-itim">ทางเข้า Fun88asia1</div>
+                                        <span class="text-sm opacity-60">อัปเดทล่าสุด</span>
                                     </div>
                                     <a href="#" class="btn btn-square btn-primary">
                                     <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
@@ -116,51 +117,47 @@ get_header(); // Load header template
                                 </li>
                                   <li class="list-row">
                                     <div class="text-4xl font-thin opacity-30 tabular-nums">03</div>
-                                    <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
+                                    <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">99%</div>
                                     <div class="list-col-grow">
-                                        <div class="text-lg font-semibold font-itim">Dio Lupa</div>
+                                        <div class="text-lg font-semibold font-itim">ทางเข้า Fun88 Thai</div>
+                                        <span class="text-sm opacity-60">สำรอง ลิงค์ล่าสุด</span>
                                     </div>
                                     <a href="#" class="btn btn-square btn-primary">
                                     <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
                                     </a>
                                 </li>
-                                
+                                </li>
+                                  <li class="list-row">
+                                    <div class="text-4xl font-thin opacity-30 tabular-nums">04</div>
+                                    <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
+                                    <div class="list-col-grow">
+                                        <div class="text-lg font-semibold font-itim">ติดต่อเจ้าหน้าที่</div>
+                                        <span class="text-sm opacity-60">แชทสด 24 ชม.</span>
+                                    </div>
+                                    <a href="#" class="btn btn-square btn-primary">
+                                    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <div>
                             <h2 class="text-2xl font-bold mb-4">
                                 <?php echo $aboutus_title ?>
                             </h2>
-                            <div class="text-gray-700 mb-4">
+                            <div class="entry-content mb-4">
                                 <?php echo $aboutus_description ?>
-                                 <a href="<?php echo $aboutus_source_page ?>" title="<?php echo $aboutus_title ?>"
-                                class="btn btn-primary">อ่านต่อ</a>
                             </div>
                            
                         </div>
                     </div>
                 </section>
-                <!-- end about us -->
-                
-                <!--call to action -->
-                <section
-                    class="call-to-action flex flex-col lg:flex-row bg-secondary text-white text-center items-center gap-4  py-12 md:py-24 mb-4">
-                    <div class="lg:flex-1">
-                        <h2 class="text-2xl font-bold">สมัครใหม่รับโบนัส 120%</h2>
-                    </div>
-                    <div class="lg:flex-2">
-                        <p>สมัครสมาชิกใหม่ รับโบนัสเพิ่ม 100% สำหรับเดิมพันสล็อตทุกค่าย รับสุงสุด 8,000 บาท
-                            ทำเทิร์นโอเวอร์ 18 เท่า เพื่อถอน</p>
-                    </div>
-                    <div class="lg:flex-1"><a href="#" class="btn btn-success">สมัครรับโบนัส ทันที!!</a></div>
-                </section>
                 <!--call to action -->
                 <section class="call-action mb-4">
-                    <div class="bg-blue-500 text-white p-12 rounded-lg shadow-md text-center">
+                    <div class="bg-primary text-primary-content p-12 rounded-lg shadow-md text-center">
                         <h2 class="text-2xl font-bold mb-4">สมัครใหม่รับโบนัส 120%!</h2>
                         <p class="text-sm mb-4">สมัครสมาชิกใหม่ รับโบนัสเพิ่ม 100% สำหรับเดิมพันสล็อตทุกค่าย รับสุงสุด
                             8,000 บาท ทำเทิร์นโอเวอร์ 18 เท่า เพื่อถอน</p>
-                        <a href="#" class="btn btn-success transition">สมัครรับโบนัส ทันที!!</a>
+                        <a href="#" class="btn btn-success transition duration-300">สมัครรับโบนัส ทันที!!</a>
                     </div>
                 </section>
                 <!-- Services Live Casino -->
@@ -185,21 +182,21 @@ get_header(); // Load header template
                     <?php if ($query->have_posts()): ?>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
-                       <div class="bg-white p-4 flex flex-col items-center text-center border border-gray-200">
+                       <div class="bg-base-100 border-base-300 p-4 flex flex-col items-center text-center">
                             <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'h-48 w-full object-cover', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
-                            <h2 class="text-xl font-bold mt-4">
+                            <h2 class="text-xl font-bold my-4">
                                 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
                                     <?php the_title(); ?>
                                 </a>
                             </h2>
-                            <div class="text-gray-700 mb-4"><?php the_excerpt(); ?></div>
+                            <div class="text-sm opacity-60"><?php the_excerpt(); ?></div>
                         </div>
                         <?php endwhile; ?>
                         <?php wp_reset_postdata(); ?>
                     </div>
                     <?php else: ?>
-                    <div class="error-message text-center p-4 bg-red-100 text-red-700 rounded-lg">
-                        <p class="text-gray-600">No services found</p>
+                    <div class="error-message text-center p-4 bg-red-100 text-red-700 rounded">
+                        <p class="text-base-100">No services found</p>
                     </div>
                     <div role="alert" class="alert alert-warning">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
@@ -213,14 +210,14 @@ get_header(); // Load header template
                 </section> <!-- end services -->
              
                 <!-- Latest bonus post list  -->
-                <section class="latest-bonus mb-4 py-12">
+                <section class="latest-bonus mb-4 py-12 bg-base-100 border-base-300">
                     <div class="flex justify-between items-center">
                         <h2 class="shrink-0 text-2xl font-bold mb-4 pl-4 border-l-4 border-brand">Latest Bonus Offers</h2>
                         <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
                         <a title="View All " href="#"
-                            class="text-sm text-gray-500 hover:text-gray-700 transition duration-300" itemprop="url">
+                            class="text-sm" itemprop="url">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" class="size-6 inline-block text-brand">
+                                stroke="currentColor" class="size-6 inline-block text-info">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"></path>
                             </svg>
@@ -230,7 +227,7 @@ get_header(); // Load header template
                     <?php if ($query->have_posts()): ?>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
-                       <div class="bg-white p-4 rounded-lg shadow-md flex flex-col">
+                       <div class="bg-info text-smp-4 rounded-lg shadow-md flex flex-col">
                             <div class="entry-image relative mb-4">
                                 <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'rounded w-full h-auto object-cover', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
                                 <div class="absolute top-0 left-0 p-2">
@@ -240,8 +237,8 @@ get_header(); // Load header template
                             <h2 class="text-xl font-bold mb-4">
                                 <?php the_title(); ?>
                             </h2>
-                            <p class="text-gray-700 mb-4">
-                                <span class="text-info">
+                            <p class="mb-4">
+                                <span class="text-accent">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 inline-flex">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
                                     </svg>
@@ -270,7 +267,7 @@ get_header(); // Load header template
                         </div>
                         <div class="collapse-content text-sm" itemscope itemprop="acceptedAnswer"
                             itemtype="https://schema.org/Answer">
-                            <p itemprop="text" class="text-gray-700 mt-2">เพียงคลิกที่ปุ่ม “สมัครเลย” ด้านบน
+                            <p itemprop="text" class=" mt-2">เพียงคลิกที่ปุ่ม “สมัครเลย” ด้านบน
                                 แล้วกรอกข้อมูลของคุณ</p>
                         </div>
                     </div>
@@ -281,13 +278,13 @@ get_header(); // Load header template
                         </div>
                         <div class="collapse-content text-sm" itemscope itemprop="acceptedAnswer"
                             itemtype="https://schema.org/Answer">
-                            <p itemprop="text" class="text-gray-700 mt-2">เพียงคลิกที่ปุ่ม “สมัครเลย” ด้านบน
+                            <p itemprop="text" class=" mt-2">เพียงคลิกที่ปุ่ม “สมัครเลย” ด้านบน
                                 แล้วกรอกข้อมูลของคุณ</p>
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="entry-bonuses mb-4">
+            <section class="entry-bonuses mb-4 bg-base-100 border-base-300">
 
                 <div class="flex items-center">
                     <span class="h-px flex-1 bg-gradient-to-r from-transparent to-gray-300"></span>

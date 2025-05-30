@@ -1,0 +1,7 @@
+
+section {
+   margin-bottom: --spacing(10);
+}
+.jubpas-hero {
+    @apply bg-base-100 border-base-300 py-8 mb-12 text-center
+}

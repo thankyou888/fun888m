@@ -9,29 +9,9 @@
     "color": {
       "palette": [
         {
-          "name": "Primary",
-          "slug": "primary",
-          "color": "#2C7FFF"
-        },
-        {
-          "name": "Secondary",
-          "slug": "secondary",
-          "color": "#FD9A00"
-        },
-        {
-          "name": "Dark",
-          "slug": "dark",
-          "color": "#18181C"
-        },
-        {
-          "name": "Light",
-          "slug": "light",
-          "color": "#F4F4F5"
-        },
-        {
           "name": "Brand",
           "slug": "brand",
-          "color": "oklch(50% 0.134 242.749)"
+          "color": "var(--color-info)"
         }
       ]
     },

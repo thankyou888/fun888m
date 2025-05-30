@@ -22,6 +22,7 @@ export default defineConfig(({ command }) => {
             rollupOptions: {
                 input: {
                     'app': 'resources/js/app.js',
+                    'theme-switcher': 'resources/js/theme-switcher.js',
                     'app-css': 'resources/css/app.css',
                     'editor-style': 'resources/css/editor-style.css',
                     'bonus-grid': 'blocks/bonus-grid/index.jsx',
@@ -40,7 +41,7 @@ export default defineConfig(({ command }) => {
                     if (assetInfo.name === 'index.css' && assetInfo.source.includes('bonus-grid')) { // A bit simplistic, might need refinement
                        return 'blocks/bonus-grid/build/index.css';
                     }
-                    return 'assets/[name].[hash][extname]';
+                    return 'assets/[name].[extname]';
                   },
                 }, 
                 external: [

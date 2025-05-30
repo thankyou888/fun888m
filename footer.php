@@ -66,7 +66,7 @@
                     'container_class' => '',
                     'menu_class'      => 'flex flex-wrap gap-2 justify-center [&_a]:!no-underline text-light mb-4',
                     'theme_location'  => 'footer',
-                    'li_class'        => 'text-center',
+                    'li_class'        => 'text-center text-sm',
                     'fallback_cb'     => false,
                 ]);
             ?>

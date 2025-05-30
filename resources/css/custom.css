@@ -1,8 +1,8 @@
 .entry-content,
 .block-editor-block-list__layout {
-  color: var(--color-zinc-950);
-  font-size: var(--text-lg);
-  line-height: var(--text-lg--line-height);
+  color: var(--color-base-content);
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
 
   :where(
     .entry-content > *:not(li),
@@ -14,34 +14,35 @@
   
 
   :where(.wp-element-button, .wp-block-button__link) {
-    @apply bg-brand text-white;
+    @apply bg-info text-white;
     padding: 0.5rem 1rem;
     border-radius: var(--radius-field);
     font-size: var(--text-base);
     line-height: var(--text-base--line-height);
-    font-weight: var(--font-weight-semibold);
   }
   :where(.wp-block-heading) {
     margin-top: --spacing(6);
-    margin-bottom: --spacing(6);
+    margin-bottom: --spacing(4);
+    font-weight: var(--font-weight-semibold);
   }
   :where(.wp-block-list) {
     margin-top: --spacing(6);
-    margin-bottom: --spacing(6);
+    margin-bottom: --spacing(4);
   }
 
   :where(h2) {
-    font-weight: var(--font-weight-semibold);
     font-size: var(--text-2xl);
     line-height: var(--text-2xl--line-height);
     margin-top: --spacing(6);
   }
 
   :where(h3) {
-    font-weight: var(--font-weight-semibold);
     font-size: var(--text-xl);
     line-height: var(--text-xl--line-height);
-    margin-top: --spacing(8);
+    margin-top: --spacing(4);
+    a {
+      @apply text-base-200;
+    }
   }
 
   :where(h2 + h3) {
@@ -57,28 +58,25 @@
   }
   :where(ul.list-none){
     list-style-type:  none !important;
-    padding: 0 !important;
-  }
+      padding: 0 !important;
+    }
 
   :where(ol) {
     list-style-type: decimal;
   }
 
-  :where(a) {
-    color: var(--color-primary);
-  }
 
   :where(li) {
     padding-left: --spacing(3);
   }
 
   :where(li)::marker {
-    color: var(--color-zinc-500);
+    color: var(--color-base-content);
   }
 
   :where(li > *),
   :where(li li) {
-    margin-top: --spacing(4);
+    margin-top: --spacing(2);
   }
 
   :where(ol > li)::marker {
@@ -104,22 +102,21 @@
   }
 
   :where(table > :first-child) {
-    @apply w-full border-collapse text-center justify-between border border-sky-700 mb-4;
+    @apply w-full border-collapse text-center justify-between border border-info mb-4;
   }
 
   :where(table thead) {
-      background-color: var(--color-brand);
+      background-color: var(--color-info);
       border-bottom: none !important;
       th {
-        color: var(--color-white);
+        color: var(--color-base-content);
       }
   }
 }
 
 body {
   font-family: var(--font-sarabun);
-  font-size: var(--text-base);
-  color: #333;
+  color: var(--color-base-content);
   :where(p) {
     margin-bottom: calc(var(--spacing) * 2.5);
   }

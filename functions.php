@@ -11,6 +11,7 @@ function tailpress(): TailPress\Framework\Theme
             ->withCompiler(new TailPress\Framework\Assets\ViteCompiler, fn($compiler) => $compiler
                 ->registerAsset('resources/css/app.css')
                 ->registerAsset('resources/js/app.js')
+                ->registerAsset('resources/js/theme-switcher.js')
                 ->editorStyleFile('resources/css/editor-style.css')
             )
             ->enqueueAssets()
@@ -38,17 +39,6 @@ function tailpress(): TailPress\Framework\Theme
 
 tailpress();
 
-/**
- * Register custom Gutenberg blocks.
- */
-function fun888m_register_custom_blocks() {
-  // Register the bonus-grid block
-  register_block_type( get_template_directory() . '/blocks/bonus-grid' );
-
-  // You can register other blocks here by adding more register_block_type() calls.
-  // Example: register_block_type( get_template_directory() . '/blocks/another-block' );
-}
-add_action( 'init', 'fun888m_register_custom_blocks' );
 add_filter('wp_handle_upload_prefilter', 'rename_uploaded_image');
 add_filter('page_template', function ($template) {
         //global $post;
@@ -66,17 +56,6 @@ add_filter('page_template', function ($template) {
     return $template;
 });
 
-/**
- * The function `rename_uploaded_image` renames an uploaded image file by generating a new unique name
- * based on the original file name and current time.
- * 
- * @param file The `rename_uploaded_image` function takes an array `` as a parameter. This array
- * typically contains information about the uploaded file, such as its name, type, size, etc.
- * 
- * @return The function `rename_uploaded_image` takes an uploaded file array as input, renames the file
- * by appending a 16-character MD5 hash of the file name and current time, and returns the modified
- * file array with the new name.
- */
 function rename_uploaded_image($file) {
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
     $md5_name = substr(md5($file['name'] . time()), 0, 16); // Get first 16 chars
@@ -115,6 +94,45 @@ function custom_archive_title($title) {
 }
 add_filter('get_the_archive_title', 'custom_archive_title');
 
+// Register Custom Taxonomy
+/*
+function register_custom_taxonomy() {
+    $gambling_labels = array(
+        'name' => 'Gambling Categories',
+        'singular_name' => 'Gambling Category',
+        'menu_name' => 'Gambling Categories',
+        'all_items' => 'All Gambling Categories',
+    );
+    $casino_labels = array(
+        'name' => 'Casino Providers',
+        'singular_name' => 'Casino Provider',
+        'menu_name' => 'Casino Providers',
+        'all_items' => 'All Casino Providers',
+    );
+
+    $gambling_args = array(
+        'labels' => $gambling_labels,
+        'hierarchical' => true,
+        'public' => true,
+        'show_in_rest' => true, // For block editor
+        'rewrite' => array('slug' => 'gambling'),
+    );
+
+    $casino_args = array(
+        'labels' => $casino_labels,
+        'hierarchical' => true,
+        'public' => true,
+        'show_in_rest' => true, // For block editor
+        'rewrite' => array('slug' => 'casino'),
+    );
+
+    register_taxonomy('gambling_category', array('service'), $gambling_args);
+    register_taxonomy('casino_providers', array('service'), $casino_args);
+ 
+}
+add_action('init', 'register_custom_taxonomy');
+*/
+
 function create_service_page_type() {
   register_post_type('service', array(
       'labels' => array(
@@ -130,6 +148,22 @@ function create_service_page_type() {
   ));
 }
 add_action('init', 'create_service_page_type');
+
+function create_games_page_type() {
+  register_post_type('games', array(
+      'labels' => array(
+          'name'          => __('Games Pages', 'tailpress'),
+          'singular_name' => __('Games Page', 'tailpress'),
+      ),
+      'public'            => true,
+      'has_archive'       => false, // No archive page
+      'hierarchical'      => true, // Behaves like a Page
+      'rewrite'           => array('slug' => 'games'),
+      'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
+      'show_in_rest'      => true, // Enables Gutenberg block editor
+  ));
+}
+add_action('init', 'create_games_page_type');
 
 
 function create_bonuses_page_type() {
