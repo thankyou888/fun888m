@@ -25,28 +25,12 @@ export default defineConfig(({ command }) => {
                     'theme-switcher': 'resources/js/theme-switcher.js',
                     'app-css': 'resources/css/app.css',
                     'editor-style': 'resources/css/editor-style.css',
-                    'bonus-grid': 'blocks/bonus-grid/index.jsx',
                 },
                 output: {
-                    entryFileNames: (chunkInfo) => {
-                        if (chunkInfo.name === 'bonus-grid') {
-                          return 'blocks/bonus-grid/build/index.js';
-                        }
-                        // if (chunkInfo.name === 'bonus-grid-view') {
-                        //   return 'blocks/bonus-grid/build/view.js';
-                        // }
-                        return 'assets/[name].js'; // for other entries
-                  },
-                  assetFileNames: (assetInfo) => {
-                    if (assetInfo.name === 'index.css' && assetInfo.source.includes('bonus-grid')) { // A bit simplistic, might need refinement
-                       return 'blocks/bonus-grid/build/index.css';
-                    }
-                    return 'assets/[name].[extname]';
-                  },
-                }, 
-                external: [
-                /^@wordpress\/.*/, // ✅ อย่ารวม WordPress modules
-                ],
+                    entryFileNames: '[name].js',
+                    chunkFileNames: '[name].js',
+                    assetFileNames: '[name].[ext]',
+                },
             },
         },
         plugins: [

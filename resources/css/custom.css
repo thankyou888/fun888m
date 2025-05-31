@@ -14,7 +14,7 @@
   
 
   :where(.wp-element-button, .wp-block-button__link) {
-    @apply bg-info text-white;
+    @apply bg-brand text-white;
     padding: 0.5rem 1rem;
     border-radius: var(--radius-field);
     font-size: var(--text-base);
@@ -40,9 +40,7 @@
     font-size: var(--text-xl);
     line-height: var(--text-xl--line-height);
     margin-top: --spacing(4);
-    a {
-      @apply text-base-200;
-    }
+   
   }
 
   :where(h2 + h3) {
@@ -102,11 +100,11 @@
   }
 
   :where(table > :first-child) {
-    @apply w-full border-collapse text-center justify-between border border-info mb-4;
+    @apply w-full border-collapse text-center justify-between border border-brand mb-4;
   }
 
   :where(table thead) {
-      background-color: var(--color-info);
+      background-color: var(--color-brand);
       border-bottom: none !important;
       th {
         color: var(--color-base-content);

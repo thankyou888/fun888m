@@ -58,16 +58,16 @@ use TailPress\ContentQuery
                 <?php if ($query->have_posts()) : ?>
                   <div class="grid grid-cols-2 md:grid-cols-5 justify-center gap-4">
                     <?php while ($query->have_posts()) : $query->the_post(); ?>
-                      <div class="p-4">
-                        <?php $meta_value = get_post_meta(get_the_ID(), 'page_image', true);  ?>
-                        <?php if ($meta_value) : ?>
+                      <div class="p-4 text-center">
+                        <?php $image_val = get_post_meta(get_the_ID(), 'page_image', true);  ?>
+                        <?php if ($image_val) : ?>
                           <a href="<?php the_permalink(); ?>">
                             <?php 
                             $attr = [ 'class' => 'rounded h-46 object-cover', 'alt' => get_the_title(), 'title' =>  get_post_type().' '.get_the_title() ];
-                            echo wp_get_attachment_image($meta_value, 'full', false, $attr); ?>
+                            echo wp_get_attachment_image($image_val, 'full', false, $attr); ?>
                           </a>
                         <?php endif; ?>
-                        <h3 class="text-lg font-semibold p-4 bg-brand "><?php the_title(); ?></h3>
+                        <h3 class="bg-info text-white p-4"><a href="<?php the_permalink(); ?>"><?php echo esc_html(get_post_meta(get_the_ID(), 'page_title', true)); ?></a></h3>
                       </div>
                     <?php endwhile; ?>
                   </div>

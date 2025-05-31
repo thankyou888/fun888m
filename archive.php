@@ -30,7 +30,7 @@ get_header(); // Load header template
             <article id="post-<?php the_ID() ?>" class="flex flex-col bg-base-100 border-base-300 p-4 mb-8" itemscope itemtype="https://schema.org/Article">          
                 <div class="entry-image relative mb-4">
                   <a href="<?php the_permalink(); ?>">
-                    <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'w-full object-cover rounded', 'loading' => 'lazy']); ?>
+                    <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'w-full object-cover', 'loading' => 'lazy']); ?>
                   </a>
                 </div>
                 <header>
@@ -52,7 +52,7 @@ get_header(); // Load header template
             <article id="post-<?php the_ID() ?>" class="bg-base-100 border-base-300 p-4 mb-8 flex flex-col md:flex-row gap-4" itemscope itemtype="https://schema.org/Article">
                 <div class="entry-image w-full md:w-2/5">
                   <a href="<?php the_permalink(); ?>" >
-                    <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'object-cover rounded', 'loading' => 'lazy']); ?>
+                    <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'object-cover', 'loading' => 'lazy']); ?>
                   </a>
                 </div>
                 <header class="flex-1">

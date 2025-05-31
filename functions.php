@@ -382,4 +382,10 @@ function custom_the_excerpt() {
   return wp_trim_words(wp_strip_all_tags($content), 50, '...');
 }
 
+function display_current_year() {
+    return date('Y'); // Fetches the current year dynamically
+}
+add_shortcode('year', 'display_current_year');
+
+
 

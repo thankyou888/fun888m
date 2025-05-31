@@ -7,7 +7,6 @@
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
 }
-
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
@@ -60,7 +59,7 @@
   --color-accent-content: oklch(38% 0.063 188.416);
   --color-neutral: oklch(14% 0.005 285.823);
   --color-neutral-content: oklch(92% 0.004 286.32);
-  --color-info: oklch(43% 0.232 292.759);
+  --color-info: oklch(50% 0.134 242.749);
   --color-info-content: oklch(96% 0.001 286.375);
   --color-success: oklch(76% 0.177 163.223);
   --color-success-content: oklch(0% 0 0);
@@ -77,9 +76,6 @@
   --depth: 0;
   --noise: 0;
 }
-
-
-
 
 
 
