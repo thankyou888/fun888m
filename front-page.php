@@ -23,6 +23,9 @@ $aboutus_title = isset($section_options['aboutus_title']) ? $section_options['ab
 $aboutus_description = isset($section_options['aboutus_description']) ? $section_options['aboutus_description'] : '';
 $aboutus_source_page = isset($section_options['aboutus_source_page']) ? $section_options['aboutus_source_page'] : '';
 
+$call_to_action_title = isset($section_options['call_to_action_title']) ? $section_options['call_to_action_title'] : '';
+$call_to_action_subtitle = isset($section_options['call_to_action_subtitle']) ? $section_options['call_to_action_subtitle'] : '';
+$call_to_action_link = isset($section_options['call_to_action_link']) ? $section_options['call_to_action_link'] : '';
 get_header(); // Load header template
 
 ?>
@@ -68,7 +71,7 @@ get_header(); // Load header template
                 <section class="recommend mb-4">
                     <div class="flex items-center">
                         <h2 class="shrink-0 text-2xl font-bold mb-4 pl-4 border-l-4 border-brand">
-                            <?php _e('Getting started') ?>
+                            แนะนำการใช้งาน Fun88
                         </h2>
                         <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
                     </div>
@@ -91,7 +94,7 @@ get_header(); // Load header template
                 <section class="about-us mb-4 sm:py-8 md:py-12">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div class="lg:w-2/3">
-                           <h3 class="text-2xl font-bold mb-4">ทางเข้า <?php echo bloginfo('name'); ?> สำรอง</h3>
+                           <h3 class="text-2xl font-bold mb-4">ทางเข้า Fun88 เปลี่ยนแปลงบ่อย</h3>
                            <ul class="list">
                                 <li class="list-row">
                                     <div class="text-4xl font-thin opacity-30 tabular-nums">01</div>
@@ -100,7 +103,7 @@ get_header(); // Load header template
                                         <div class="text-lg font-semibold font-itim">ทางเข้า FUN88TH</div>
                                         <span class="text-sm opacity-60">อัปเดทล่าสุด</span>
                                     </div>
-                                    <a href="#" class="btn btn-square btn-primary">
+                                    <a href="<?php echo esc_url($home_setting['hero_link_1']) ?>" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-square btn-primary">
                                     <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
                                     </a>
                                 </li>
@@ -111,7 +114,7 @@ get_header(); // Load header template
                                         <div class="text-lg font-semibold font-itim">ทางเข้า Fun88asia1</div>
                                         <span class="text-sm opacity-60">อัปเดทล่าสุด</span>
                                     </div>
-                                    <a href="#" class="btn btn-square btn-primary">
+                                    <a href="<?php echo esc_url($home_setting['hero_link_2']) ?>" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-square btn-primary">
                                     <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
                                     </a>
                                 </li>
@@ -122,7 +125,7 @@ get_header(); // Load header template
                                         <div class="text-lg font-semibold font-itim">ทางเข้า Fun88 Thai</div>
                                         <span class="text-sm opacity-60">สำรอง ลิงค์ล่าสุด</span>
                                     </div>
-                                    <a href="#" class="btn btn-square btn-primary">
+                                    <a href="<?php echo esc_url($home_setting['hero_link_3']) ?>" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-square btn-primary">
                                     <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
                                     </a>
                                 </li>
@@ -134,7 +137,7 @@ get_header(); // Load header template
                                         <div class="text-lg font-semibold font-itim">ติดต่อเจ้าหน้าที่</div>
                                         <span class="text-sm opacity-60">แชทสด 24 ชม.</span>
                                     </div>
-                                    <a href="#" class="btn btn-square btn-primary">
+                                    <a href="/contact" target="_blank" rel="noopener" class="btn btn-square btn-primary">
                                     <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
                                     </a>
                                 </li>
@@ -154,13 +157,12 @@ get_header(); // Load header template
                 <!--call to action -->
                 <section class="call-action mb-4">
                     <div class="bg-primary text-primary-content p-12 rounded-lg shadow-md text-center">
-                        <h2 class="text-2xl font-bold mb-4">สมัครใหม่รับโบนัส 120%!</h2>
-                        <p class="text-sm mb-4">สมัครสมาชิกใหม่ รับโบนัสเพิ่ม 100% สำหรับเดิมพันสล็อตทุกค่าย รับสุงสุด
-                            8,000 บาท ทำเทิร์นโอเวอร์ 18 เท่า เพื่อถอน</p>
-                        <a href="#" class="btn btn-success transition duration-300">สมัครรับโบนัส ทันที!!</a>
+                        <h2 class="text-2xl font-bold mb-4"><?php echo $call_to_action_title; ?></h2>
+                        <p class="text-sm mb-4"><?php echo $call_to_action_subtitle; ?></p>
+                        <a href="<?php echo $call_to_action_link; ?>" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-success transition duration-300">รายละเอียดเพิ่มเติม</a>
                     </div>
                 </section>
-                <!-- Services Live Casino -->
+                <!-- Services Section -->
                 <section class="services my-4 py-12">
                     <div class="flex justify-between items-center lg:text-center mb-4">
                         <h2 class="flex-grow lg:flex-auto text-2xl font-bold">
@@ -189,7 +191,7 @@ get_header(); // Load header template
                                     <?php the_title(); ?>
                                 </a>
                             </h2>
-                            <div class="text-sm opacity-60"><?php the_excerpt(); ?></div>
+                            <p class="text-sm opacity-60"> <?php echo jet_engine()->listings->data->get_meta( 'page_short_descriptions' ); ?></p>
                         </div>
                         <?php endwhile; ?>
                         <?php wp_reset_postdata(); ?>
@@ -208,54 +210,12 @@ get_header(); // Load header template
                     </div>
                     <?php endif; ?>
                 </section> <!-- end services -->
-             
-                <!-- Latest bonus post list  -->
-                <section class="latest-bonus mb-4 py-12 bg-base-100 border-base-300">
-                    <div class="flex justify-between items-center">
-                        <h2 class="shrink-0 text-2xl font-bold mb-4 pl-4 border-l-4 border-brand">Latest Bonus Offers</h2>
-                        <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
-                        <a title="View All " href="#"
-                            class="text-sm" itemprop="url">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" class="size-6 inline-block text-info">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <?php  $query = ContentQuery::get_by_post_type('bonuses'); ?>
-                    <?php if ($query->have_posts()): ?>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
-                        <?php while ($query->have_posts()) : $query->the_post(); ?>
-                       <div class="bg-info text-smp-4 rounded-lg shadow-md flex flex-col">
-                            <div class="entry-image relative mb-4">
-                                <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'rounded w-full h-auto object-cover', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
-                                <div class="absolute top-0 left-0 p-2">
-                                     <div class="badge badge-secondary">NEW</div>
-                                </div>
-                            </div>
-                            <h2 class="text-xl font-bold mb-4">
-                                <?php the_title(); ?>
-                            </h2>
-                            <p class="mb-4">
-                                <span class="text-accent">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 inline-flex">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
-                                    </svg>
-                                </span>: <time datetime="<?php echo get_the_modified_date('c'); ?>"
-                                    itemprop="dateModified">
-                                    <?php echo get_the_modified_date('j M Y'); ?>
-                                </time>
-                            </p>
-                            <a href="<?php the_permalink();?>" title="<?php the_title(); ?>"
-                                class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
-                        </div>
-                        <?php endwhile; ?>
-                        <?php wp_reset_postdata(); ?>
-                    </div>
-                    <?php endif; ?>
-                </section>
+                <div class="entry-content" itemprop="text">
+                    <?php the_content(); ?>
+                </div>
             </article>
+            <!-- recent posts -->
+            
             <!-- FAQ Section -->
             <section class="entry-faq mb-4" itemscope itemtype="https://schema.org/FAQPage">
                 <h2 class="text-2xl font-bold mb-6">คำถามที่พบบ่อย</h2>
@@ -284,21 +244,6 @@ get_header(); // Load header template
                     </div>
                 </div>
             </section>
-            <section class="entry-bonuses mb-4 bg-base-100 border-base-300">
-
-                <div class="flex items-center">
-                    <span class="h-px flex-1 bg-gradient-to-r from-transparent to-gray-300"></span>
-                    <h2 class="shrink-0 text-2xl font-bold mb-4 px-4">โบนัสและโปรโมชั่น</h2>
-                    <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
-                </div>
-                <?php TailPress\Component::create_feature(null, [
-                    'slug__in' => ['fun88-casino','สมัครสมาชิก-fun88']
-                ]); ?>
-            </section>
-            <section class="entry-content">
-                <?php the_content(); ?>
-            </section>
-            <?php get_template_part('template-parts/content','games'); ?>
         </div><!-- end flex-1 -->
         <!-- Sidebar -->
 

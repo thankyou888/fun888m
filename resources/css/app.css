@@ -117,10 +117,12 @@
     text-decoration: none !important;
   }
 
-
+  .heading {
+    color: inherit;
+  }
   .wp-block-table td,
   .wp-block-table th {
-    border: 1px solid var(--color-dark) !important;
+    border: 1px solid var(--color-brand) !important;
     padding: 0.5em;
   }
 
@@ -135,7 +137,23 @@
   }
 
   h1 {
-    @apply text-3xl mb-8 tracking-normal;
-    
+    @apply text-3xl mb-4 font-bold tracking-normal;
   }
+
+  .disclaimer {
+    @apply bg-gray-100 text-gray-700 text-sm p-4 rounded container mx-auto my-6;
+  }
+  
+  body {
+  font-family: var(--font-sarabun);
+  color: var(--color-base-content);
+  :where(p) {
+    margin-bottom: calc(var(--spacing) * 2.5);
+  }
+  }
+  section {
+    :where(p){
+      @apply mb-4;
+    }
+}
 }

@@ -12,6 +12,16 @@
           "name": "Brand",
           "slug": "brand",
           "color": "var(--color-info)"
+        },
+         {
+          "name": "Primary",
+          "slug": "primary",
+          "color": "var(--color-primary)"
+        },
+         {
+          "name": "Secondary",
+          "slug": "secondary",
+          "color": "var(--color-secondary)"
         }
       ]
     },
@@ -81,12 +91,8 @@
           "name": "9XL",
           "slug": "9xl",
           "size": "8rem"
-        },
-        {
-          "name": "10XL",
-          "slug": "10xl",
-          "size": "9rem"
         }
+       
       ]
     }
   }

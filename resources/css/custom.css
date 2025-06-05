@@ -110,18 +110,10 @@
         color: var(--color-base-content);
       }
   }
-}
 
-body {
-  font-family: var(--font-sarabun);
-  color: var(--color-base-content);
-  :where(p) {
-    margin-bottom: calc(var(--spacing) * 2.5);
+  a:where(:not(.heading)) {
+    color: var(--color-accent);
+    text-decoration: none !important;
   }
-}
-
-section {
-  :where(p){
-    @apply mb-4;
-  }
+  
 }

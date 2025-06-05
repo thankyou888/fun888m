@@ -89,7 +89,14 @@ function custom_archive_title($title) {
       $title = single_cat_title('', false); // Display category name without "Category: "
   } elseif (is_tag()) {
       $title = single_tag_title('', false); // Display tag name only
-  }
+  } else if (is_tax('gambling')) {
+      $term = get_queried_object();
+      if ($term && !is_wp_error($term)) {
+          // Return only the term name (e.g., 'Sportsbook')
+          $title = esc_html($term->name);
+      }
+    }
+
   return $title;
 }
 add_filter('get_the_archive_title', 'custom_archive_title');

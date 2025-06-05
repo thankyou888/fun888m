@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <?php endif; ?>
             <header>
                 <!-- Title -->
-                <h1 class="entry-title text-3xl font-bold mb-4" itemprop="headline"><?php the_title(); ?></h1>
+                <h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
                  <!-- Meta Info -->
                 <div class="entry-meta flex mb-4 gap-2">
                     <span class="text-xs bg-info px-2 py-2.5"><?php _e('Published') ?> : <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('j M Y'); ?></time></span>
@@ -39,8 +39,8 @@ if ( ! defined( 'ABSPATH' ) ) {
             <footer>
                 <div class="entry-tags">
                     <h2 class="text-xl font-semibold mb-4">คำที่เกี่ยวข้อง</h2>
-                    <div class="flex flex-wrap gap-2">
-                        <?php the_tags('<span class="inline-block bg-info px-3 py-1 text-sm">','</span><span class="inline-block bg-brand px-3 py-1 text-sm">','</span>'); ?>
+                    <div class="flex flex-wrap text-sm gap-2">
+                        <?php the_tags('<span class="inline-block bg-brand text-white px-3 py-1">','</span><span class="inline-block bg-brand text-white px-3 py-1">','</span>'); ?>
                     </div>
                 </div>
             </footer>
