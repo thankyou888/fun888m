@@ -26,8 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
                  <!-- Meta Info -->
                 <div class="entry-meta flex mb-4 gap-2">
-                    <span class="text-xs bg-info px-2 py-2.5"><?php _e('Published') ?> : <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('j M Y'); ?></time></span>
-                    <span class="text-xs bg-info px-2 py-2.5"><?php _e('Modified') ?> : <time datetime="<?php echo get_the_modified_date('c'); ?>" itemprop="dateModified"><?php echo get_the_modified_date('j M Y'); ?></time></span>
+                    <span class="text-xs bg-info text-white px-2 py-2.5"><?php _e('Published') ?> : <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('j M Y'); ?></time></span>
+                    <span class="text-xs bg-info text-white px-2 py-2.5"><?php _e('Modified') ?> : <time datetime="<?php echo get_the_modified_date('c'); ?>" itemprop="dateModified"><?php echo get_the_modified_date('j M Y'); ?></time></span>
                 </div>
             </header>
             <!-- Content Body -->
@@ -81,9 +81,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <?php get_template_part('template-parts/related-post',null, array('data' => $related_query)); ?>
         <?php endif; wp_reset_postdata(); ?>
         <!-- Comments Section -->
-        <?php if (comments_open() || get_comments_number()): ?>
-            <?php comments_template(); ?>
-        <?php endif; ?>
+      
     </div>
 
     <?php get_template_part('template-parts/sidebar'); ?>

@@ -49,9 +49,9 @@ get_header(); // Load header template
                                     <?php echo get_the_modified_date('j M Y'); ?>
                                 </time></div>
                             <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-4">
-                                <a href="#" class="btn btn-primary">ทางเข้า PC</a>
-                                <a href="#" class="btn btn-primary">ทางเข้า Mobile</a>
-                                <a href="#" class="btn btn-error">สมัครสมาชิก</a>
+                                <a href="<?php echo esc_url($home_setting['hero_link_1']) ?>" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary">ทางเข้า PC</a>
+                                <a href="<?php echo esc_url($home_setting['hero_link_2']) ?>" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary">ทางเข้า Mobile</a>
+                                <a href="<?php echo get_theme_mod('sidebar_banner_link');?>" target="_blank" rel="noopener noreferrer nofollow sponsored" class="btn btn-error">สมัครสมาชิก</a>
                             </div>
                         </div>
                         <div class="lg:w-1/2">
@@ -223,23 +223,34 @@ get_header(); // Load header template
                     <div tabindex="0" class="collapse collapse-plus bg-base-100 border-base-300 border" itemscope
                         itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <div class="collapse-title font-semibold">
-                            <h3 itemprop="name" class="font-semibold text-lg">เราสมัครสมาชิกยังไง?</h3>
+                            <h3 itemprop="name" class="font-semibold text-lg">ทำไมต้องมีทางเข้าสำรอง Fun88?</h3>
                         </div>
                         <div class="collapse-content text-sm" itemscope itemprop="acceptedAnswer"
                             itemtype="https://schema.org/Answer">
-                            <p itemprop="text" class=" mt-2">เพียงคลิกที่ปุ่ม “สมัครเลย” ด้านบน
-                                แล้วกรอกข้อมูลของคุณ</p>
+                            <p itemprop="text" class=" mt-2">ทางเข้าสำรอง Fun88 คือทางเลือกสำคัญที่ช่วยให้ผู้เล่นสามารถเข้าใช้งานเว็บไซต์ได้อย่างต่อเนื่อง โดยไม่ติดปัญหาการบล็อกจากเครือข่าย หรือระบบล่มในบางช่วงเวลา ซึ่งการมีลิงก์สำรองไว้ใช้งาน จะช่วยให้ประสบการณ์เดิมพันของคุณไม่สะดุด และปลอดภัยยิ่งขึ้น
+</p>
                         </div>
                     </div>
                     <div tabindex="1" class="collapse collapse-plus bg-base-100 border-base-300 border" itemscope
                         itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <div class="collapse-title font-semibold">
-                            <h3 itemprop="name" class="font-semibold text-lg">เราสมัครสมาชิกยังไง?</h3>
+                            <h3 itemprop="name" class="font-semibold text-lg">ทางเข้า Fun88 คืออะไร? ทำไมต้องมี</h3>
                         </div>
                         <div class="collapse-content text-sm" itemscope itemprop="acceptedAnswer"
                             itemtype="https://schema.org/Answer">
-                            <p itemprop="text" class=" mt-2">เพียงคลิกที่ปุ่ม “สมัครเลย” ด้านบน
-                                แล้วกรอกข้อมูลของคุณ</p>
+                            <p itemprop="text" class=" mt-2">“ทางเข้า Fun88” คือ ลิงก์หรือ URL ที่ใช้เข้าสู่หน้าเว็บไซต์ของ FUN88 โดยตรง ไม่ว่าจะเป็นเวอร์ชันมือถือหรือเดสก์ท็อป ซึ่งจะช่วยให้ผู้เล่นสามารถเข้าถึงบริการต่างๆ ได้อย่างรวดเร็ว ไม่ต้องค้นหาเองหลายขั้นตอน
+
+อย่างไรก็ตาม ด้วยข้อจำกัดด้านกฎหมายหรือการเซ็นเซอร์เว็บไซต์ในบางประเทศ (เช่น ไทย) ลิงก์หลักของ Fun88 อาจถูกบล็อกชั่วคราว ซึ่งทำให้คุณไม่สามารถเข้าใช้งานได้ตามปกติ นั่นจึงเป็นที่มาของ “ทางเข้าสำรอง Fun88” ที่จะช่วยให้คุณสามารถเข้าเล่นได้ต่อเนื่องโดยไม่สะดุด</p>
+                        </div>
+                    </div>
+                      <div tabindex="2" class="collapse collapse-plus bg-base-100 border-base-300 border" itemscope
+                        itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <div class="collapse-title font-semibold">
+                            <h3 itemprop="name" class="font-semibold text-lg">ทำไมบางครั้ง Fun88 เข้าไม่ได้?</h3>
+                        </div>
+                        <div class="collapse-content text-sm" itemscope itemprop="acceptedAnswer"
+                            itemtype="https://schema.org/Answer">
+                            <p itemprop="text" class=" mt-2">หากคุณเคยประสบปัญหา เข้าเว็บไซต์ Fun88 ไม่ได้ หรือโหลดช้าเป็นบางช่วง อย่าเพิ่งตกใจ เพราะอาจไม่ได้เกิดจากปัญหาของระบบโดยตรง แต่อาจเกิดจากปัจจัยภายนอกหลายประการที่เกี่ยวข้องกับอุปกรณ์ของคุณ หรือเครือข่ายอินเทอร์เน็ตในประเทศไทยนั่นเอง</p>
                         </div>
                     </div>
                 </div>

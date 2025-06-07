@@ -28,8 +28,8 @@ use TailPress\ContentQuery;
                 <h1 class="entry-title text-2xl font-bold mb-4" itemprop="headline"><?php the_title(); ?></h1>
                  <!-- Meta Info -->
                 <div class="entry-meta flex mb-4 gap-2">
-                    <span class="text-xs bg-info px-2 py-2.5"><?php _e('Published') ?> : <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('j M Y'); ?></time></span>
-                    <span class="text-xs bg-info px-2 py-2.5"><?php _e('Modified') ?> : <time datetime="<?php echo get_the_modified_date('c'); ?>" itemprop="dateModified"><?php echo get_the_modified_date('j M Y'); ?></time></span>
+                    <span class="text-xs bg-info text-white px-2 py-2.5"><?php _e('Published') ?> : <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('j M Y'); ?></time></span>
+                    <span class="text-xs bg-info text-white px-2 py-2.5"><?php _e('Modified') ?> : <time datetime="<?php echo get_the_modified_date('c'); ?>" itemprop="dateModified"><?php echo get_the_modified_date('j M Y'); ?></time></span>
                 </div>
             </header>
             <!-- Content Body -->

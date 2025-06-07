@@ -24,16 +24,24 @@
             <?php do_action('the_footer'); ?>
             <div class="flex flex-col gap-4">
                 <?php if (has_custom_logo()): ?>
-                            <?php the_custom_logo(); ?>
+                            <?php
+                            $custom_logo_id = get_theme_mod('custom_logo');
+                            $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+                            ?>
+                            <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>" >
+                                <img src="<?php echo esc_url($logo[0]); ?>" alt="<?php bloginfo('name'); ?>"  class="logo w-auto h-[48px]" loading="lazy" />
+                            </a>
                             <p><?php echo esc_html(get_bloginfo('description')); ?></p>
                 <?php endif; ?>
                 <div class="icons-social flex gap-4 mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="size-[32px]" viewBox="0 0 48 48">
                         <path fill="#FF3D00" d="M43.2,33.9c-0.4,2.1-2.1,3.7-4.2,4c-3.3,0.5-8.8,1.1-15,1.1c-6.1,0-11.6-0.6-15-1.1c-2.1-0.3-3.8-1.9-4.2-4C4.4,31.6,4,28.2,4,24c0-4.2,0.4-7.6,0.8-9.9c0.4-2.1,2.1-3.7,4.2-4C12.3,9.6,17.8,9,24,9c6.2,0,11.6,0.6,15,1.1c2.1,0.3,3.8,1.9,4.2,4c0.4,2.3,0.9,5.7,0.9,9.9C44,28.2,43.6,31.6,43.2,33.9z"></path><path fill="#FFF" d="M20 31L20 17 32 24z"></path>
                     </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="size-[32px]" viewBox="0 0 48 48">
-                        <linearGradient id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1" x1="9.993" x2="40.615" y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2aa4f4"></stop><stop offset="1" stop-color="#007ad9"></stop></linearGradient><path fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)" d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z"></path><path fill="#fff" d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z"></path>
-                    </svg>
+                   <a href="https://www.facebook.com/fun888mco" target="_blank" rel="noopener noreferrer noflow">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="size-[32px]" viewBox="0 0 48 48">
+                            <linearGradient id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1" x1="9.993" x2="40.615" y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2aa4f4"></stop><stop offset="1" stop-color="#007ad9"></stop></linearGradient><path fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)" d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z"></path><path fill="#fff" d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z"></path>
+                        </svg>
+                   </a> 
                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="size-[32px]"  viewBox="0 0 48 48">
                     <linearGradient id="U8Yg0Q5gzpRbQDBSnSCfPa_yoQabS8l0qpr_gr1" x1="4.338" x2="38.984" y1="-10.056" y2="49.954" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4b4b4b"></stop><stop offset=".247" stop-color="#3e3e3e"></stop><stop offset=".686" stop-color="#2b2b2b"></stop><stop offset="1" stop-color="#252525"></stop></linearGradient><path fill="url(#U8Yg0Q5gzpRbQDBSnSCfPa_yoQabS8l0qpr_gr1)" d="M38,42H10c-2.209,0-4-1.791-4-4V10c0-2.209,1.791-4,4-4h28c2.209,0,4,1.791,4,4v28	C42,40.209,40.209,42,38,42z"></path><path fill="#fff" d="M34.257,34h-6.437L13.829,14h6.437L34.257,34z M28.587,32.304h2.563L19.499,15.696h-2.563 L28.587,32.304z"></path><polygon fill="#fff" points="15.866,34 23.069,25.656 22.127,24.407 13.823,34"></polygon><polygon fill="#fff" points="24.45,21.721 25.355,23.01 33.136,14 31.136,14"></polygon>
                    </svg>
@@ -69,9 +77,9 @@
                 wp_nav_menu([
                     'container_id'    => 'footer-bar-menu',
                     'container_class' => '',
-                    'menu_class'      => 'flex flex-wrap gap-2 justify-center [&_a]:!no-underline text-light mb-4',
+                    'menu_class'      => 'flex flex-wrap gap-2 justify-center [&_a]:!no-underline text-white mb-4',
                     'theme_location'  => 'footer',
-                    'li_class'        => 'text-center text-sm',
+                    'li_class'        => 'text-center text-sm opeacity-60 hover:opacity-100',
                     'fallback_cb'     => false,
                 ]);
             ?>

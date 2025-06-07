@@ -58,8 +58,11 @@ add_filter('page_template', function ($template) {
 
 function rename_uploaded_image($file) {
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-    $md5_name = substr(md5($file['name'] . time()), 0, 16); // Get first 16 chars
-    $file['name'] = $md5_name . '.' . $ext;
+    // Generate a 16-character cryptographically secure random hexadecimal string for the filename prefix.
+    $unique_prefix = bin2hex(random_bytes(8));
+    // Get the current theme's directory name
+    $theme_name = wp_get_theme()->get_stylesheet();
+    $file['name'] = $theme_name . '-' . $unique_prefix . '.' . $ext;
 
     return $file;
 }
@@ -393,6 +396,3 @@ function display_current_year() {
     return date('Y'); // Fetches the current year dynamically
 }
 add_shortcode('year', 'display_current_year');
-
-
-

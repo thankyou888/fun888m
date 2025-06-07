@@ -145,15 +145,36 @@
   }
   
   body {
-  font-family: var(--font-sarabun);
-  color: var(--color-base-content);
-  :where(p) {
-    margin-bottom: calc(var(--spacing) * 2.5);
-  }
+    font-family: var(--font-sarabun);
+    color: var(--color-base-content);
+    :where(p) {
+      margin-bottom: calc(var(--spacing) * 2.5);
+    }
   }
   section {
     :where(p){
       @apply mb-4;
+      }
+  }
+
+  #menu-must-have {
+    li {
+      border-right: 1px solid var(--color-white);
+      padding-right: 0.75rem;
+      &:last-child {
+        border-right: none;
+      }
     }
+  }
+
 }
+
+
+@layer components {
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  textarea {
+    @apply p-2 border border-gray-300 rounded;
+  }
 }

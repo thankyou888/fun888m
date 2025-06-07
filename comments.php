@@ -43,7 +43,7 @@ if (post_password_required()) {
 
     <?php
     comment_form(array(
-        'class_submit' => 'bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition',
+        'class_submit' => 'bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 transition',
         'comment_field' => '<textarea id="comment" name="comment" rows="4" class="w-full p-3 border rounded focus:outline-none focus:ring focus:border-blue-300" required></textarea>',
         'class_form' => 'mt-8 space-y-4',
         'title_reply' => '<span class="text-xl font-semibold">Leave a Comment</span>',
