@@ -20,7 +20,7 @@ get_header(); // Load header template
           <?php elseif ( is_date() ) : ?>
             <h1 class="entry-title text-3xl font-bold mb-4" itemprop="headline"><?php echo _e('คลังรายปี'); ?> : <span class="text-accent"><?php the_time('F Y'); ?></span></h1>
           <?php else : ?>
-            <h1 class="entry-title text-3xl font-bold mb-4" itemprop="headline"><?php echo _e('Archive'); ?> : <span class="text-accent"><?php the_archive_title(); ?></span></h1>
+            <h1 class="entry-title text-3xl font-bold mb-4" itemprop="headline"><span class="text-accent"><?php the_archive_title(); ?></span></h1>
           <?php endif; ?>
             <?php if ( have_posts() ) : ?>
               <?php $first = true; ?>
@@ -42,8 +42,8 @@ get_header(); // Load header template
                      <span class="hidden text-white text-xs bg-sky-700 px-2 py-2.5"><?php _e('Published') ?> : <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('j M Y'); ?></time></span>
                      <span class="text-white text-xs bg-sky-700 px-2 py-2.5"><?php _e('Modified') ?> : <time datetime="<?php echo get_the_modified_date('c'); ?>" itemprop="dateModified"><?php echo get_the_modified_date('j M Y'); ?></time></span>
                     </div>
-                    <div class="entry-excerpt" itemprop="text">
-                      <p class="text-sm opacity-60 mb-4"><?php echo custom_the_excerpt(); ?></p>
+                    <div class="entry-excerpt text-sm opacity-60 mb-4" itemprop="text">
+                      <?php echo the_excerpt(); ?>
                     </div>
                 </header>
             </article>
@@ -63,8 +63,8 @@ get_header(); // Load header template
                      <span class="hidden text-white text-xs bg-sky-700 px-2 py-2.5"><?php _e('Published') ?> : <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('j M Y'); ?></time></span>
                      <span class="text-white text-xs bg-sky-700 px-2 py-2.5"><?php _e('Modified') ?> : <time datetime="<?php echo get_the_modified_date('c'); ?>" itemprop="dateModified"><?php echo get_the_modified_date('j M Y'); ?></time></span>
                     </div>
-                    <div class="entry-excerpt itemprop="text">
-                      <p class="text-sm mb-4 opacity-60"><?php echo custom_the_excerpt(); ?></p>
+                    <div class="entry-excerpt text-sm opacity-60 mb-4" itemprop="text">
+                      <?php echo the_excerpt(); ?>
                     </div>
                 </header>
             </article>

@@ -168,7 +168,7 @@ get_header(); // Load header template
                         <h2 class="flex-grow lg:flex-auto text-2xl font-bold">
                             <?php echo $services_section_title ?>
                         </h2>
-                        <a title="View All" href="#"
+                        <a title="View All Service" href="<?php echo get_permalink(get_page_by_path('service')); ?>"
                             class="text-sm text-gray-500 hover:text-gray-700 transition duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                                 stroke="currentColor" class="size-6 inline-block text-brand">

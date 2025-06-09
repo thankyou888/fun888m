@@ -6,4 +6,9 @@
 /.nova
 /.vscode
 /.zed
+/tmp
 test.php
+assets/.DS_Store
+assets/images/.DS_Store
+.DS_Store
+vite.config.mjs

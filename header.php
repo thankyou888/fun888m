@@ -132,7 +132,7 @@
                 <?php endif; ?>
                 <?php
                 if ( function_exists('yoast_breadcrumb') ) {
-                    yoast_breadcrumb( '<div class="container mx-auto py-2 text-sm border-b-1 border-zinc-200"><p id="breadcrumbs">','</p></div>' );
+                    yoast_breadcrumb( '<div class="breadcrumbs border-b-1 border-zinc-200"><div class="container mx-auto py-2 text-sm" id="breadcrumbs">','</div></div>' );
                 }
                 ?>
                 <?php if ( function_exists('bcn_display') ) : ?>
@@ -147,4 +147,4 @@
         <?php do_action('tailpress_content_start'); ?>
        
 
-     
+  

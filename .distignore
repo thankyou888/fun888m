@@ -18,3 +18,5 @@ composer.lock
 .gitattributes
 .distignore
 bitbucket-pipelines.yml
+/tmp
+.DS_Store
