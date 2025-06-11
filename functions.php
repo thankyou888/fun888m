@@ -91,24 +91,40 @@ add_filter('next_post_link', function ($output) {
   return $output;
 });
 
-
+/**
+ * Custom archive title override for specific post types or taxonomies
+ */
 function custom_archive_title($title)
 {
-  if (is_category()) {
-    $title = single_cat_title('', false); // Display category name without "Category: "
-  } elseif (is_tag()) {
-    $title = single_tag_title('', false); // Display tag name only
-  } else if (is_tax('gambling')) {
-    $term = get_queried_object();
-    if ($term && !is_wp_error($term)) {
-      // Return only the term name (e.g., 'Sportsbook')
-      $title = esc_html($term->name);
-    }
-  }
+  
+  if ( is_post_type_archive( 'service' ) ) {
+        $title = 'บริการเดิมพันออนไลน์';
+    } elseif ( is_post_type_archive( 'games' ) ) {
+         $title = 'เกมออนไลน์';
+    } elseif ( is_category( 'news' ) ) {
+        $title = 'ข่าวสารล่าสุด';
+    } elseif ( is_tag( 'promotion' ) ) {
+        $title = 'โปรโมชั่น';
+    } 
 
   return $title;
 }
 add_filter('get_the_archive_title', 'custom_archive_title');
+
+/**
+ * Custom archive description override for specific post types or taxonomies
+ */
+add_filter( 'get_the_archive_description', 'custom_archive_description_filter' );
+function custom_archive_description_filter( $description ) {
+    if ( is_post_type_archive( 'service' ) ) {
+        $description = 'แหล่งรวมลิงก์และข้อมูลสำคัญสำหรับการเข้าถึงบริการของ Fun88 อย่างครบวงจร ไม่ว่าคุณจะสนใจเดิมพันกีฬา เล่นคาสิโนสด ปั่นสล็อต หรือแทงหวย ที่นี่เรารวมทุกหมวดหมู่ไว้ให้คุณเข้าถึงได้สะดวก รวดเร็ว และปลอดภัย';
+    } elseif ( is_category( 'news' ) ) {
+        $description = 'ติดตามข่าวสารล่าสุดและกิจกรรมของเรา';
+    } elseif ( is_tag( 'promotion' ) ) {
+        $description = 'รวมโปรโมชั่นและข้อเสนอพิเศษเฉพาะช่วงนี้';
+    }
+    return $description;
+}
 
 // Register Custom Taxonomy
 /*
@@ -149,6 +165,9 @@ function register_custom_taxonomy() {
 add_action('init', 'register_custom_taxonomy');
 */
 
+
+
+
 function create_service_page_type()
 {
   register_post_type('service', array(
@@ -157,11 +176,12 @@ function create_service_page_type()
       'singular_name' => __('Service Page', 'tailpress'),
     ),
     'public'            => true,
-    'has_archive'       => true, // No archive page
+    'has_archive'       => true, // Enables an archive page at /service/
     'hierarchical'      => true, // Behaves like a Page
     'rewrite'           => array('slug' => 'service'),
-    'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
+    'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes', 'custom-fields'),
     'show_in_rest'      => true, // Enables Gutenberg block editor
+    //'taxonomies'        => array('gambling'), // Associate with 'gambling' taxonomy (ensure 'gambling' taxonomy is registered)
   ));
 }
 add_action('init', 'create_service_page_type');
@@ -291,16 +311,16 @@ function my_theme_customizer($wp_customize)
   ));
 
   // Add setting for sidebar visibility
-  $wp_customize->add_setting('show_sidebar', array(
-    'default'           => true, // Sidebar visible by default
+  $wp_customize->add_setting('archives_show_sidebar', array(
+    'default'           => false, // Sidebar non-visible by default
     'sanitize_callback' => 'wp_validate_boolean',
   ));
 
   // Add control (checkbox) for sidebar
-  $wp_customize->add_control('show_sidebar_control', array(
-    'label'    => __('Show Sidebar', 'mytheme'),
+  $wp_customize->add_control('archives_show_sidebar_control', array(
+    'label'    => __('Archives Show Sidebar', 'mytheme'),
     'section'  => 'theme_options',
-    'settings' => 'show_sidebar',
+    'settings' => 'archives_show_sidebar',
     'type'     => 'checkbox',
   ));
 

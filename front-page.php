@@ -56,13 +56,13 @@ get_header(); // Load header template
                         </div>
                         <div class="lg:w-1/2">
                             <?php if (has_post_thumbnail()): ?>
-                            <div class="hero-image mb-4">
-                                <?php the_post_thumbnail('full', [
-                                            'class' => 'rounded h-auto object-cover',
-                                            'loading' => 'lazy',
-                                            'itemprop' => 'image'
-                                            ]); ?>
-                            </div>
+                                <figure class="mb-4">
+                                            <?php the_post_thumbnail('full', [
+                                                        'class' => 'rounded h-auto object-cover',
+                                                        'loading' => 'lazy',
+                                                        'itemprop' => 'image'
+                                                        ]); ?>
+                                </figure>
                             <?php endif; ?>
                         </div>
                     </div>
