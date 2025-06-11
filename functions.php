@@ -179,7 +179,7 @@ function create_service_page_type()
     'has_archive'       => true, // Enables an archive page at /service/
     'hierarchical'      => true, // Behaves like a Page
     'rewrite'           => array('slug' => 'service'),
-    'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes', 'custom-fields'),
+    'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
     'show_in_rest'      => true, // Enables Gutenberg block editor
     //'taxonomies'        => array('gambling'), // Associate with 'gambling' taxonomy (ensure 'gambling' taxonomy is registered)
   ));
@@ -194,7 +194,7 @@ function create_games_page_type()
       'singular_name' => __('Games Page', 'tailpress'),
     ),
     'public'            => true,
-    'has_archive'       => false, // No archive page
+    'has_archive'       => true, // No archive page
     'hierarchical'      => true, // Behaves like a Page
     'rewrite'           => array('slug' => 'games'),
     'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),

@@ -40,7 +40,7 @@
                             $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
                             ?>
                             <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>" >
-                                <img src="<?php echo esc_url($logo[0]); ?>" alt="<?php bloginfo('name'); ?>"  class="logo w-auto h-[48px]" loading="lazy" />
+                                <img src="<?php echo esc_url($logo[0]); ?>" alt="<?php bloginfo('name'); ?>"  class="logo w-[130px] h-auto" loading="lazy" />
                             </a>
                     <?php else: ?>
                         <div class="flex items-center gap-2">
@@ -79,7 +79,8 @@
                 </div> 
                 </div>     
                 <?php if (has_nav_menu('primary')): ?>
-                    <div class="md:hidden">
+                    <div class="inline-flex md:hidden">
+                        <a title="Register" href="<?php echo get_theme_mod('sidebar_banner_link');?>" class="btn btn-error rounded mx-4" rel="sponsored noopener nofollow sponsored">สมัครสมาชิก</a>
                         <button type="button" aria-label="Toggle navigation" id="primary-menu-toggle">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-white">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
