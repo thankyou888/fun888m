@@ -1,13 +1,13 @@
 {
 	"name": "fun888m",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "Boilerplate WordPress theme with Tailwind CSS.",
 	"author": "Thankyouteam888",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/tailpress/tailpress"
+		"url": "https://github.com/thankyou888/fun888m"
 	},
-	"theme_uri": "https://github.com/tailpress/tailpress",
+	"theme_uri": "https://github.com/thankyou888/fun888m",
 	"author_uri": "https://tailpress.io",
 	"text_domain": "fun888m",
 	"license": "MIT",

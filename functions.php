@@ -42,6 +42,51 @@ function tailpress(): TailPress\Framework\Theme
 
 tailpress();
 
+
+function register_yoast_meta_in_rest() {
+
+    register_rest_field('service', 'yoast_wpseo_title', array(
+        'get_callback'    => function($post) {
+            return get_post_meta($post['id'], '_yoast_wpseo_title', true);
+        },
+        'update_callback' => function($value, $post) {
+            update_post_meta($post->ID, '_yoast_wpseo_title', sanitize_text_field($value));
+        },
+        'schema' => array(
+            'type'        => 'string',
+            'description' => 'Meta description for Yoast SEO',
+        ),
+    ));
+
+    register_rest_field('service', 'yoast_wpseo_metadesc', array(
+        'get_callback'    => function($post) {
+            return get_post_meta($post['id'], '_yoast_wpseo_metadesc', true);
+        },
+        'update_callback' => function($value, $post) {
+            update_post_meta($post->ID, '_yoast_wpseo_metadesc', sanitize_text_field($value));
+        },
+        'schema' => array(
+            'type'        => 'string',
+            'description' => 'Meta description for Yoast SEO',
+        ),
+    ));
+
+    register_rest_field('service', 'yoast_wpseo_focuskw', array(
+        'get_callback'    => function($post) {
+            return get_post_meta($post['id'], '_yoast_wpseo_focuskw', true);
+        },
+        'update_callback' => function($value, $post) {
+            update_post_meta($post->ID, '_yoast_wpseo_focuskw', sanitize_text_field($value));
+        },
+        'schema' => array(
+            'type'        => 'string',
+            'description' => 'Meta keywords for Yoast SEO',
+        ),
+    ));
+}
+add_action('rest_api_init', 'register_yoast_meta_in_rest');
+
+
 add_action('init', function () {
   error_log('TMPDIR: ' . sys_get_temp_dir());
 });
@@ -64,12 +109,18 @@ add_filter('page_template', function ($template) {
 
 function rename_uploaded_image($file)
 {
-  $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-  // Generate a 16-character cryptographically secure random hexadecimal string for the filename prefix.
-  $unique_prefix = bin2hex(random_bytes(8));
-  // Get the current theme's directory name
-  $theme_name = wp_get_theme()->get_stylesheet();
-  $file['name'] = $theme_name . '-' . $unique_prefix . '.' . $ext;
+  // Check if the current action is 'upload-theme'.
+  // This indicates a theme is being uploaded via the WordPress admin interface.
+  // In this context, $file is the theme's ZIP package.
+  if (isset($_POST['action']) && $_POST['action'] !== 'upload-theme') {
+    // Bypass the renaming logic for theme ZIP uploads
+    $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+    // Generate a 16-character cryptographically secure random hexadecimal string for the filename prefix.
+    $unique_prefix = bin2hex(random_bytes(8));
+    // Get the current theme's directory name
+    $theme_name = wp_get_theme()->get_stylesheet();
+    $file['name'] = $theme_name . '-' . $unique_prefix . '.' . $ext;
+  }
 
   return $file;
 }

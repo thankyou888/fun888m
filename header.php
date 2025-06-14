@@ -80,7 +80,7 @@
                 </div>     
                 <?php if (has_nav_menu('primary')): ?>
                     <div class="inline-flex md:hidden">
-                        <a title="Register" href="<?php echo get_theme_mod('sidebar_banner_link');?>" class="btn btn-error rounded mx-4" rel="sponsored noopener nofollow sponsored">สมัครสมาชิก</a>
+                        <a title="Register" href="<?php echo get_theme_mod('sidebar_banner_link');?>" class="btn btn-error rounded mx-4" rel="noreferrer noopener nofollow sponsored">สมัครสมาชิก</a>
                         <button type="button" aria-label="Toggle navigation" id="primary-menu-toggle">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-white">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -107,7 +107,7 @@
                         ?>
                     <?php endif; ?>
                 </nav>
-                <a title="Register" href="<?php echo get_theme_mod('sidebar_banner_link');?>" class="btn btn-error md:my-0 my-4 rounded w-full md:w-auto" rel="sponsored noopener nofollow sponsored">สมัครสมาชิก</a>
+                <a title="Register" href="<?php echo get_theme_mod('sidebar_banner_link');?>" class="btn btn-error md:my-0 my-4 rounded w-full md:w-auto" rel="noreferrer noopener nofollow sponsored">สมัครสมาชิก</a>
                     
             </div>
             <!-- theme customizer -->
@@ -133,12 +133,12 @@
                 <?php endif; ?>
                 <?php
                 if ( function_exists('yoast_breadcrumb') ) {
-                    yoast_breadcrumb( '<div class="breadcrumbs border-b-1 border-zinc-200"><div class="container mx-auto py-2 text-sm" id="breadcrumbs">','</div></div>' );
+                    yoast_breadcrumb( '<div class="breadcrumbs border-b-1 border-zinc-200"><div class="container mx-auto py-2 text-sm" id="breadcrumb">','</div></div>' );
                 }
                 ?>
                 <?php if ( function_exists('bcn_display') ) : ?>
                     <div class="breadcrumbs border-b-1 border-zinc-200">
-                        <div class="container mx-auto py-2 text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <div id="breadcrumb" class="container mx-auto py-2 text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">
                             <?php bcn_display(); ?>
                             </div>
                         </div>
