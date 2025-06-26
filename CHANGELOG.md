@@ -26,3 +26,9 @@ All notable changes to Muti Purpose WordPress Theme will be documented in this f
 
 ##0.2.0 find bug fixed
 - test
+
+##0.2.1 find bug fixed
+- Fix bug
+
+##0.2.2 find bug fixed
+- 

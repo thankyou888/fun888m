@@ -107,7 +107,8 @@
       background-color: var(--color-brand);
       border-bottom: none !important;
       th {
-        color: var(--color-base-content);
+        color: var(--color-white);
+      
       }
   }
 

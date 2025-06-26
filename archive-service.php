@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header(); // Load header template
-use TailPress\ContentQuery
+use TailPress\ContentQuery;
 ?>
 <div class="container mx-auto ">
     <div class="flex flex-col lg:flex-row min-h-screen gap-4">
@@ -16,7 +16,7 @@ use TailPress\ContentQuery
             <article itemscope itemtype="https://schema.org/WebPage">
                 <header>
                     <div class="text-center max-w-4/5 mx-auto py-4 lg:py-8 mb-4">
-                        <h1 class="text-3xl"><?php the_archive_title(); ?></h1>
+                        <h1 class="text-3xl" itemprop="headline"><?php the_archive_title(); ?></h1>
                         <p class="text-sm opacity-60"><?php the_archive_description(); ?></p>
                     </div>
                 </header>

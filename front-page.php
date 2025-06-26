@@ -59,7 +59,6 @@ get_header(); // Load header template
                                 <figure class="mb-4">
                                             <?php the_post_thumbnail('full', [
                                                         'class' => 'rounded h-auto object-cover',
-                                                        'loading' => 'lazy',
                                                         'itemprop' => 'image'
                                                         ]); ?>
                                 </figure>

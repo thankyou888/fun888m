@@ -43,6 +43,14 @@ function tailpress(): TailPress\Framework\Theme
 tailpress();
 
 
+/**
+ * Registers Yoast SEO meta fields to be available in the WordPress REST API.
+ *
+ * This function ensures that specific Yoast SEO metadata is exposed via the REST API,
+ * allowing external applications or headless WordPress setups to access SEO-related data.
+ *
+ * @return void
+ */
 function register_yoast_meta_in_rest() {
 
     register_rest_field('service', 'yoast_wpseo_title', array(
@@ -72,6 +80,45 @@ function register_yoast_meta_in_rest() {
     ));
 
     register_rest_field('service', 'yoast_wpseo_focuskw', array(
+        'get_callback'    => function($post) {
+            return get_post_meta($post['id'], '_yoast_wpseo_focuskw', true);
+        },
+        'update_callback' => function($value, $post) {
+            update_post_meta($post->ID, '_yoast_wpseo_focuskw', sanitize_text_field($value));
+        },
+        'schema' => array(
+            'type'        => 'string',
+            'description' => 'Meta keywords for Yoast SEO',
+        ),
+    ));
+
+       register_rest_field('games', 'yoast_wpseo_title', array(
+        'get_callback'    => function($post) {
+            return get_post_meta($post['id'], '_yoast_wpseo_title', true);
+        },
+        'update_callback' => function($value, $post) {
+            update_post_meta($post->ID, '_yoast_wpseo_title', sanitize_text_field($value));
+        },
+        'schema' => array(
+            'type'        => 'string',
+            'description' => 'Meta description for Yoast SEO',
+        ),
+    ));
+
+    register_rest_field('games', 'yoast_wpseo_metadesc', array(
+        'get_callback'    => function($post) {
+            return get_post_meta($post['id'], '_yoast_wpseo_metadesc', true);
+        },
+        'update_callback' => function($value, $post) {
+            update_post_meta($post->ID, '_yoast_wpseo_metadesc', sanitize_text_field($value));
+        },
+        'schema' => array(
+            'type'        => 'string',
+            'description' => 'Meta description for Yoast SEO',
+        ),
+    ));
+
+    register_rest_field('games', 'yoast_wpseo_focuskw', array(
         'get_callback'    => function($post) {
             return get_post_meta($post['id'], '_yoast_wpseo_focuskw', true);
         },
@@ -151,7 +198,7 @@ function custom_archive_title($title)
   if ( is_post_type_archive( 'service' ) ) {
         $title = 'บริการเดิมพันออนไลน์';
     } elseif ( is_post_type_archive( 'games' ) ) {
-         $title = 'เกมออนไลน์';
+         $title = 'สล็อตเว็บตรง';
     } elseif ( is_category( 'news' ) ) {
         $title = 'ข่าวสารล่าสุด';
     } elseif ( is_tag( 'promotion' ) ) {
