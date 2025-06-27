@@ -1,16 +1,11 @@
 import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ command }) => {
     const isBuild = command === 'build';
 
     return {
         base: isBuild ? '/wp-content/themes/fun888m/dist/' : '/',
-        esbuild: {
-            loader: 'jsx',
-            include: /.*\.(js|jsx)$/, // ✅ รองรับ JSX เต็มรูปแบบ
-          },
         server: {
             port: 3000,
             cors: true,
@@ -20,12 +15,12 @@ export default defineConfig(({ command }) => {
             manifest: true,
             outDir: 'dist',
             rollupOptions: {
-                input: {
-                    'app': 'resources/js/app.js',
-                    'theme-switcher': 'resources/js/theme-switcher.js',
-                    'app-css': 'resources/css/app.css',
-                    'editor-style': 'resources/css/editor-style.css',
-                },
+                input: [
+                    'resources/js/app.js',
+                    'resources/js/theme-switcher.js',
+                    'resources/css/app.css',
+                    'resources/css/editor-style.css',
+                ],
                 output: {
                     entryFileNames: '[name].js',
                     chunkFileNames: '[name].js',
@@ -34,7 +29,6 @@ export default defineConfig(({ command }) => {
             },
         },
         plugins: [
-            react(),
             tailwindcss(),
         ],
     }
