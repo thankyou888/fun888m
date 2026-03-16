@@ -130,6 +130,33 @@ function register_yoast_meta_in_rest() {
             'description' => 'Meta keywords for Yoast SEO',
         ),
     ));
+
+       register_rest_field('post', 'yoast_wpseo_title', array(
+        'get_callback'    => function($post) {
+            return get_post_meta($post['id'], '_yoast_wpseo_title', true);
+        },
+        'update_callback' => function($value, $post) {
+            update_post_meta($post->ID, '_yoast_wpseo_title', sanitize_text_field($value));
+        },
+        'schema' => array(
+            'type'        => 'string',
+            'description' => 'Meta description for Yoast SEO',
+        ),
+    ));
+
+    register_rest_field('post', 'yoast_wpseo_metadesc', array(
+        'get_callback'    => function($post) {
+            return get_post_meta($post['id'], '_yoast_wpseo_metadesc', true);
+        },
+        'update_callback' => function($value, $post) {
+            update_post_meta($post->ID, '_yoast_wpseo_metadesc', sanitize_text_field($value));
+        },
+        'schema' => array(
+            'type'        => 'string',
+            'description' => 'Meta description for Yoast SEO',
+        ),
+    ));
+
 }
 add_action('rest_api_init', 'register_yoast_meta_in_rest');
 
