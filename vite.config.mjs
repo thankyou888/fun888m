@@ -9,7 +9,7 @@ export default defineConfig(({ command }) => {
         server: {
             port: 3000,
             cors: true,
-            origin: 'http://all88bet.local',
+            origin: 'http://fun888m-dev.local',
         },
         build: {
             manifest: true,

@@ -128,7 +128,6 @@ get_header(); // Load header template
                                     <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
                                     </a>
                                 </li>
-                                </li>
                                   <li class="list-row">
                                     <div class="text-4xl font-thin opacity-30 tabular-nums">04</div>
                                     <div class="radial-progress" style="--value:100; --size:3rem;" aria-valuenow="100" role="progressbar">100%</div>
@@ -214,6 +213,44 @@ get_header(); // Load header template
                 </div>
             </article>
             <!-- recent posts -->
+
+            <!-- recent reviews -->
+             <section class="recent-reviews mb-4">
+                <div class="flex items-center">
+                    <h2 class="shrink-0 text-2xl font-bold mb-4 pl-4 border-l-4 border-brand">
+                        รีวิวล่าสุด
+                    </h2>
+                    <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"></span>
+                    <a title="View All Reviews" href="/reviews"
+                        class="text-sm text-gray-500 hover:text-gray-700 transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="size-6 inline-block text-brand">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"></path>
+                        </svg>
+                    </a>
+                </div>  
+                <div class="sub-description mb-4 lg:max-w-2/3 text-center mx-auto ">
+                    รีวิวล่าสุดจากที่ได้ทดลองระบบ เกมส์ การบริการ และความปลอดภัยของ Fun88 รวมถึงการเปรียบเทียบกับแบรนด์คาสิโนออนไลน์อื่นๆ โดยไม่มีการให้คะแนนใดๆ นำเสนอเพียงความคิดเห็นและประสบการณ์จริงเพื่อเป็นข้อมูลประกอบการตัดสินใจ
+                </div>        
+                <?php $reviews_query = ContentQuery::get_by_post_type('reviews', ['posts_per_page' => 3]); ?>
+                <?php if ($reviews_query->have_posts()): ?> 
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+                        <?php while ($reviews_query->have_posts()) : $reviews_query->the_post(); ?>
+                            <div class="bg-base-100 border-base-300 p-4 flex flex-col items-center text-center">
+                                <?php echo get_the_post_thumbnail(get_the_ID(), 'large', ['class' => 'h-48 w-full object-cover', 'loading' => 'lazy' , 'itemprop' => 'image']); ?>
+                                <h2 class="text-xl font-bold my-4">
+                                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                                        <?php the_title(); ?>
+                                    </a>
+                                </h2>
+                                <p class="text-sm opacity-60"> <?php echo jet_engine()->listings->data->get_meta( 'review_short_descriptions' ); ?></p>
+                            </div>
+                        <?php endwhile; ?>
+                        <?php wp_reset_postdata(); ?>
+                    </div>
+                <?php endif; ?>
+             </section>
             
             <!-- FAQ Section -->
             <section class="entry-faq mb-4" itemscope itemtype="https://schema.org/FAQPage">

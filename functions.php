@@ -53,109 +53,91 @@ tailpress();
  */
 function register_yoast_meta_in_rest() {
 
-    register_rest_field('service', 'yoast_wpseo_title', array(
-        'get_callback'    => function($post) {
-            return get_post_meta($post['id'], '_yoast_wpseo_title', true);
-        },
-        'update_callback' => function($value, $post) {
-            update_post_meta($post->ID, '_yoast_wpseo_title', sanitize_text_field($value));
-        },
-        'schema' => array(
-            'type'        => 'string',
-            'description' => 'Meta description for Yoast SEO',
-        ),
-    ));
+    // ดึง Post Types ทั้งหมดที่เปิดใช้งานใน REST API ออกมา รวมถึง Page, Post, Bonuses, FAQ, Reviews, ฯลฯ
+    $post_types = get_post_types(array('show_in_rest' => true), 'names');
 
-    register_rest_field('service', 'yoast_wpseo_metadesc', array(
-        'get_callback'    => function($post) {
-            return get_post_meta($post['id'], '_yoast_wpseo_metadesc', true);
-        },
-        'update_callback' => function($value, $post) {
-            update_post_meta($post->ID, '_yoast_wpseo_metadesc', sanitize_text_field($value));
-        },
-        'schema' => array(
-            'type'        => 'string',
-            'description' => 'Meta description for Yoast SEO',
-        ),
-    ));
+    foreach ($post_types as $post_type) {
+        register_rest_field($post_type, 'yoast_wpseo_title', array(
+            'get_callback'    => function($post) {
+                return get_post_meta($post['id'], '_yoast_wpseo_title', true);
+            },
+            'update_callback' => function($value, $post) {
+                update_post_meta($post->ID, '_yoast_wpseo_title', sanitize_text_field($value));
+            },
+            'schema' => array(
+                'type'        => 'string',
+                'description' => 'Meta title for Yoast SEO',
+            ),
+        ));
 
-    register_rest_field('service', 'yoast_wpseo_focuskw', array(
-        'get_callback'    => function($post) {
-            return get_post_meta($post['id'], '_yoast_wpseo_focuskw', true);
-        },
-        'update_callback' => function($value, $post) {
-            update_post_meta($post->ID, '_yoast_wpseo_focuskw', sanitize_text_field($value));
-        },
-        'schema' => array(
-            'type'        => 'string',
-            'description' => 'Meta keywords for Yoast SEO',
-        ),
-    ));
+        register_rest_field($post_type, 'yoast_wpseo_metadesc', array(
+            'get_callback'    => function($post) {
+                return get_post_meta($post['id'], '_yoast_wpseo_metadesc', true);
+            },
+            'update_callback' => function($value, $post) {
+                update_post_meta($post->ID, '_yoast_wpseo_metadesc', sanitize_text_field($value));
+            },
+            'schema' => array(
+                'type'        => 'string',
+                'description' => 'Meta description for Yoast SEO',
+            ),
+        ));
 
-       register_rest_field('games', 'yoast_wpseo_title', array(
-        'get_callback'    => function($post) {
-            return get_post_meta($post['id'], '_yoast_wpseo_title', true);
-        },
-        'update_callback' => function($value, $post) {
-            update_post_meta($post->ID, '_yoast_wpseo_title', sanitize_text_field($value));
-        },
-        'schema' => array(
-            'type'        => 'string',
-            'description' => 'Meta description for Yoast SEO',
-        ),
-    ));
+        register_rest_field($post_type, 'yoast_wpseo_focuskw', array(
+            'get_callback'    => function($post) {
+                return get_post_meta($post['id'], '_yoast_wpseo_focuskw', true);
+            },
+            'update_callback' => function($value, $post) {
+                update_post_meta($post->ID, '_yoast_wpseo_focuskw', sanitize_text_field($value));
+            },
+            'schema' => array(
+                'type'        => 'string',
+                'description' => 'Meta keywords for Yoast SEO',
+            ),
+        ));
 
-    register_rest_field('games', 'yoast_wpseo_metadesc', array(
-        'get_callback'    => function($post) {
-            return get_post_meta($post['id'], '_yoast_wpseo_metadesc', true);
-        },
-        'update_callback' => function($value, $post) {
-            update_post_meta($post->ID, '_yoast_wpseo_metadesc', sanitize_text_field($value));
-        },
-        'schema' => array(
-            'type'        => 'string',
-            'description' => 'Meta description for Yoast SEO',
-        ),
-    ));
+        // Register custom fields only for 'reviews' post type
+        if ($post_type === 'reviews') {
+            register_rest_field('reviews', 'rtp', [
+                'get_callback'    => function ($post) {
+                    return get_post_meta($post['id'], 'rtp', true);
+                },
+                'update_callback' => function ($value, $post) {
+                    update_post_meta($post->ID, 'rtp', sanitize_text_field($value));
+                },
+                'schema'          => [
+                    'type'        => 'string',
+                    'description' => 'RTP for the game review.',
+                ],
+            ]);
 
-    register_rest_field('games', 'yoast_wpseo_focuskw', array(
-        'get_callback'    => function($post) {
-            return get_post_meta($post['id'], '_yoast_wpseo_focuskw', true);
-        },
-        'update_callback' => function($value, $post) {
-            update_post_meta($post->ID, '_yoast_wpseo_focuskw', sanitize_text_field($value));
-        },
-        'schema' => array(
-            'type'        => 'string',
-            'description' => 'Meta keywords for Yoast SEO',
-        ),
-    ));
+            register_rest_field('reviews', 'volatility', [
+                'get_callback'    => function ($post) {
+                    return get_post_meta($post['id'], 'volatility', true);
+                },
+                'update_callback' => function ($value, $post) {
+                    update_post_meta($post->ID, 'volatility', sanitize_text_field($value));
+                },
+                'schema'          => [
+                    'type'        => 'string',
+                    'description' => 'Volatility for the game review.',
+                ],
+            ]);
 
-       register_rest_field('post', 'yoast_wpseo_title', array(
-        'get_callback'    => function($post) {
-            return get_post_meta($post['id'], '_yoast_wpseo_title', true);
-        },
-        'update_callback' => function($value, $post) {
-            update_post_meta($post->ID, '_yoast_wpseo_title', sanitize_text_field($value));
-        },
-        'schema' => array(
-            'type'        => 'string',
-            'description' => 'Meta description for Yoast SEO',
-        ),
-    ));
-
-    register_rest_field('post', 'yoast_wpseo_metadesc', array(
-        'get_callback'    => function($post) {
-            return get_post_meta($post['id'], '_yoast_wpseo_metadesc', true);
-        },
-        'update_callback' => function($value, $post) {
-            update_post_meta($post->ID, '_yoast_wpseo_metadesc', sanitize_text_field($value));
-        },
-        'schema' => array(
-            'type'        => 'string',
-            'description' => 'Meta description for Yoast SEO',
-        ),
-    ));
+            register_rest_field('reviews', 'star_rating', [
+                'get_callback'    => function ($post) {
+                    return (int) get_post_meta($post['id'], 'star_rating', true);
+                },
+                'update_callback' => function ($value, $post) {
+                    update_post_meta($post->ID, 'star_rating', intval($value));
+                },
+                'schema'          => [
+                    'type'        => 'integer',
+                    'description' => 'Star rating for the game review.',
+                ],
+            ]);
+        }
+    }
 
 }
 add_action('rest_api_init', 'register_yoast_meta_in_rest');
@@ -319,7 +301,7 @@ function create_games_page_type()
       'singular_name' => __('Games Page', 'tailpress'),
     ),
     'public'            => true,
-    'has_archive'       => true, // No archive page
+    'has_archive'       => true, // Enables an archive page at /games/
     'hierarchical'      => true, // Behaves like a Page
     'rewrite'           => array('slug' => 'games'),
     'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
@@ -337,7 +319,7 @@ function create_bonuses_page_type()
       'singular_name' => __('Bonuses Page', 'tailpress'),
     ),
     'public'            => true,
-    'has_archive'       => false, // No archive page
+    'has_archive'       => true, // Enables an archive page at /bonuses/
     'hierarchical'      => true, // Behaves like a Page
     'rewrite'           => array('slug' => 'bonuses'),
     'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
@@ -356,9 +338,9 @@ function register_faq_post_type()
       'edit_item' => 'Edit FAQ',
     ],
     'public' => true,
-    'has_archive' => false,
+    'has_archive' => true,
     'rewrite' => ['slug' => 'faq'],
-    'supports' => ['title', 'editor'],
+    'supports'  => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
     'show_in_rest' => true, // Enables Gutenberg
   ]);
 }
@@ -374,9 +356,9 @@ function register_reviews_post_type()
       'edit_item' => 'Edit Review',
     ],
     'public' => true,
-    'has_archive' => false,
+    'has_archive' => true,
     'rewrite' => ['slug' => 'reviews'],
-    'supports' => ['title', 'editor'],
+    'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'],
     'show_in_rest' => true, // Enables Gutenberg
   ]);
 }
@@ -558,3 +540,74 @@ function display_current_year()
   return date('Y'); // Fetches the current year dynamically
 }
 add_shortcode('year', 'display_current_year');
+
+/**
+ * Adds a meta box to the 'reviews' post type editor screen.
+ * This meta box will contain custom fields for review details.
+ */
+function add_review_details_meta_box() {
+    add_meta_box(
+        'review_details_meta_box',      // ID of the meta box
+        'รายละเอียดรีวิวเกม (Game Review Details)', // Title of the meta box
+        'render_review_details_meta_box', // Callback function to render the fields
+        'reviews',                      // Post type
+        'normal',                       // Context (where it appears: 'normal', 'side', 'advanced')
+        'high'                          // Priority ('high', 'core', 'default', 'low')
+    );
+}
+add_action('add_meta_boxes', 'add_review_details_meta_box');
+
+/**
+ * Renders the content of the 'Review Details' meta box.
+ *
+ * @param WP_Post $post The post object.
+ */
+function render_review_details_meta_box($post) {
+    // Add a nonce field for security
+    wp_nonce_field('review_details_save_meta_box_data', 'review_details_meta_box_nonce');
+
+    // Get existing values from the database
+    $rtp = get_post_meta($post->ID, 'rtp', true);
+    $volatility = get_post_meta($post->ID, 'volatility', true);
+    $star_rating = get_post_meta($post->ID, 'star_rating', true);
+
+    // HTML for the fields
+    echo '<p>';
+    echo '<label for="rtp_field" style="font-weight: bold;">RTP (%):</label><br>';
+    echo '<input type="text" id="rtp_field" name="rtp_field" value="' . esc_attr($rtp) . '" size="25" placeholder="เช่น 96.5" />';
+    echo '</p>';
+
+    echo '<p>';
+    echo '<label for="volatility_field" style="font-weight: bold;">Volatility (ความผันผวน):</label><br>';
+    echo '<input type="text" id="volatility_field" name="volatility_field" value="' . esc_attr($volatility) . '" size="25" placeholder="เช่น ต่ำ, ปานกลาง, สูง" />';
+    echo '</p>';
+
+    echo '<p>';
+    echo '<label for="star_rating_field" style="font-weight: bold;">Star Rating (1-5):</label><br>';
+    echo '<input type="number" id="star_rating_field" name="star_rating_field" value="' . esc_attr($star_rating) . '" min="1" max="5" step="1" />';
+    echo '</p>';
+}
+
+/**
+ * Saves the custom meta data when the post is saved.
+ *
+ * @param int $post_id The ID of the post being saved.
+ */
+function save_review_details_meta_box_data($post_id) {
+    // Security checks
+    if (!isset($_POST['review_details_meta_box_nonce']) || !wp_verify_nonce($_POST['review_details_meta_box_nonce'], 'review_details_save_meta_box_data')) {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Sanitize and save the data
+    update_post_meta($post_id, 'rtp', isset($_POST['rtp_field']) ? sanitize_text_field($_POST['rtp_field']) : '');
+    update_post_meta($post_id, 'volatility', isset($_POST['volatility_field']) ? sanitize_text_field($_POST['volatility_field']) : '');
+    update_post_meta($post_id, 'star_rating', isset($_POST['star_rating_field']) ? intval($_POST['star_rating_field']) : '');
+}
+add_action('save_post', 'save_review_details_meta_box_data');

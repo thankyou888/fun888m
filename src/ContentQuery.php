@@ -106,30 +106,42 @@ class ContentQuery
     public static function get_related_taxonomie($post_type): array
     {
         global $post;
-        if (!is_singular($post_type)) {
+
+        // Validate we're on a singular post and post exists
+        if (!$post || !is_singular($post_type)) {
             return [];
         }
+
+        // Get taxonomies for this post type
         $taxonomy_names = get_object_taxonomies($post_type);
-         //print_r($taxonomy_names);
-        $taxonomy = get_the_terms($post->ID, $taxonomy_names[0]);
-        $taxonomy_ids = wp_get_post_terms($post->ID, $taxonomy_names[0], array('fields' => 'ids'));
-        //print_r($taxonomy_ids);
-        //print_r($taxonomy_names);       
-        $args = array( 
-          'post_type' => $post_type,
-          'post__not_in' => array($post->ID),
-          'posts_per_page' => 6,
-          'ignore_sticky_posts' => 1,
-          'orderby' => 'DESC',
-          'tax_query' => array(
-             'relation' => 'AND',
-            array(
-              'taxonomy' => $taxonomy_names[0],
-              'field' => 'id',
-              'terms' => $taxonomy_ids
-            )
-          )
-        );
-        return $args;
+        if (empty($taxonomy_names)) {
+            return [];
+        }
+
+        // Get taxonomy terms for the primary taxonomy
+        $primary_taxonomy = $taxonomy_names[0];
+        $taxonomy_ids = wp_get_post_terms($post->ID, $primary_taxonomy, ['fields' => 'ids']);
+
+        if (empty($taxonomy_ids)) {
+            return [];
+        }
+
+        // Build query arguments for related posts
+        return [
+            'post_type' => $post_type,
+            'post__not_in' => [$post->ID],
+            'posts_per_page' => 6,
+            'ignore_sticky_posts' => 1,
+            'orderby' => 'date',
+            'order' => 'DESC',
+            'tax_query' => [
+                'relation' => 'AND',
+                [
+                    'taxonomy' => $primary_taxonomy,
+                    'field' => 'id',
+                    'terms' => $taxonomy_ids,
+                ],
+            ],
+        ];
     }
 }
