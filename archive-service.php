@@ -273,14 +273,19 @@ use TailPress\ContentQuery;
                     <div class="grid grid-cols-2 md:grid-cols-5 justify-center gap-4">
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
                         <div class="p-4 text-center">
-                            <?php $image_val = get_post_meta(get_the_ID(), 'page_image', true);  ?>
-                            <?php if ($image_val) : ?>
                             <a href="<?php the_permalink(); ?>">
-                                <?php 
-                            $attr = [ 'class' => 'object-cover', 'alt' => get_the_title(), 'title' => get_the_title() ];
-                            echo wp_get_attachment_image($image_val, 'full', false, $attr); ?>
+                                <?php $image_val = get_post_meta(get_the_ID(), 'page_image', true); ?>
+                                <?php if ($image_val) : ?>
+                                <?php
+                                    $attr = [ 'class' => 'object-cover', 'alt' => get_the_title(), 'title' => get_the_title() ];
+                                    echo wp_get_attachment_image($image_val, 'full', false, $attr);
+                                ?>
+                                <?php else : ?>
+                                <img class="object-cover" src="https://placehold.co/400x400?text=No+Image"
+                                    alt="<?php echo esc_attr(get_the_title()); ?>"
+                                    title="<?php echo esc_attr(get_the_title()); ?>">
+                                <?php endif; ?>
                             </a>
-                            <?php endif; ?>
                             <h3 class="bg-info text-white p-4"><a
                                     href="<?php the_permalink(); ?>"><?php echo esc_html(get_post_meta(get_the_ID(), 'page_title', true)); ?></a>
                             </h3>

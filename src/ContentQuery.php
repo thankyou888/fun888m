@@ -94,7 +94,24 @@ class ContentQuery
 
     public static function jet($field_name, $post_id = null)
     {
-        return function_exists('jet_engine') ? jet_engine()->listings->data->get_meta_value($field_name, $post_id) : null;
+        if (!function_exists('jet_engine')) {
+            return $post_id ? get_post_meta($post_id, $field_name, true) : null;
+        }
+
+        $jet_engine = jet_engine();
+
+        if (
+            is_object($jet_engine)
+            && isset($jet_engine->listings)
+            && is_object($jet_engine->listings)
+            && isset($jet_engine->listings->data)
+            && is_object($jet_engine->listings->data)
+            && method_exists($jet_engine->listings->data, 'get_meta_value')
+        ) {
+            return $jet_engine->listings->data->get_meta_value($field_name, $post_id);
+        }
+
+        return $post_id ? get_post_meta($post_id, $field_name, true) : null;
     }
 
     /***
