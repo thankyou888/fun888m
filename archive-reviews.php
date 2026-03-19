@@ -17,6 +17,33 @@ use TailPress\Pagination;
 global $wp_query;
 $review_count  = isset( $wp_query->found_posts ) ? (int) $wp_query->found_posts : 0;
 $current_year  = gmdate( 'Y' );
+$faq_question  = 'รีวิวเหล่านี้เชื่อถือได้แค่ไหน?';
+$faq_answer    = 'รีวิวของเรามาจากประสบการณ์การใช้งานจริงของทีมงานและ Feedback จากผู้เล่นในปี 2026 โดยเน้นข้อมูลที่เป็นกลางและอัปเดตตามสถานการณ์ปัจจุบันที่สุด';
+$faq_question2  = 'มีการเปรียบเทียบแต่ละเกมให้ดูไหม?';
+$faq_answer2    = 'มีครับ ในหน้ารีวิวเชิงลึกเราจะมี Matrix Table เปรียบเทียบจุดเด่น-จุดด้อย ของแต่ละเกม/บริการ เพื่อให้คุณตัดสินใจได้ง่ายขึ้น';
+
+$faq_schema    = [
+    '@context'   => 'https://schema.org',
+    '@type'      => 'FAQPage',
+    'mainEntity' => [
+        [
+            '@type'          => 'Question',
+            'name'           => $faq_question,
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => $faq_answer,
+            ],
+        ],
+        [
+            '@type'          => 'Question',
+            'name'           => $faq_question2,
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => $faq_answer2,
+            ],
+        ],
+    ],
+];
 $service_query = ContentQuery::get_by_post_type(
     'service',
     [
@@ -33,7 +60,7 @@ $games_query   = ContentQuery::get_by_post_type(
 );
 ?>
 
-<div class="container mx-auto">
+<div class="container my-8 mx-auto">
     <div class="flex flex-col lg:flex-row min-h-screen gap-4">
         <div class="flex-1">
             <article itemscope itemtype="https://schema.org/CollectionPage">
@@ -56,56 +83,17 @@ $games_query   = ContentQuery::get_by_post_type(
                                 <span class="rounded-full bg-white text-neutral px-4 py-2 font-semibold">
                                     รีวิวทั้งหมด <?php echo esc_html( number_format_i18n( $review_count ) ); ?> รายการ
                                 </span>
-                                <span class="rounded-full border border-white/30 px-4 py-2">
-                                    อัปเดตตามโพสต์ล่าสุดในระบบ
-                                </span>
-                                <span class="rounded-full border border-white/30 px-4 py-2">
-                                    โฟกัสที่ UX และ SEO-friendly content
-                                </span>
+                              
                             </div>
                         </div>
                     </div>
                 </header>
 
-                <section class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-10">
-                    <div class="lg:col-span-2 bg-base-100 rounded-3xl p-6 shadow-sm">
-                        <h2 class="text-2xl font-bold mb-4">หน้ารวมรีวิวที่อ่านง่ายและช่วยค้นหาข้อมูลได้ไว</h2>
-                        <p class="leading-relaxed opacity-80 mb-4">
-                            หน้านี้รวบรวมรีวิวที่คัดหัวข้อสำคัญไว้ชัดเจน เช่น ภาพรวมเกม จุดเด่น ความน่าเล่น
-                            ค่า RTP, ระดับความผันผวน และคะแนนรีวิว เพื่อให้ผู้ใช้สแกนข้อมูลได้เร็วขึ้นทั้งบนมือถือและเดสก์ท็อป
-                            ขณะเดียวกันยังช่วยให้โครงสร้างเนื้อหาดีต่อการทำ SEO ด้วย heading ที่ชัดเจน
-                            internal links และข้อความสรุปที่ตอบ intent ของผู้ค้นหา.
-                        </p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                            <div class="rounded-2xl bg-base-200 p-4">
-                                <strong class="block mb-1">อ่านจบเร็ว</strong>
-                                สรุปประเด็นสำคัญของแต่ละรีวิวในรูปแบบที่กวาดตาแล้วเข้าใจได้ทันที
-                            </div>
-                            <div class="rounded-2xl bg-base-200 p-4">
-                                <strong class="block mb-1">ข้อมูลประกอบการเลือก</strong>
-                                ใช้ meta อย่างคะแนนดาว, RTP และ volatility มาช่วยให้ข้อมูลมีน้ำหนักมากขึ้น
-                            </div>
-                            <div class="rounded-2xl bg-base-200 p-4">
-                                <strong class="block mb-1">เชื่อมต่อหน้าที่เกี่ยวข้อง</strong>
-                                ลิงก์ต่อไปยังเกมและบริการอื่น ๆ เพื่อให้ผู้ใช้ไปต่อได้ง่าย
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-base-100 rounded-3xl p-6 shadow-sm">
-                        <h2 class="text-2xl font-bold mb-4">ควรดูอะไรในรีวิว</h2>
-                        <ul class="space-y-3 text-sm opacity-80">
-                            <li>คะแนนรีวิวช่วยให้เห็นภาพรวมแบบรวดเร็ว</li>
-                            <li>RTP เหมาะสำหรับดูแนวโน้มการคืนทุนของเกม</li>
-                            <li>Volatility ช่วยประเมินสไตล์การเล่นที่เหมาะกับตัวเอง</li>
-                            <li>ภาพหน้าปกและคำอธิบายสั้นช่วยคัดโพสต์ที่ตรงความสนใจได้ไวขึ้น</li>
-                            <li>วันอัปเดตช่วยให้เห็นความใหม่ของข้อมูลในหน้ารีวิว</li>
-                        </ul>
-                    </div>
-                </section>
+               
 
                 <?php if ( have_posts() ) : ?>
                     <?php $is_featured = true; ?>
-                    <section class="space-y-6 mb-10">
+                    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
                         <?php while ( have_posts() ) : the_post(); ?>
                             <?php
                             $short_description = ContentQuery::jet( 'review_short_descriptions', get_the_ID() );
@@ -125,7 +113,7 @@ $games_query   = ContentQuery::get_by_post_type(
                             ?>
 
                             <?php if ( $is_featured ) : ?>
-                                <section class="grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden bg-base-100 shadow-sm">
+                                <section class="grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden bg-base-100 shadow-sm md:col-span-2 lg:col-span-3">
                                     <div class="bg-base-200">
                                         <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
                                             <?php if ( $thumbnail_html ) : ?>
@@ -134,6 +122,10 @@ $games_query   = ContentQuery::get_by_post_type(
                                                 <img class="w-full aspect-[1200/630] object-cover" src="https://placehold.co/1200x630" alt="<?php echo esc_attr( get_the_title() ); ?>" title="<?php echo esc_attr( get_the_title() ); ?>">
                                             <?php endif; ?>
                                         </a>
+                                        <div class="entry-meta flex mt-4 gap-2 justify-center">
+                                            <span class="text-xs bg-info text-white px-2 py-2.5"><?php _e('Published') ?> : <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('j M Y'); ?></time></span>
+                                            <span class="text-xs bg-info text-white px-2 py-2.5"><?php _e('Modified') ?> : <time datetime="<?php echo get_the_modified_date('c'); ?>" itemprop="dateModified"><?php echo get_the_modified_date('j M Y'); ?></time></span>
+                                        </div>
                                     </div>
                                     <div class="p-6 lg:p-8 flex flex-col justify-center" itemscope itemtype="https://schema.org/Review">
                                         <span class="inline-flex w-fit rounded-full bg-info text-white px-3 py-1 text-xs font-semibold uppercase">
@@ -159,9 +151,6 @@ $games_query   = ContentQuery::get_by_post_type(
                                             <?php if ( $volatility ) : ?>
                                                 <span class="rounded-full bg-base-200 px-4 py-2">Volatility <?php echo esc_html( $volatility ); ?></span>
                                             <?php endif; ?>
-                                            <span class="rounded-full bg-base-200 px-4 py-2">
-                                                อัปเดต <?php echo esc_html( get_the_modified_date( 'j M Y' ) ); ?>
-                                            </span>
                                         </div>
                                         <?php if ( $rating > 0 ) : ?>
                                             <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
@@ -171,7 +160,7 @@ $games_query   = ContentQuery::get_by_post_type(
                                             </div>
                                         <?php endif; ?>
                                         <div class="mt-6">
-                                            <a class="btn btn-primary" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                                            <a class="btn btn-accent" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
                                                 อ่านรีวิวนี้
                                             </a>
                                         </div>
@@ -179,8 +168,8 @@ $games_query   = ContentQuery::get_by_post_type(
                                 </section>
                                 <?php $is_featured = false; ?>
                             <?php else : ?>
-                                <article class="group rounded-3xl bg-base-100 shadow-sm overflow-hidden" itemscope itemtype="https://schema.org/Review">
-                                    <div class="grid grid-cols-1 md:grid-cols-[280px,1fr]">
+                                <article class="group rounded-[8px] bg-base-100 shadow-sm overflow-hidden" itemscope itemtype="https://schema.org/Review">
+                                    <div class="grid grid-cols-1">
                                         <div class="bg-base-200">
                                             <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
                                                 <?php if ( $thumbnail_html ) : ?>
@@ -190,10 +179,14 @@ $games_query   = ContentQuery::get_by_post_type(
                                                 <?php endif; ?>
                                             </a>
                                         </div>
+                                         <div class="entry-meta flex mb-4 gap-2">
+                                            <span class="text-xs bg-info text-white px-2 py-2.5 hidden"><?php _e('Published') ?> : <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('j M Y'); ?></time></span>
+                                            <span class="text-xs bg-info text-white px-2 py-2.5"><?php _e('Modified') ?> : <time datetime="<?php echo get_the_modified_date('c'); ?>" itemprop="dateModified"><?php echo get_the_modified_date('j M Y'); ?></time></span>
+                                        </div>
                                         <div class="p-5 lg:p-6">
+                                           
                                             <div class="flex flex-wrap items-center gap-2 text-xs mb-3">
-                                                <span class="rounded-full bg-base-200 px-3 py-1"><?php echo esc_html( get_the_date( 'j M Y' ) ); ?></span>
-                                                <span class="rounded-full bg-base-200 px-3 py-1"><?php echo esc_html( get_the_modified_date( 'j M Y' ) ); ?></span>
+                                                
                                                 <?php if ( $rating > 0 ) : ?>
                                                     <span class="rounded-full bg-warning px-3 py-1 text-black font-semibold">
                                                         <?php echo esc_html( $rating ); ?>/5
@@ -223,8 +216,8 @@ $games_query   = ContentQuery::get_by_post_type(
                                                     <meta itemprop="worstRating" content="1">
                                                 </div>
                                             <?php endif; ?>
-                                            <a class="inline-flex items-center font-semibold text-info group-hover:translate-x-1 transition-transform" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                                                อ่านต่อ
+                                           <a class="btn btn-accent" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                                                อ่านรีวิวนี้
                                             </a>
                                         </div>
                                     </div>
@@ -232,6 +225,41 @@ $games_query   = ContentQuery::get_by_post_type(
                             <?php endif; ?>
                         <?php endwhile; ?>
                     </section>
+
+                    <?php Pagination::renderModern(); ?>
+
+                    <section class="mb-10 rounded-3xl bg-base-100 p-6 shadow-sm" itemscope itemtype="https://schema.org/FAQPage">
+                        <div class="flex items-center gap-3 mb-5">
+                            <h2 class="shrink-0 text-2xl font-bold">FAQ</h2>
+                            <span class="h-px flex-1 bg-gradient-to-r from-base-300 to-transparent"></span>
+                        </div>
+
+                        <details class="group collapse collapse-plus rounded-2xl border border-base-300 bg-base-200" open itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                            <summary class="collapse-title flex items-center justify-between gap-4 text-lg font-semibold" itemprop="name">
+                                <span><?php echo esc_html( $faq_question ); ?></span>
+                            </summary>
+                            <div class="collapse-content" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                <div class="pt-0 text-sm leading-relaxed opacity-80" itemprop="text">
+                                    <?php echo esc_html( $faq_answer ); ?>
+                                </div>
+                            </div>
+                        </details>
+                        <details class="group collapse collapse-plus rounded-2xl border border-base-300 bg-base-200 mt-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                            <summary class="collapse-title flex items-center justify-between gap-4 text-lg font-semibold" itemprop="name">
+                                <span><?php echo esc_html( $faq_question2 ); ?></span>
+                            </summary>
+                            <div class="collapse-content" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                <div class="pt-0 text-sm leading-relaxed opacity-80" itemprop="text">
+                                    <?php echo esc_html( $faq_answer2 ); ?>
+                                </div>
+                            </div>
+                        </details>
+
+                        <script type="application/ld+json">
+                            <?php echo wp_json_encode( $faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?>
+                        </script>
+                    </section>
+
                 <?php else : ?>
                     <section class="rounded-3xl bg-base-100 p-8 text-center mb-10">
                         <h2 class="text-2xl font-bold mb-3">ยังไม่มีรีวิวในตอนนี้</h2>
@@ -241,26 +269,25 @@ $games_query   = ContentQuery::get_by_post_type(
 
                 <section class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-10">
                     <div class="rounded-3xl bg-base-100 p-6 shadow-sm">
-                        <h2 class="text-2xl font-bold mb-4">แนวทางอ่านรีวิวให้ได้ประโยชน์</h2>
+                        <h2 class="text-2xl font-bold mb-4">เกณฑ์การคัดเลือกเกม</h2>
                         <p class="leading-relaxed opacity-80 mb-4">
-                            หากต้องการเลือกอ่านรีวิวให้ตรงเป้าหมาย แนะนำให้เริ่มจากหัวข้อสรุปสั้น ภาพหน้าปก
-                            และคะแนนรีวิวก่อน จากนั้นค่อยลงลึกไปยังค่าทางเทคนิคอย่าง RTP หรือ volatility
-                            เพื่อดูว่าเกมนั้นเหมาะกับสไตล์การเล่นแบบไหน.
+                            เรารวบรวมเฉพาะเกมที่มีค่า RTP สูงและได้รับการรับรองมาตรฐานสากล เพื่อความโปร่งใสในทุกการเดิมพัน
                         </p>
                         <ul class="space-y-2 text-sm opacity-80">
-                            <li>ดูคะแนนรีวิวเพื่อคัด shortlist อย่างรวดเร็ว</li>
-                            <li>อ่านคำอธิบายสั้นเพื่อดูว่าเนื้อหาเน้นเรื่องไหน</li>
-                            <li>เช็กวันแก้ไขล่าสุดเมื่อต้องการข้อมูลที่ใหม่ขึ้น</li>
-                            <li>เปิดอ่านหน้าที่เกี่ยวข้องเพื่อเปรียบเทียบหลายตัวเลือก</li>
+                            <li>💡ตรวจสอบโปรโมชั่นที่เหมาะกับประเภทเกมที่เลือก</li>
+                            <li>💡ศึกษาเงื่อนไขการทำเทิร์นโอเวอร์ในแต่ละรีวิวเพื่อประโยชน์สูงสุด</li>
+                            <li>💡ระบบรองรับการใช้งานผ่าน Browser โดยไม่ต้องโหลดแอป</li>
                         </ul>
                     </div>
                     <div class="rounded-3xl bg-base-100 p-6 shadow-sm">
-                        <h2 class="text-2xl font-bold mb-4">เหตุผลที่หน้ารีวิวนี้ดีต่อ SEO</h2>
+                        <h2 class="text-2xl font-bold mb-4">ข้อมูลสำคัญประกอบการตัดสินใจ</h2>
                         <p class="leading-relaxed opacity-80">
-                            โครงสร้างหน้านี้ใช้ heading ชัดเจน, summary ที่สแกนง่าย, schema ประเภทรีวิว,
-                            วันอัปเดตที่อ่านได้, internal links ไปยังหน้าที่เกี่ยวข้อง และ pagination สำหรับลิสต์จำนวนมาก
-                            ซึ่งช่วยให้ทั้งผู้ใช้และ search engine เข้าใจเนื้อหาได้ดีขึ้น.
+                            โข้อมูลสำคัญประกอบการตัดสินใจ:
+เราให้ข้อมูลแบบตรงไปตรงมา ทั้งข้อดีและข้อที่ควรระวัง เพื่อให้คุณวางแผนการเล่นได้อย่างมั่นใจและมีประสิทธิภาพ
                         </p>
+                        <ul class="space-y-2 text-sm opacity-80">
+                            <li>💡อัปเดตรีวิวเกมใหม่ล่าสุดรายสัปดาห์</li>
+                        </ul>
                     </div>
                 </section>
 
@@ -272,14 +299,14 @@ $games_query   = ContentQuery::get_by_post_type(
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                             <?php while ( $games_query->have_posts() ) : $games_query->the_post(); ?>
-                                <article class="rounded-3xl bg-base-100 overflow-hidden shadow-sm">
+                                <article class="rounded-xl bg-base-100 overflow-hidden shadow-sm">
                                     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
                                         <?php
                                         $game_thumbnail = get_the_post_thumbnail(
                                             get_the_ID(),
                                             'medium_large',
                                             [
-                                                'class'   => 'w-full h-44 object-cover',
+                                                'class'   => 'w-full h-44 object-left-top object-cover',
                                                 'loading' => 'lazy',
                                             ]
                                         );
@@ -312,7 +339,7 @@ $games_query   = ContentQuery::get_by_post_type(
                         </div>
                         <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
                             <?php while ( $service_query->have_posts() ) : $service_query->the_post(); ?>
-                                <article class="rounded-3xl bg-base-100 p-4 text-center shadow-sm">
+                                <article class="rounded-xl bg-base-100 p-4 text-center shadow-sm">
                                     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
                                         <?php
                                         $page_image = get_post_meta( get_the_ID(), 'page_image', true );
@@ -322,7 +349,7 @@ $games_query   = ContentQuery::get_by_post_type(
                                                 'medium',
                                                 false,
                                                 [
-                                                    'class' => 'mx-auto object-cover rounded-2xl',
+                                                    'class' => 'mx-auto object-cover rounded-xl',
                                                     'alt'   => get_the_title(),
                                                     'title' => get_the_title(),
                                                 ]
@@ -346,7 +373,6 @@ $games_query   = ContentQuery::get_by_post_type(
                     </section>
                 <?php endif; ?>
 
-                <?php Pagination::render(); ?>
             </article>
         </div>
 

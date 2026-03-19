@@ -51,6 +51,28 @@ tailpress();
  *
  * @return void
  */
+function tailpress_rest_post_id($post): int {
+    if (is_array($post)) {
+        if (isset($post['id'])) {
+            return (int) $post['id'];
+        }
+        if (isset($post['ID'])) {
+            return (int) $post['ID'];
+        }
+    }
+
+    if (is_object($post)) {
+        if (isset($post->id)) {
+            return (int) $post->id;
+        }
+        if (isset($post->ID)) {
+            return (int) $post->ID;
+        }
+    }
+
+    return 0;
+}
+
 function register_yoast_meta_in_rest() {
 
     // ดึง Post Types ทั้งหมดที่เปิดใช้งานใน REST API ออกมา รวมถึง Page, Post, Bonuses, FAQ, Reviews, ฯลฯ
@@ -59,7 +81,8 @@ function register_yoast_meta_in_rest() {
     foreach ($post_types as $post_type) {
         register_rest_field($post_type, 'yoast_wpseo_title', array(
             'get_callback'    => function($post) {
-                return get_post_meta($post['id'], '_yoast_wpseo_title', true);
+                $post_id = tailpress_rest_post_id($post);
+                return $post_id ? get_post_meta($post_id, '_yoast_wpseo_title', true) : '';
             },
             'update_callback' => function($value, $post) {
                 update_post_meta($post->ID, '_yoast_wpseo_title', sanitize_text_field($value));
@@ -72,7 +95,8 @@ function register_yoast_meta_in_rest() {
 
         register_rest_field($post_type, 'yoast_wpseo_metadesc', array(
             'get_callback'    => function($post) {
-                return get_post_meta($post['id'], '_yoast_wpseo_metadesc', true);
+                $post_id = tailpress_rest_post_id($post);
+                return $post_id ? get_post_meta($post_id, '_yoast_wpseo_metadesc', true) : '';
             },
             'update_callback' => function($value, $post) {
                 update_post_meta($post->ID, '_yoast_wpseo_metadesc', sanitize_text_field($value));
@@ -85,7 +109,8 @@ function register_yoast_meta_in_rest() {
 
         register_rest_field($post_type, 'yoast_wpseo_focuskw', array(
             'get_callback'    => function($post) {
-                return get_post_meta($post['id'], '_yoast_wpseo_focuskw', true);
+                $post_id = tailpress_rest_post_id($post);
+                return $post_id ? get_post_meta($post_id, '_yoast_wpseo_focuskw', true) : '';
             },
             'update_callback' => function($value, $post) {
                 update_post_meta($post->ID, '_yoast_wpseo_focuskw', sanitize_text_field($value));
@@ -100,7 +125,8 @@ function register_yoast_meta_in_rest() {
         if ($post_type === 'reviews') {
             register_rest_field('reviews', 'rtp', [
                 'get_callback'    => function ($post) {
-                    return get_post_meta($post['id'], 'rtp', true);
+                    $post_id = tailpress_rest_post_id($post);
+                    return $post_id ? get_post_meta($post_id, 'rtp', true) : '';
                 },
                 'update_callback' => function ($value, $post) {
                     update_post_meta($post->ID, 'rtp', sanitize_text_field($value));
@@ -113,7 +139,8 @@ function register_yoast_meta_in_rest() {
 
             register_rest_field('reviews', 'volatility', [
                 'get_callback'    => function ($post) {
-                    return get_post_meta($post['id'], 'volatility', true);
+                    $post_id = tailpress_rest_post_id($post);
+                    return $post_id ? get_post_meta($post_id, 'volatility', true) : '';
                 },
                 'update_callback' => function ($value, $post) {
                     update_post_meta($post->ID, 'volatility', sanitize_text_field($value));
@@ -126,7 +153,8 @@ function register_yoast_meta_in_rest() {
 
             register_rest_field('reviews', 'star_rating', [
                 'get_callback'    => function ($post) {
-                    return (int) get_post_meta($post['id'], 'star_rating', true);
+                    $post_id = tailpress_rest_post_id($post);
+                    return $post_id ? (int) get_post_meta($post_id, 'star_rating', true) : 0;
                 },
                 'update_callback' => function ($value, $post) {
                     update_post_meta($post->ID, 'star_rating', intval($value));
