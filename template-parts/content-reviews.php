@@ -13,8 +13,8 @@ use TailPress\ContentQuery;
 
 <div class="flex flex-col lg:flex-row min-h-screen gap-4">
     <div class="flex-1">
-        <!-- กำหนด Schema ให้เป็น Review และปรับ Class -->
-        <article id="post-<?php the_ID(); ?>" <?php post_class('bg-base-100 border-base-300 mb-8'); ?> itemscope itemtype="https://schema.org/Review">
+        <!-- กำหนด Schema ให้เป็น Review ที่ถูกต้อง -->
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="https://schema.org/Review">
             
             <?php if (has_post_thumbnail()): ?>
                 <div class="featured-image page-header-image-single mb-4">
@@ -31,6 +31,11 @@ use TailPress\ContentQuery;
                 <h1 class="entry-title" itemprop="name">
                     <?php the_title(); ?>
                 </h1>
+
+                <!-- กำหนดสิ่งที่ถูกรีวิว (itemReviewed) ใช้ CreativeWork เพื่อให้ครอบคลุมเนื้อหาที่ไม่ใช่เกม -->
+                <span itemprop="itemReviewed" itemscope itemtype="https://schema.org/CreativeWork">
+                    <meta itemprop="name" content="<?php echo esc_attr(get_the_title()); ?>" />
+                </span>
 
                 <!-- Game Info Header (shown only when RTP meta exists) -->
                     <?php
@@ -130,5 +135,4 @@ use TailPress\ContentQuery;
   .rating > input:checked ~ svg {
     stroke: #fbbd23;
   }
-
 </style>

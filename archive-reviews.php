@@ -17,31 +17,18 @@ use TailPress\Pagination;
 global $wp_query;
 $review_count  = isset( $wp_query->found_posts ) ? (int) $wp_query->found_posts : 0;
 $current_year  = gmdate( 'Y' );
-$faq_question  = 'รีวิวเหล่านี้เชื่อถือได้แค่ไหน?';
-$faq_answer    = 'รีวิวของเรามาจากประสบการณ์การใช้งานจริงของทีมงานและ Feedback จากผู้เล่นในปี 2026 โดยเน้นข้อมูลที่เป็นกลางและอัปเดตตามสถานการณ์ปัจจุบันที่สุด';
-$faq_question2  = 'มีการเปรียบเทียบแต่ละเกมให้ดูไหม?';
-$faq_answer2    = 'มีครับ ในหน้ารีวิวเชิงลึกเราจะมี Matrix Table เปรียบเทียบจุดเด่น-จุดด้อย ของแต่ละเกม/บริการ เพื่อให้คุณตัดสินใจได้ง่ายขึ้น';
-
-$faq_schema    = [
-    '@context'   => 'https://schema.org',
-    '@type'      => 'FAQPage',
-    'mainEntity' => [
-        [
-            '@type'          => 'Question',
-            'name'           => $faq_question,
-            'acceptedAnswer' => [
-                '@type' => 'Answer',
-                'text'  => $faq_answer,
-            ],
-        ],
-        [
-            '@type'          => 'Question',
-            'name'           => $faq_question2,
-            'acceptedAnswer' => [
-                '@type' => 'Answer',
-                'text'  => $faq_answer2,
-            ],
-        ],
+$faq_items     = [
+    [
+        'question' => 'รีวิวในหน้านี้อัปเดตบ่อยแค่ไหน?',
+        'answer'   => 'ทีมงานอัปเดตเมื่อมีข้อมูลใหม่ของเกม ฟีเจอร์ หรือเงื่อนไขที่กระทบการตัดสินใจ เพื่อให้ข้อมูลทันสมัยและเชื่อถือได้',
+    ],
+    [
+        'question' => 'มีเกณฑ์อะไรในการให้คะแนนรีวิว?',
+        'answer'   => 'เราให้คะแนนจากหลายปัจจัยร่วมกัน เช่น ประสบการณ์ใช้งานจริง ความเสถียร ความคุ้มค่า และรายละเอียดเชิงเทคนิคที่ผู้ใช้ควรรู้',
+    ],
+    [
+        'question' => 'อ่านรีวิวแล้วควรดูจุดไหนก่อน?',
+        'answer'   => 'แนะนำให้เริ่มจากสรุปย่อ คะแนนรีวิว และข้อมูลสำคัญอย่าง RTP หรือความผันผวน แล้วค่อยอ่านรายละเอียดเชิงลึกในบทความเต็ม',
     ],
 ];
 $service_query = ContentQuery::get_by_post_type(
@@ -228,36 +215,22 @@ $games_query   = ContentQuery::get_by_post_type(
 
                     <?php Pagination::renderModern(); ?>
 
-                    <section class="mb-10 rounded-3xl bg-base-100 p-6 shadow-sm" itemscope itemtype="https://schema.org/FAQPage">
-                        <div class="flex items-center gap-3 mb-5">
-                            <h2 class="shrink-0 text-2xl font-bold">FAQ</h2>
-                            <span class="h-px flex-1 bg-gradient-to-r from-base-300 to-transparent"></span>
+                    <section class="entry-faq mb-4" itemscope itemtype="https://schema.org/FAQPage">
+                        <h2 class="text-2xl font-bold mb-6">คำถามที่พบบ่อย</h2>
+                        <div class="space-y-4">
+                            <?php foreach ( $faq_items as $faq_index => $faq_item ) : ?>
+                                <div tabindex="<?php echo esc_attr( (string) $faq_index ); ?>" class="collapse collapse-plus bg-base-100 border-base-300 border" itemscope
+                                    itemprop="mainEntity" itemtype="https://schema.org/Question">
+                                    <div class="collapse-title font-semibold">
+                                        <h3 itemprop="name" class="font-semibold text-lg"><?php echo esc_html( $faq_item['question'] ); ?></h3>
+                                    </div>
+                                    <div class="collapse-content text-sm" itemscope itemprop="acceptedAnswer"
+                                        itemtype="https://schema.org/Answer">
+                                        <p itemprop="text" class="mt-2"><?php echo esc_html( $faq_item['answer'] ); ?></p>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-
-                        <details class="group collapse collapse-plus rounded-2xl border border-base-300 bg-base-200" open itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <summary class="collapse-title flex items-center justify-between gap-4 text-lg font-semibold" itemprop="name">
-                                <span><?php echo esc_html( $faq_question ); ?></span>
-                            </summary>
-                            <div class="collapse-content" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="pt-0 text-sm leading-relaxed opacity-80" itemprop="text">
-                                    <?php echo esc_html( $faq_answer ); ?>
-                                </div>
-                            </div>
-                        </details>
-                        <details class="group collapse collapse-plus rounded-2xl border border-base-300 bg-base-200 mt-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <summary class="collapse-title flex items-center justify-between gap-4 text-lg font-semibold" itemprop="name">
-                                <span><?php echo esc_html( $faq_question2 ); ?></span>
-                            </summary>
-                            <div class="collapse-content" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="pt-0 text-sm leading-relaxed opacity-80" itemprop="text">
-                                    <?php echo esc_html( $faq_answer2 ); ?>
-                                </div>
-                            </div>
-                        </details>
-
-                        <script type="application/ld+json">
-                            <?php echo wp_json_encode( $faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?>
-                        </script>
                     </section>
 
                 <?php else : ?>
